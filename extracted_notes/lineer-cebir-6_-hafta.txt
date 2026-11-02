@@ -1,0 +1,185 @@
+=== PAGE 1 ===
+LINEER CEBIR DERS NOTLARI
+LiSANS DERS NOTLARI
+KONU: MATRISLERDE LINEER BAGIULILI-LINEER
+BACIMSIZLIK
+Drdgilys YusuF KARADEDE
+HeHisiu lblkyleri
+yusuykaraddeghetuallcou
+Endsth uuhendislie Belluu
+ystlrdde9gual.cony
+yusufaraoede9gbtu.edu.tr
+
+
+=== PAGE 2 ===
+BAGIMSI2LIK
+1.Sahr veya Sulun Modislen Asosnds
+LineerBogullk
+2. Mxn Boyutlu P-tane ualris Aasndly
+LineerBagnt
+3.Go2Jluds Problemler
+
+
+=== PAGE 3 ===
+2A+A+...+A=0
+(8.1)
+olacol selulde, en az bir favesi stfrdan forll olan
+A1, 22, .: -, An Soylan Varsa bu mothisler lineer
+loogulidr denlr.Bu duruude yazilallen (8.1) bgntsua
+(ss) bognthsi, ancol ve ancol =0, 2=0,
+Xn=o iin saglantyorso bu uathsler lineer bgusizdse
+2. Satr vep SJtun Matrislen arasindor lineer Bgullk:
+A=(oudn...aru)
+Az=(ayozz
+An=(ansanz-
+
+
+=== PAGE 4 ===
+gilol n tane satr Motrs arasindalu lineer lblr bognh
+(8.2)
++A+...+n=0
+selinde olocalhr 0 halde
+A(au C42 . . ayu) + 22(a2u 22 . azu)+ + n(om amz- Cna)
+jpizolbi ua2. Buna dre,
+(2 au +2 a2+..+ 2n an , 1 a42+2 022+.. + n an2,..
++ Qm+ azu+..+n Q)=0
+du.Bu Son esituk Lai
+au1+a22+...+ ann=0
+az2+a22+.+an2n=0
+(83)
+Cm2+0222+.+nu=0
+denklem Sisteune gotiryr Bu bir lineer houojen sisteu
+olup M=0,72=0,.n=0 asikar cp2 her kesuldor
+Vardr
+
+
+=== PAGE 5 ===
+Fger (8.s) nolu denllem =lseuinln asikar olandon farlh
+olandan forll cizdeled de meicutise AsA2r,An
+Disr toraflan, C8 3) Iner housejen denlem sisteaualn
+an
+a22.
+an2
+mho
+Lotsayloruathsini, elerenkr Sathrisleauler vasilasigla
+kanonil hae gehnuel tir
+Kat saylar mathsinln ranlu r olude Jere, ren icun
+el Go2 as kar Gozu olacagndan uafHsler lineer
+bogu sia due rkn icin aslar cozeuden farlh cseuker
+de olacogndan Matnsler lmeer buldr Melasler
+duuci bolinmeyen secip sisteadi ce2uel gerekurDigerta-
+
+
+=== PAGE 6 ===
+Uyang AA,An natnslernin brer kolon(sJhsn) wats
+oluolon haunde yukandalu lon tlar degisuez.
+Ornek.
+A1=(1,-2, 3, 4)
+uotrslen verihyorBu
+uatrsler lineerboguli-
+A2=(-3,5/2, 1)
+idr yolsa lineer Logus?
+isder aralann dalu lineer bogntyi bulunuz.
+G8al: 21 A1+72A2+ 2,Ag=0 olacal gelule M,22,
+ Soyjlann arayaluu.
+2(1,-2,3,4)+22(-3,5,2,1)+73(1,-1,-8-3)=0
+21-32+23=0
+(8.0)
+32+222-82-0
+4+2-9=0
+isleuleri le kanonal hale getelu.
+
+
+=== PAGE 7 ===
+A=
+2-8
+Garyllyork =2 olup (8)Ssteyerine
+21-2入=0
+22 - =0
+Gilnuegen Secuelijiz Ag-t yprdua linegen okun Ru fal-
+=3ic stenunbirhel co2u21-6,-3,1-3olur
+O halde Az, Az,Ay Matnsleri arasindali bir liner bgnt
+6A+3A2+3A-02A+A2+A=0obrl yazlalic
+NoT: A atnsi (&u) sisteu tesll edluen de yozlolir
+3. uxn BoyuHu p Tan Matrs Arosndolu Lineer Bont
+oybabn
+0222...0zn
+B=
+LamOuz
+
+
+=== PAGE 8 ===
+gibl p tane Mortrsl ghdishe alalu Bu uatrsler arasin dolu
+ineerbont
+(8.5)
+MA+2B+...+2pL-0
+2-o,"-Ap=o icn soglaniyoro,bou MortHslenn Lincer
+lagusie olaca aniu gereidie
+letederel(85)fen
+Ou2+bm22+..+22p=0
+a221+b1222+..+2127p=0
+CmnM+bun2+..+Aunp=0
+
+
+=== PAGE 9 ===
+liheer houojen denleu ststkun bulunz. A, B,.., L uathskeinn
+Iineer bogjuu oluolan lcn gerek ve yeler Sart Cudxp byt
+Latsoaylar uatnisiun rank 
+olual Jare, r<p oluasidr
+Kataylar uatisl, eleuentr sahr islealen vVasitasyla, konouk
+hole gehinlerelk qozly yapilaldic Incalendy taldirk gfrulece
+gybi, latsaylar uatsinn binnd kolonu Srasiylo,Awathsiain
+Satrlanndan llunc Lolenu B uathsinin sahrann dany.o,k
+nhayet p kolenu Ise L Matnshin satrlarindan weydona gel
+A-(43) B-(39), c(2)
+uatrisler arasudalu incer bogntyy bulunu?.
+MA+2B+C-0 denlleu ssterunun
+Latsoyilarwatrsi
+oloucol fr Elenentr Sotr lskered
+yardurylon
+13
+
+
+=== PAGE 10 ===
+bulunur.
+KN
+22
+Bunea ge n=2 olup,n-=3-2=1 yarduc Liinenu
+Gozm Lulunallc Yarduc Llinueyen olared A-t seqlune
+prolbleun genel o22u:My=-,=-2, 2=t olar.
+ ignproblen bir e z=2=2,=-1
+olap AB,C uatrisleri arasudalu lineer bognt
+3A+2B-C-0olaro aHlaLlur
+4 GAZULANS PROBLEMLER
+Pololeu1
+A-112,3],B--1/3,2],C-L-1,13,12]
+D=L2,-1,3 Matrisleri arasndalu lineerbgintyt
+bulunuz.RBundan foy dalanaral, A rathsinl Jiger
+uatasler Cinsn den veren ifadeyl yaHnie
+Bu uarsler arasindal lineer bagnt
++2+2C+D=0
+ellinde olacolthr Bu bogn Hdan elde cdeceinz lineer
+houejen dealleu ststerdnin batsaylar mafris!
+
+
+=== PAGE 11 ===
+olarel yazlobiiBuuatnsl,eken
+K=
+13
+nil holegeHrelu
+-12
+55-5
+013
+5531
+yordua blineyen Seqerel Gozir
+araualuyz Ancol wathsin Son
+Satrna Lallhguuz Zavan
+Mu=0 olwasi gerelHgin giryrdz.0 halde yarduc biln-
+wayn olaral y=t gi secelah2.Runa g're, kn bleu
+mnzoh yonb vynnyss
+1=-21,2=-3,2-2=0ve=11unblr
+8aed r2 Xg=2, 22=3, 2--1, 2=0 olacal fu
+Aonon lineer boognth olarod
+2A+38-C=0 joHlabilrBurodon
+
+

@@ -1,0 +1,296 @@
+=== PAGE 1 ===
+LINEER CEBiR DERS NOTLAD TAKIM
+LiSANS LERS NOTLARI
+KONULAR:
+DETERMINANTLAR
+2) DETERMINANTLAR YARNMINLACOZMEBEl
+LINEER DENKLEM SISTEMLER
+MATRiS CEBiRi
+DENK WATRISLER
+LiNEER DENKLBU SISTEMLERiNiN GhlM
+MATRISLERDE LINEER RAGIMULIK-
+LiNERBAGINSIZK
+br, Dar Jyest YuSIF KARADEE
+lehpu blylen:
+Endistri MuhendshaiBoluud
+ysfkorodedeghouall cou
+yfsdede9guail.cm
+
+
+=== PAGE 2 ===
+KONULAR:
+DeterwinanHar
+LDeterinount Tanm
+2.Deteminantn Dejer
+3.Sarrls Kurol
+.Altdetervinon+(ruinar)
+5.fsgorpan (Kofokur)
+b.Deterninontn Oellikler
+7.Determirontor Hesoplonos
+g.Go2lullsProbleuler
+9.Goakeck Probleuler
+
+
+=== PAGE 3 ===
+DETERiNANTLAR
+1.Taniu: Elenanlorl gerqel veya koupleks Saylara korsihk
+gden,
+dn
+an
+022
+Feklinde seroya n'inc uerlelbeden deterubont denir.
+Satr, n fane de sltun vardr Deteruinantn oit (i=1,2,n)
+i=12,.. .n) ile gssterilen  tane eleuanl plup, yukandali siab
+uayp gjre, i eleaanin alt oldgu sochr nuarasnt, 于 'se eleann
+ait olduy silun nuuorasint gosteruektedic
+Deek oluorki,aij
+deteruinanthn 2 inc satirt lle
+
+
+=== PAGE 4 ===
+2. Determulnon Hn Degeri : Her elevout bir soyl veya hir sayrya
+esdeger olon boir deterinantn, asogidali tonwo gu bir den
+Vordr:
+Her satrdan ve her stHundan yalnz lbir elevon aluak
+Suretyle ulubilh olan butun farll garpulor tesul etHgiue
+forz edelim Ornejin; her birn n tane Garpan ihHiva edecek olon
+a.4
+dz...a.n
+Deuek IsHyonyu ki, silun nuoralonna gire sira lanuus olan
+bu ifadede, (.) konuol suretyle bos birakilan sahr nuuorala-
+rinin yerlerine 1,2,..,n Sayilarnn uhtelif perultesyon-
+lounini Yaznuak Suretyk yukorido belinHlen dzelllteb forth
+teduler elde edlbili,Bu tenimlerin soyis,n farkli eleuon n
+tasyon lann lu) tenulenn Jnine (+), tek perultasyonlu terudern
+Jnine (-)isaret koyuak suretyle,bu eriulen yapilacak
+celirsel toplauna determnantn degen denir
+NoT: Ayni Sonuca, bu qarpanlani SaHr nuuaralonno g're
+Siralanak ve terimleri sJtun nuuaralannin peryy layonlorina
+gore teskil etuek sureyke de gidlelird.
+
+
+=== PAGE 5 ===
+Uygulouuo I: idincl Merlbeden delernulnantn degeri
+022
+delerminantnin degerini Verecek olan teriulerin Garponloun
+selinde siralanobilic. Satr nuuaraleun yerine 1 ve 2 saylonmn
+Perullasyonlan olan 12 ve 2 1 yozhlobiir. Tonio gsre lunlam
+loinncsi (+),itincsi (-)isareHi olacotkheOholdedeferulrantn
+degen,
+*α22-2* z
+drneke:
+=2米9-4*3=18-12=6
+=2*0-4*(-3)= 0-(-12)=12.
+Uygulowa 2: gdhcl wertelbeden de terul nan hn degen
+an
+a13
+023
+031
+032
+033
+
+
+=== PAGE 6 ===
+De lervinon tn deerini verecek dlan teriulerin qarpan lan
+peruy lasyonlan olon
+123,231,312,132,213,321olorolk yoziooilr
+Bunbrdon ill Jad ci siniHon olup (+), son ded tek suian
+okup(-)olarolkaknirsp,
+olorol Louunur
+3.Sorrs Kurah:
+ainc mertebeden deteruivantn degerini hesaplouor
+Buno gsre:
+021
+deter ninantn hesoplana ign, ll ili satr al+ tarafo
+Weyp il iki sityu sag torofo ilaue edecegji2:
+
+
+=== PAGE 7 ===
+023
+02A
+022
+032
+034
+a33
+an
+23
+Ararlarinda krui21 isare bulunon 4proz Siralor dali ekwan
+lann Garpnulari Jnidre (+), aralornda mavt isareli bulunan Gop
+yoplacolk celbirsel teplaun doho once lulduguwz
+-0230242
+ifadeshverecegjini
+koloycogpreloilnz
+dnd 1:
+deleruunon Hn heoplouyu?
+Z=[ 1. 0(-1)+ 3.1.3 + 2.(-1),2]-[3.0.2+2:11+(-)(-1)3]=0
+
+
+=== PAGE 8 ===
+Ornek 2:
+34
+delerinanhai hespayinir
+6-2
+Go2Ju:
+△=[2. 6(-1) +f-24+3.3.(-2]
+-[3.6.4+2:2(-2) +13 (-)]
+L Al deteruinout (uinor) : n. wer telbeden bir deterairertn
+(n-).uerteltden deervinonta, Vealen deteruinan hn bu ele
+eleuanina ai+ alt detenirant Lit lle gskrec?.
+Ornek:
+012
+024
+023
+024
+031
+032
+034
+043
+determinonnin
+023
+eleuanina ait alt deterunant
+012
+014
+423=
+032
+034
+olocakHr
+
+
+=== PAGE 9 ===
+Hnin azi elenanno ol al+ dkrmirant
+a32
+olup bu detrrunant, An dkrmnontra gia loriai urk
+5. Esgorpon (Ko faltar): Dekmivonthn ay deno ou
+alt dehrunantni (yt le Gorpvol surelkellaeun
+deterninan ta, Vedlen dekeruontn i voo olt pt
+denr dij elenanna alt es Garpoa A lle gpskreen Bores
+(itj) toplaunn Gif olwosi halind i devame o oll
+dkrunont ve es Gorpanlorn ouin oorglau faplowu fe
+kolayca gdrJlwbilie:
+tah tasin dalu siyah ve buyp korder ondrir
++一+一+
++-+-+
+
+
+=== PAGE 10 ===
+6.Dekrminon Hann dzelller.
+degsr,muo lijen ayai Laluc
+tauau yer dejisirse deteraunanhn degen dgjiuez. anl,
+.Onz
+Ont
+anz
+3. ili sahn vya sitinu brbiainn ayusi olon deerunantn
+degeri sifirdr
+drverin
+△=×42
+abc
+deterwnan Hn alalu Bu dterunann lbinnc ve Jcilnc
+Sutrlonan yederini dgis Hruelle elle edeceue,
+detrunanf le A deteruinantun uuHol
+deoprler ayn, oncouk isareHen fordl
+ooicolhr.(Y-nolud2elak)ohalde A--
+
+
+=== PAGE 11 ===
+Me olurSol olsun bu yorumun geerll
+oloca aGiktc
+4 Debruinontn degeri herhong bir satr veya sJtun eleuan
+lannin kendl exarpentan le Garpularnn foplauna esltAir
+A= 021 Az + 0z Aiz+ . ..+ azn Ain ... . (3.3)
+NoT: De lrminontn (33) fomusline qdre hesaplanuasinor
+"Loplace Aqilu"denc.
+Ornek
+2-1
+Delerminantni Laplace aqliu
+363
+yarduylar hesaplouyimiz.
+-47
+Loploice actluni herhongi lr Sat ror veya sJtuna ugu
+loyorok bu determnonha dejerini hesaplauyunz.dmegh; deter
+inanta bininci sahnna wigulouyorak
+1+235
+1+3
+136
+△= 2. (-10)+1/ 6 5l
+1-4 9/+4(-1)
+=2 (5r35)+(27-(-20) + 4. (2(+24) =265
+buhru2.
+
+
+=== PAGE 12 ===
+5 Hechorg bir phr vep sltun elevonbonin tovolt sfr olan
+=0=0oln
+0i=0a=
+(2) farual le verilen Laplace kgloma gse, A-0 olacahe
+b Dekaatonhn bryshr wy cun eewanlanwn ortak bir
+Gopon Vorp ouCoran dekeutantn dsue alnalaile
+heruion tn zsphoma Loplau Agluni uyguloyau?
+A=kuAutkonAia+..+konAin
+=k(ou Aiu+ Oa Ain+. + din Ain)
+Panta indl iadnn
+
+
+=== PAGE 13 ===
+ain
+dekrmnanth lleesdeger oldigunu
+02
+bllyoruz.Buna gre,
+ain
+ani
+an
+012
+a12
+d22
+024
+022
+a21
+kain
+an2
+dnz.... Cnn
+8, lli satn veya sytununn karstal eleuanlan orantlh olan
+delerunan hn deger sifirdar
+drnegin;
+bulunuz. Bu islenun her uertebeden deteaunan ter nHkal eth-
+Hlecegacithr.
+
+
+=== PAGE 14 ===
+Felinde olan bir dekrunant iu ayn dekrunantn toplou
+olarak yazilabir
+mern
+olsun Loplace oicilianor
+zi+X n2ty az+7
+= (a2i+x) Aa/+ (a22+y) Az2 + (a3+7)Az3
+=(02 A21 +an A22 +am A)+ (× A+ y An+  Az)
+ve buradan
+013
+drya isken her nMerkebedendekrnant icn gcedi olaceg
+Jekuunon hn deged degisuz
+Brnek; n=3'e felalul eden
+dekermuantnn birind sahnan k
+katii ikincl sortinn karshl eleran
+031 a3n d3  lonnor t lowe ederek
+
+
+=== PAGE 15 ===
+an
+Idda edyonuz y A'= dr.
+Bunu gosterwel lcin ' deeru-
+nan tinin ilund sattinna Laplac
+ulu uyulan dgnday
+4'= oldugu kolayca grlir.
+7 Dekr inantu Heseplanuast: PatHlle,bir deteruhanhn
+deger hesaplanrken, dnce fo nolu dzallkten yararlanarok
+Sovar
+dekrwnantan binna Satn 2 lle
+Garpilaroalk iluncl Sorhrer ve (-) ile
+Garplorak iaincu satra llave edua
+olur Birincl sJfunor Loploce Aaiunu
+Uigulanda taldirde,
+Arpgdoly Sembolleri tonuyolun
+X+y:zsohn ile cporpipSothro louve edyonyu anbu tgy
+ky+Ky:2 Kelonu (klluns) Ale corpp J. Kolona(syhina) llauc
+ebyorw ondasu tayur.
+113
+
+

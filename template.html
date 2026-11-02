@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineer Cebir Vize Platformu</title>
+    <!-- Favicon (Browser Tab LC Logo) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23818cf8'/%3E%3Cstop offset='50%25' stop-color='%23c084fc'/%3E%3Cstop offset='100%25' stop-color='%232dd4bf'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23111215'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='14' fill='url(%23g)'%3ELC%3C/text%3E%3C/svg%3E">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkgray: {
+                            950: '#0d0e11',
+                            900: '#111215',
+                            850: '#15171d',
+                            800: '#181a20',
+                            750: '#1f222a',
+                            700: '#272a34',
+                            600: '#383d4a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- KaTeX Styles & Scripts (Local offline with CDN fallback) -->
+    <link rel="stylesheet" href="assets/katex/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css'">
+    <script defer src="assets/katex/katex.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js'"></script>
+    <script defer src="assets/katex/auto-render.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js'"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        
+        :root {
+            /* LIGHT MODE VARIABLES */
+            --bg-body: #f3f4f6;
+            --bg-sidebar: rgba(248, 250, 252, 0.95);
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --bg-card-subtle: #ffffff;
+            --bg-box: #f8fafc;
+            --bg-box-alt: #f1f5f9;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-highlight: rgba(0, 0, 0, 0.14);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --math-color: #0f172a;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            --hover-border: rgba(99, 102, 241, 0.4);
+            --nav-active-bg: rgba(99, 102, 241, 0.1);
+            --nav-active-text: #4f46e5;
+            --glare-color: rgba(255, 255, 255, 0.5);
+        }
+
+        html.dark {
+            /* DARK GRAY (KOYU GRİ - NOT NAVY BLUE!) */
+            --bg-body: #111215;
+            --bg-sidebar: rgba(18, 20, 25, 0.96);
+            --bg-card: rgba(24, 26, 32, 0.78);
+            --bg-card-subtle: #191b22;
+            --bg-box: #14151b;
+            --bg-box-alt: #1a1c24;
+            --border-color: rgba(255, 255, 255, 0.07);
+            --border-highlight: rgba(255, 255, 255, 0.12);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --math-color: #f8fafc;
+            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+            --hover-border: rgba(99, 102, 241, 0.5);
+            --nav-active-bg: linear-gradient(90deg, rgba(99, 102, 241, 0.22), rgba(99, 102, 241, 0.04));
+            --nav-active-text: #ffffff;
+            --glare-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        code, pre, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Fluid Interactive Transitions */
+        button, a, .nav-link, input, select {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        button:active, .nav-link:active {
+            transform: scale(0.97);
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .glass-header {
+            background: var(--bg-sidebar);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .glass-sidebar {
+            background: var(--bg-sidebar);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .glass-hero {
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* 3D Reactive Tilt Card Style */
+        .glass-3d-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .glass-3d-card:hover {
+            border-color: var(--hover-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 25px 0 rgba(99, 102, 241, 0.15);
+        }
+
+        .card-glare {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            background: radial-gradient(circle at 50% 50%, var(--glare-color), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-3d-card:hover .card-glare {
+            opacity: 1;
+        }
+
+        /* Ambient Animated Orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 20s infinite alternate ease-in-out;
+        }
+
+        html.dark .ambient-orb {
+            opacity: 0.12;
+        }
+        html:not(.dark) .ambient-orb {
+            opacity: 0.25;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 60px) scale(1.1); }
+            100% { transform: translate(-30px, 20px) scale(0.95); }
+        }
+
+        /* Single Page Application (SPA) View Animations */
+        .app-view {
+            display: none;
+            opacity: 0;
+        }
+
+        .app-view.active {
+            display: block;
+            opacity: 1;
+            animation: pageSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes pageSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.993);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        html.dark ::-webkit-scrollbar-track {
+            background: #111215;
+        }
+        html.dark ::-webkit-scrollbar-thumb {
+            background: #272a34;
+            border-radius: 4px;
+        }
+        html.dark ::-webkit-scrollbar-thumb:hover {
+            background: #383d4a;
+        }
+
+        html:not(.dark) ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        html:not(.dark) ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Nav link active state */
+        .nav-link {
+            position: relative;
+            border-radius: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(99, 102, 241, 0.08);
+        }
+        .nav-link.active {
+            background: var(--nav-active-bg);
+            color: var(--nav-active-text);
+            font-weight: 700;
+            border-left: 3px solid #6366f1;
+        }
+
+        /* KaTeX Math Formatting */
+        .katex {
+            color: var(--math-color) !important;
+        }
+        .katex-display {
+            margin: 0.6em 0 !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 6px 0;
+        }
+
+        /* Sidebar Collapse System - Icon Rail Mode */
+        #desktop-sidebar {
+            width: 18rem;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+        }
+        @media (min-width: 1280px) {
+            #desktop-sidebar {
+                width: 20rem;
+            }
+        }
+
+        #main-content {
+            transition: padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.sidebar-collapsed #desktop-sidebar {
+            width: 68px !important;
+            padding-left: 0.35rem !important;
+            padding-right: 0.35rem !important;
+        }
+
+        body.sidebar-collapsed #main-content {
+            padding-left: 68px !important;
+        }
+
+        body.sidebar-collapsed #desktop-sidebar .nav-link {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            border-left: none !important;
+            border-radius: 0.75rem !important;
+        }
+
+        body.sidebar-collapsed #desktop-sidebar .nav-link.active {
+            background: var(--nav-active-bg) !important;
+            box-shadow: 0 0 15px -3px rgba(99, 102, 241, 0.4);
+        }
+
+        body.sidebar-collapsed #desktop-sidebar .nav-link span {
+            display: none !important;
+        }
+
+        body.sidebar-collapsed #desktop-sidebar .sidebar-text-hide {
+            display: none !important;
+        }
+
+        body.sidebar-collapsed #desktop-sidebar .sidebar-divider-collapsed {
+            display: block !important;
+            height: 1px;
+            background: var(--border-color);
+            margin: 12px 6px;
+        }
+
+        body.sidebar-collapsed #collapse-arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Light Mode Adaptive Overrides */
+        html:not(.dark) .text-white {
+            color: #0f172a !important;
+        }
+        html:not(.dark) .text-slate-200,
+        html:not(.dark) .text-slate-300 {
+            color: #334155 !important;
+        }
+        html:not(.dark) .text-slate-400 {
+            color: #64748b !important;
+        }
+        html:not(.dark) .text-slate-500 {
+            color: #94a3b8 !important;
+        }
+
+        html:not(.dark) .bg-slate-950,
+        html:not(.dark) .bg-slate-950\/80,
+        html:not(.dark) .bg-slate-950\/70,
+        html:not(.dark) .bg-slate-950\/60,
+        html:not(.dark) .bg-slate-950\/40,
+        html:not(.dark) .bg-slate-900\/80,
+        html:not(.dark) .bg-slate-900\/70,
+        html:not(.dark) .bg-slate-900\/60 {
+            background-color: #ffffff !important;
+            color: #1e293b !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+        }
+
+        html:not(.dark) .border-white\/5,
+        html:not(.dark) .border-white\/10 {
+            border-color: rgba(0, 0, 0, 0.08) !important;
+        }
+
+        html:not(.dark) .bg-indigo-950\/30,
+        html:not(.dark) .bg-indigo-950\/20 {
+            background-color: rgba(238, 242, 255, 0.85) !important;
+            border-color: rgba(99, 102, 241, 0.25) !important;
+        }
+        html:not(.dark) .bg-emerald-950\/30,
+        html:not(.dark) .bg-emerald-950\/40 {
+            background-color: rgba(236, 253, 245, 0.85) !important;
+            border-color: rgba(16, 185, 129, 0.25) !important;
+        }
+        html:not(.dark) .bg-amber-950\/30 {
+            background-color: rgba(254, 243, 199, 0.85) !important;
+            border-color: rgba(245, 158, 11, 0.25) !important;
+        }
+        html:not(.dark) .bg-rose-950\/30 {
+            background-color: rgba(255, 241, 242, 0.85) !important;
+            border-color: rgba(244, 63, 94, 0.25) !important;
+        }
+        html:not(.dark) .bg-purple-950\/30 {
+            background-color: rgba(250, 245, 255, 0.85) !important;
+            border-color: rgba(168, 85, 247, 0.25) !important;
+        }
+        html:not(.dark) input.matrix-cell,
+        html:not(.dark) input[type="text"],
+        html:not(.dark) input[type="number"] {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+    </style>
+</head>
+<body class="selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col relative">
+
+    <!-- Ambient Glowing Background Orbs for Glassmorphism -->
+    <div class="ambient-orb w-[500px] h-[500px] bg-indigo-600/20 -top-40 -left-40"></div>
+    <div class="ambient-orb w-[600px] h-[600px] bg-purple-600/15 top-1/3 -right-40" style="animation-delay: -5s;"></div>
+    <div class="ambient-orb w-[550px] h-[550px] bg-teal-600/15 -bottom-40 left-1/4" style="animation-delay: -10s;"></div>
+
+    <!-- Top Sticky Glass Header -->
+    <header class="sticky top-0 z-50 glass-header px-4 lg:px-8 py-3 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <!-- Brand Logo (LC Monogram - Click to Toggle Sidebar) -->
+            <button onclick="handleSidebarToggle()" title="Kenar Çubuğunu Daralt / Genişlet" aria-label="Kenar Çubuğunu Daralt / Genişlet" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-teal-400 p-[1.5px] shadow-lg shadow-indigo-600/25 shrink-0 select-none active:scale-95 transition cursor-pointer">
+                <div class="w-full h-full bg-[var(--bg-card-subtle)] rounded-[14.5px] flex items-center justify-center">
+                    <span class="font-mono font-black text-sm tracking-tighter bg-gradient-to-tr from-indigo-500 via-purple-500 to-teal-400 bg-clip-text text-transparent">LC</span>
+                </div>
+            </button>
+
+            <div>
+                <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-[var(--text-primary)] flex items-center gap-2">
+                    Lineer Cebir Vize Platformu
+                </h1>
+                <div class="flex items-center gap-2 mt-0.5">
+                    <p class="text-[11px] text-[var(--text-muted)] hidden md:block">Vize Hazırlık Portalı</p>
+                    <span class="text-[11px] text-[var(--text-muted)] hidden md:inline">•</span>
+                    <span id="header-active-view-badge" class="text-[11px] font-bold text-indigo-400 font-mono flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                        <span id="header-active-view-text">Giriş & Strateji</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2.5 sm:gap-3">
+            <!-- Progress Tracker -->
+            <div class="hidden xl:flex items-center gap-3 px-3.5 py-1.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)]">
+                <span class="text-xs text-[var(--text-muted)] font-medium">İlerleme:</span>
+                <div class="w-20 bg-[var(--bg-box-alt)] h-2 rounded-full overflow-hidden border border-[var(--border-color)]">
+                    <div id="progress-bar-fill" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-400 h-full w-0 transition-all duration-500 rounded-full"></div>
+                </div>
+                <span id="progress-percentage" class="text-xs font-bold font-mono text-indigo-400">%0</span>
+            </div>
+
+            <!-- Quick Jump / Search Bar -->
+            <div class="relative hidden sm:block">
+                <input type="text" id="quick-search-input" onkeyup="handleQuickSearch(event)" placeholder="Bölüm veya konu ara..." class="bg-[var(--bg-box)] border border-[var(--border-color)] rounded-xl px-3.5 py-1.5 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] w-40 md:w-56 focus:w-64 focus:outline-none focus:border-indigo-500 transition-all shadow-inner">
+                <svg class="w-3.5 h-3.5 text-[var(--text-muted)] absolute right-3 top-2.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <!-- Search Suggestions Dropdown -->
+                <div id="search-dropdown" class="hidden absolute left-0 right-0 top-10 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl shadow-2xl p-2 z-50 text-xs space-y-1 backdrop-blur-xl"></div>
+            </div>
+
+            <!-- Theme Switcher (Dark Gray <-> Light Mode) -->
+            <button id="theme-toggle-btn" onclick="toggleTheme()" title="Aydınlık / Karanlık Mod Değiştir" class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-[var(--bg-box)] hover:bg-[var(--bg-box-alt)] text-[var(--text-primary)] border border-[var(--border-color)] text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm">
+                <!-- Sun Icon (Shown in Dark Mode) -->
+                <svg id="theme-icon-sun" class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                <!-- Moon Icon (Shown in Light Mode) -->
+                <svg id="theme-icon-moon" class="w-4 h-4 text-indigo-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                <span id="theme-label" class="hidden md:inline font-medium text-[11px]">Aydınlık Mod</span>
+            </button>
+
+            <!-- Fullscreen Button -->
+            <button id="fullscreen-toggle-btn" onclick="toggleFullscreen()" title="Tam Ekran Yap / Çık" aria-label="Tam Ekran Yap" class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-[var(--bg-box)] hover:bg-[var(--bg-box-alt)] text-[var(--text-primary)] border border-[var(--border-color)] text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm">
+                <!-- Enter Fullscreen Icon -->
+                <svg id="fs-icon-enter" class="w-4 h-4 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                <!-- Exit Fullscreen Icon -->
+                <svg id="fs-icon-exit" class="w-4 h-4 text-indigo-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+                <span id="fs-text" class="hidden md:inline text-[11px]">Tam Ekran</span>
+            </button>
+
+            <!-- Print / PDF Button -->
+            <button onclick="window.print()" title="Sayfayı Yazdır / PDF Olarak Kaydet" class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-[var(--bg-box)] hover:bg-[var(--bg-box-alt)] text-[var(--text-primary)] border border-[var(--border-color)] text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm">
+                <svg class="w-4 h-4 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                <span class="hidden md:inline text-[11px]">Yazdır</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Application Shell -->
+    <div class="flex-1 flex w-full relative">
+
+        <!-- DESKTOP FIXED SIDEBAR (Kenara Sabitlenmiş) -->
+        <aside id="desktop-sidebar" class="hidden lg:flex fixed top-[57px] bottom-0 left-0 w-72 xl:w-80 flex-col justify-between glass-sidebar overflow-y-auto custom-scrollbar z-40">
+            <nav class="p-3 space-y-1.5 text-xs font-medium flex-1">
+                <div class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest px-2 py-1 flex items-center justify-between">
+                    <span class="sidebar-text-hide">Müfredat Konuları</span>
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[9px] font-mono text-indigo-400 font-normal sidebar-text-hide">7 Bölüm</span>
+                        <button onclick="toggleDesktopSidebar()" id="sidebar-collapse-toggle-icon-btn" title="Kenar Çubuğunu Daralt / Genişlet" aria-label="Kenar Çubuğunu Daralt" class="p-1 rounded-md hover:bg-[var(--bg-box-alt)] text-[var(--text-muted)] hover:text-indigo-400 transition active:scale-95">
+                            <svg id="collapse-arrow-icon" class="w-3.5 h-3.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <button onclick="switchView('giris')" data-target="giris" title="Giriş & Vize Stratejisi" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left active">
+                    <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Giriş & Vize Stratejisi</span>
+                </button>
+                <button onclick="switchView('bolum1')" data-target="bolum1" title="1. Determinantlar" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                    <span>1. Determinantlar</span>
+                </button>
+                <button onclick="switchView('bolum2')" data-target="bolum2" title="2. Cramer ile Çözüm" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                    <span>2. Cramer ile Çözüm</span>
+                </button>
+                <button onclick="switchView('bolum3')" data-target="bolum3" title="3. Matris Cebiri" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    <span>3. Matris Cebiri</span>
+                </button>
+                <button onclick="switchView('bolum4')" data-target="bolum4" title="4. Denk Matrisler & Rank" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    <span>4. Denk Matrisler & Rank</span>
+                </button>
+                <button onclick="switchView('bolum5')" data-target="bolum5" title="5. Gauss Eleme ile Çözüm" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    <span>5. Gauss Eleme ile Çözüm</span>
+                </button>
+                <button onclick="switchView('bolum6')" data-target="bolum6" title="Bonus: Lineer Bağımlılık" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-pink-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+                    <span>Bonus: Lineer Bağımlılık</span>
+                </button>
+
+                <div class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest px-2 pt-4 pb-1 sidebar-text-hide">Uygulama & Sınav</div>
+                <div class="sidebar-divider-collapsed hidden"></div>
+                
+                <button onclick="switchView('sorular')" data-target="sorular" title="Hocanın Vize Soru Arşivi" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-emerald-400 font-semibold">
+                    <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Hocanın Vize Soru Arşivi</span>
+                </button>
+                <button onclick="switchView('laboratuvar')" data-target="laboratuvar" title="Canlı Matris Laboratuvarı" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-indigo-400 font-semibold">
+                    <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <span>Canlı Matris Laboratuvarı</span>
+                </button>
+                <button onclick="switchView('deneme')" data-target="deneme" title="Vize Deneme Sınavı" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-amber-400 font-semibold">
+                    <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <span>Vize Deneme Sınavı</span>
+                </button>
+                <button onclick="switchView('hapbilgi')" data-target="hapbilgi" title="15 Dakika Vize Hapı" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-rose-400 font-semibold">
+                    <svg class="w-4 h-4 text-rose-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span>15 Dakika Vize Hapı</span>
+                </button>
+            </nav>
+
+            <div class="p-3 border-t border-[var(--border-color)] bg-[var(--bg-box)] text-[11px] text-[var(--text-muted)] space-y-1">
+                <div class="flex items-center gap-2 justify-center lg:justify-start">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                    <span class="font-semibold text-[var(--text-primary)] sidebar-text-hide">Resmi Lisans Notları</span>
+                </div>
+                <p class="sidebar-text-hide">Hafta 1-6 & 11-12 eksiksiz.</p>
+            </div>
+        </aside>
+
+        <!-- MOBILE DRAWER SIDEBAR & BACKDROP -->
+        <div id="mobile-sidebar-backdrop" onclick="toggleSidebar()" class="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+        <aside id="mobile-sidebar" class="lg:hidden fixed top-0 bottom-0 left-0 w-80 max-w-[85vw] glass-sidebar z-50 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto custom-scrollbar">
+            <div class="p-4 border-b border-[var(--border-color)] flex items-center justify-between">
+                <span class="font-bold text-sm text-[var(--text-primary)]">İçindekiler</span>
+                <button onclick="toggleSidebar()" class="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <nav class="p-4 space-y-1.5 text-xs font-medium flex-1">
+                <div class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest px-3 py-1">Vize Konuları</div>
+                
+                <button onclick="switchView('giris')" data-target="giris" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left active">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Giriş & Vize Stratejisi</span>
+                </button>
+                <button onclick="switchView('bolum1')" data-target="bolum1" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                    <span>1. Determinantlar</span>
+                </button>
+                <button onclick="switchView('bolum2')" data-target="bolum2" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                    <span>2. Cramer ile Çözüm</span>
+                </button>
+                <button onclick="switchView('bolum3')" data-target="bolum3" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    <span>3. Matris Cebiri</span>
+                </button>
+                <button onclick="switchView('bolum4')" data-target="bolum4" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    <span>4. Denk Matrisler & Rank</span>
+                </button>
+                <button onclick="switchView('bolum5')" data-target="bolum5" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    <span>5. Gauss Eleme ile Çözüm</span>
+                </button>
+                <button onclick="switchView('bolum6')" data-target="bolum6" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left">
+                    <svg class="w-4 h-4 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+                    <span>Bonus: Lineer Bağımlılık</span>
+                </button>
+
+                <div class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest px-3 pt-5 pb-1">Uygulama & Sınav</div>
+                
+                <button onclick="switchView('sorular')" data-target="sorular" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-emerald-400 font-semibold">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Hocanın Vize Soru Arşivi</span>
+                </button>
+                <button onclick="switchView('laboratuvar')" data-target="laboratuvar" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-indigo-400 font-semibold">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <span>Canlı Matris Laboratuvarı</span>
+                </button>
+                <button onclick="switchView('deneme')" data-target="deneme" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-amber-400 font-semibold">
+                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <span>Vize Deneme Sınavı</span>
+                </button>
+                <button onclick="switchView('hapbilgi')" data-target="hapbilgi" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-rose-400 font-semibold">
+                    <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span>15 Dakika Vize Hapı</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- MAIN VIEW CONTAINER (Sidebar Genişliği Kadar İçerik Kaydırılmış) -->
+        <main id="main-content" class="flex-1 lg:pl-72 xl:pl-80 w-full min-h-[calc(100vh-57px)] flex flex-col justify-between transition-all duration-300 ease-in-out">
+            <div class="max-w-5xl mx-auto w-full px-4 sm:px-8 py-8 flex-1">
+                <!-- ALL_VIEWS_CONTENT -->
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="py-8 border-t border-[var(--border-color)] text-center text-xs text-[var(--text-muted)] space-y-2 bg-[var(--bg-box)]">
+                <p class="text-[var(--text-secondary)]">Lineer Cebir Dersi Vizeye Hazırlık Platformu | Dr. Öğr. Üyesi Yusuf Karadede Lisans Notları</p>
+                <p class="text-[11px]">Hafta 1 & 11 (Determinant, Cramer) • Hafta 3 & 12 (Matris Cebiri) • Hafta 4 & 12 (Gauss) • Hafta 5 & 12 (Rank, Eşelon) • Hafta 6 (Lineer Bağımlılık)</p>
+                <div class="text-[10px] text-[var(--text-muted)] flex items-center justify-center gap-2 pt-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    <span>Modern Glassmorphism & 3D Tepkimeli Mimari • Akışkan SPA Sayfa Geçişleri • Tamamen Çevrimdışı KaTeX</span>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Application Engine Scripts -->
+    <script>
+        const QUIZ_DATA = /* QUIZ_DATA_PLACEHOLDER */;
+        let userAnswers = {};
+        let userProgress = JSON.parse(localStorage.getItem('lineer_cebir_progress') || '{}');
+
+        const ALL_VIEW_IDS = [
+            'giris', 'bolum1', 'bolum2', 'bolum3', 'bolum4', 'bolum5', 'bolum6',
+            'sorular', 'laboratuvar', 'deneme', 'hapbilgi'
+        ];
+
+        const VIEW_NAMES = {
+            'giris': 'Giriş & Vize Stratejisi',
+            'bolum1': 'Bölüm 1: Determinantlar',
+            'bolum2': 'Bölüm 2: Cramer ile Çözüm',
+            'bolum3': 'Bölüm 3: Matris Cebiri',
+            'bolum4': 'Bölüm 4: Denk Matrisler & Rank',
+            'bolum5': 'Bölüm 5: Gauss Eleme ile Çözüm',
+            'bolum6': 'Bonus: Lineer Bağımlılık',
+            'sorular': 'Hocanın Vize Soru Arşivi',
+            'laboratuvar': 'Canlı Matris Laboratuvarı',
+            'deneme': 'Vize Deneme Sınavı',
+            'hapbilgi': '15 Dakika Vize Hapı'
+        };
+
+        // ================= SPA VIEW ROUTER =================
+        function switchView(viewId) {
+            if (!ALL_VIEW_IDS.includes(viewId)) {
+                viewId = 'giris';
+            }
+
+            // Hide all views
+            ALL_VIEW_IDS.forEach(id => {
+                const el = document.getElementById('view-' + id);
+                if (el) {
+                    el.classList.remove('active');
+                }
+            });
+
+            // Activate target view
+            const target = document.getElementById('view-' + viewId);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // Update nav links active states
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('data-target') === viewId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Update header badge
+            const headerBadgeText = document.getElementById('header-active-view-text');
+            if (headerBadgeText && VIEW_NAMES[viewId]) {
+                headerBadgeText.textContent = VIEW_NAMES[viewId];
+            }
+
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Update URL hash without breaking history
+            if (history.pushState) {
+                history.pushState(null, null, '#' + viewId);
+            } else {
+                location.hash = '#' + viewId;
+            }
+
+            // Re-render KaTeX on new view if needed
+            if (target) {
+                reRenderMath(target);
+            }
+
+            // Close mobile sidebar if open
+            closeMobileSidebar();
+
+            // Refresh 3D tilt effects on new elements
+            setTimeout(init3DTiltCards, 100);
+        }
+
+        // ================= THEME SWITCHER (DARK GRAY <-> LIGHT) =================
+        function initTheme() {
+            const savedTheme = localStorage.getItem('lineer_theme');
+            if (savedTheme === 'light') {
+                setTheme('light');
+            } else {
+                setTheme('dark'); // default is modern dark gray
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            setTheme(isDark ? 'light' : 'dark');
+        }
+
+        function setTheme(theme) {
+            const sunIcon = document.getElementById('theme-icon-sun');
+            const moonIcon = document.getElementById('theme-icon-moon');
+            const label = document.getElementById('theme-label');
+
+            if (theme === 'light') {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('lineer_theme', 'light');
+                if (sunIcon) sunIcon.classList.add('hidden');
+                if (moonIcon) moonIcon.classList.remove('hidden');
+                if (label) label.textContent = 'Karanlık Mod';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('lineer_theme', 'dark');
+                if (sunIcon) sunIcon.classList.remove('hidden');
+                if (moonIcon) moonIcon.classList.add('hidden');
+                if (label) label.textContent = 'Aydınlık Mod';
+            }
+        }
+
+        // ================= SIDEBAR TOGGLE & COLLAPSE (DESKTOP & MOBILE) =================
+        function handleSidebarToggle() {
+            if (window.innerWidth >= 1024) {
+                toggleDesktopSidebar();
+            } else {
+                toggleSidebar();
+            }
+        }
+
+        function toggleDesktopSidebar() {
+            document.body.classList.toggle('sidebar-collapsed');
+            const isCollapsed = document.body.classList.contains('sidebar-collapsed');
+            localStorage.setItem('lineer_sidebar_collapsed', isCollapsed ? 'true' : 'false');
+            setTimeout(init3DTiltCards, 350);
+        }
+
+        // ================= FULLSCREEN API =================
+        function toggleFullscreen() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        document.addEventListener('fullscreenchange', updateFullscreenUI);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
+
+        function updateFullscreenUI() {
+            const enterIcon = document.getElementById('fs-icon-enter');
+            const exitIcon = document.getElementById('fs-icon-exit');
+            const fsText = document.getElementById('fs-text');
+            const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+
+            if (isFs) {
+                if (enterIcon) enterIcon.classList.add('hidden');
+                if (exitIcon) exitIcon.classList.remove('hidden');
+                if (fsText) fsText.textContent = 'Küçült';
+            } else {
+                if (enterIcon) enterIcon.classList.remove('hidden');
+                if (exitIcon) exitIcon.classList.add('hidden');
+                if (fsText) fsText.textContent = 'Tam Ekran';
+            }
+        }
+
+        // ================= MOBILE SIDEBAR =================
+        function toggleSidebar() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            const backdrop = document.getElementById('mobile-sidebar-backdrop');
+            if (!sidebar || !backdrop) return;
+
+            const isHidden = sidebar.classList.contains('-translate-x-full');
+            if (isHidden) {
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                closeMobileSidebar();
+            }
+        }
+
+        function closeMobileSidebar() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            const backdrop = document.getElementById('mobile-sidebar-backdrop');
+            if (sidebar) sidebar.classList.add('-translate-x-full');
+            if (backdrop) backdrop.classList.add('hidden');
+        }
+
+        // ================= 3D TILT ENGINE =================
+        function init3DTiltCards() {
+            const cards = document.querySelectorAll('.glass-3d-card');
+            cards.forEach(card => {
+                if (card.dataset.tiltAttached) return;
+                card.dataset.tiltAttached = 'true';
+
+                let glare = card.querySelector('.card-glare');
+                if (!glare) {
+                    glare = document.createElement('div');
+                    glare.className = 'card-glare';
+                    card.appendChild(glare);
+                }
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -6;
+                    const rotateY = ((x - centerX) / centerX) * 6;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`;
+
+                    const glareX = (x / rect.width) * 100;
+                    const glareY = (y / rect.height) * 100;
+                    const isDark = document.documentElement.classList.contains('dark');
+                    const glareColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(99,102,241,0.12)';
+                    glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, ${glareColor}, transparent 65%)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                });
+            });
+        }
+
+        // ================= MATH RENDERING =================
+        function reRenderMath(element) {
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(element || document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+
+        // ================= PROGRESS TRACKING =================
+        function initProgress() {
+            const sections = ['giris', 'bolum1', 'bolum2', 'bolum3', 'bolum4', 'bolum5', 'bolum6'];
+            sections.forEach(id => {
+                updateSectionProgressUI(id, !!userProgress[id]);
+            });
+            updateOverallProgress();
+        }
+
+        function toggleSectionProgress(id) {
+            userProgress[id] = !userProgress[id];
+            localStorage.setItem('lineer_cebir_progress', JSON.stringify(userProgress));
+            updateSectionProgressUI(id, userProgress[id]);
+            updateOverallProgress();
+        }
+
+        function updateSectionProgressUI(id, isDone) {
+            const btn = document.getElementById('btn-prog-' + id);
+            const icon = document.getElementById('icon-prog-' + id);
+            const text = document.getElementById('text-prog-' + id);
+            if (!btn) return;
+            if (isDone) {
+                btn.className = 'px-3.5 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm';
+                if (icon) icon.innerHTML = `<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+                if (text) text.textContent = 'Tamamlandı';
+            } else {
+                btn.className = 'px-3.5 py-1.5 rounded-xl bg-[var(--bg-box)] hover:bg-[var(--bg-box-alt)] text-[var(--text-muted)] border border-[var(--border-color)] text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm';
+                if (icon) icon.innerHTML = `<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+                if (text) text.textContent = 'Tamamlandı Olarak İşaretle';
+            }
+        }
+
+        function updateOverallProgress() {
+            const sections = ['giris', 'bolum1', 'bolum2', 'bolum3', 'bolum4', 'bolum5', 'bolum6'];
+            let count = 0;
+            sections.forEach(id => {
+                if (userProgress[id]) count++;
+            });
+            const pct = Math.round((count / sections.length) * 100);
+            const fill = document.getElementById('progress-bar-fill');
+            const text = document.getElementById('progress-percentage');
+            if (fill) fill.style.width = pct + '%';
+            if (text) text.textContent = '%' + pct;
+        }
+
+        // ================= PROBLEM SOLUTION TOGGLE =================
+        function toggleProblemSolution(id) {
+            const sol = document.getElementById('sol-' + id);
+            const btn = document.getElementById('btn-prob-' + id);
+            if (!sol || !btn) return;
+
+            if (sol.classList.contains('hidden')) {
+                sol.classList.remove('hidden');
+                btn.innerHTML = `
+                    <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
+                    Çözümü Gizle
+                `;
+                btn.className = 'px-3 py-1.5 rounded-xl bg-[var(--bg-box-alt)] text-[var(--text-primary)] hover:bg-[var(--bg-box)] text-xs font-semibold border border-[var(--border-color)] transition flex items-center gap-1.5 active:scale-95';
+                reRenderMath(sol);
+            } else {
+                sol.classList.add('hidden');
+                btn.innerHTML = `
+                    <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Çözümü Göster
+                `;
+                btn.className = 'px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 transition flex items-center gap-1.5 active:scale-95';
+            }
+        }
+
+        // ================= QUICK SEARCH =================
+        function handleQuickSearch(event) {
+            const query = event.target.value.trim().toLowerCase();
+            const dropdown = document.getElementById('search-dropdown');
+            if (!dropdown) return;
+
+            if (query.length < 2) {
+                dropdown.classList.add('hidden');
+                return;
+            }
+
+            const results = [];
+            Object.keys(VIEW_NAMES).forEach(id => {
+                const name = VIEW_NAMES[id];
+                if (name.toLowerCase().includes(query) || id.includes(query)) {
+                    results.push({ id, title: name });
+                }
+            });
+
+            if (event.key === 'Enter' && results.length > 0) {
+                switchView(results[0].id);
+                dropdown.classList.add('hidden');
+                event.target.value = '';
+                return;
+            }
+
+            if (results.length > 0) {
+                dropdown.innerHTML = results.map(r => `
+                    <button onclick="switchView('${r.id}'); document.getElementById('search-dropdown').classList.add('hidden');" class="w-full text-left p-2 rounded-lg hover:bg-indigo-500/10 text-[var(--text-primary)] flex items-center justify-between">
+                        <span class="font-semibold">${r.title}</span>
+                        <span class="text-[10px] text-indigo-400 font-mono">Sayfaya Git →</span>
+                    </button>
+                `).join('');
+                dropdown.classList.remove('hidden');
+            } else {
+                dropdown.innerHTML = `<div class="p-2 text-center text-[var(--text-muted)]">Eşleşen başlık bulunamadı</div>`;
+                dropdown.classList.remove('hidden');
+            }
+        }
+
+        // ================= QUIZ ENGINE =================
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            QUIZ_DATA.forEach((q, idx) => {
+                const qBox = document.createElement('div');
+                qBox.className = 'p-6 rounded-2xl bg-[var(--bg-box)] border border-[var(--border-color)] space-y-4';
+                qBox.id = 'quiz-box-' + q.id;
+
+                let optsHtml = '';
+                q.options.forEach((opt, optIdx) => {
+                    optsHtml += `
+                        <button onclick="selectQuizAnswer(${q.id}, ${optIdx})" id="opt-btn-${q.id}-${optIdx}" class="w-full text-left p-3.5 rounded-xl bg-[var(--bg-card)] hover:bg-[var(--bg-box-alt)] text-[var(--text-primary)] text-xs sm:text-sm font-medium border border-[var(--border-color)] hover:border-indigo-500/40 transition flex items-center justify-between group active:scale-98">
+                            <span><strong class="text-indigo-400 mr-2">${String.fromCharCode(65 + optIdx)})</strong> ${opt}</span>
+                            <span id="opt-icon-${q.id}-${optIdx}"></span>
+                        </button>
+                    `;
+                });
+
+                qBox.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold font-mono">Soru ${idx + 1}</span>
+                    </div>
+                    <div class="text-sm sm:text-base font-bold text-[var(--text-primary)]">${q.question}</div>
+                    <div class="space-y-2">${optsHtml}</div>
+                    <div id="quiz-exp-${q.id}" class="hidden p-4 rounded-xl text-xs sm:text-sm border"></div>
+                `;
+                container.appendChild(qBox);
+            });
+            reRenderMath(container);
+        }
+
+        function selectQuizAnswer(qId, selectedIdx) {
+            const q = QUIZ_DATA.find(item => item.id === qId);
+            if (!q) return;
+            userAnswers[qId] = selectedIdx;
+
+            q.options.forEach((_, optIdx) => {
+                const btn = document.getElementById(`opt-btn-${qId}-${optIdx}`);
+                btn.disabled = true;
+                btn.classList.add('cursor-not-allowed', 'opacity-80');
+                if (optIdx === q.correct) {
+                    btn.className = 'w-full text-left p-3.5 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-bold border border-emerald-500/60 flex items-center justify-between';
+                    document.getElementById(`opt-icon-${qId}-${optIdx}`).innerHTML = `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+                } else if (optIdx === selectedIdx) {
+                    btn.className = 'w-full text-left p-3.5 rounded-xl bg-rose-500/20 text-rose-400 text-xs sm:text-sm font-bold border border-rose-500/60 flex items-center justify-between';
+                    document.getElementById(`opt-icon-${qId}-${optIdx}`).innerHTML = `<svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>`;
+                }
+            });
+
+            const expBox = document.getElementById(`quiz-exp-${qId}`);
+            expBox.classList.remove('hidden');
+            if (selectedIdx === q.correct) {
+                expBox.className = 'p-4 rounded-xl text-xs sm:text-sm bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 leading-relaxed';
+                expBox.innerHTML = `<strong class="text-emerald-300 block mb-1">Tebrikler, Doğru Cevap!</strong>${q.explanation}`;
+            } else {
+                expBox.className = 'p-4 rounded-xl text-xs sm:text-sm bg-rose-500/10 border border-rose-500/30 text-rose-400 leading-relaxed';
+                expBox.innerHTML = `<strong class="text-rose-300 block mb-1">Yanlış Seçenek! Doğru Şık: ${String.fromCharCode(65 + q.correct)}</strong>${q.explanation}`;
+            }
+            reRenderMath(expBox);
+
+            let correctCount = 0;
+            Object.keys(userAnswers).forEach(id => {
+                const targetQ = QUIZ_DATA.find(item => item.id == id);
+                if (targetQ && userAnswers[id] === targetQ.correct) correctCount++;
+            });
+            const scoreText = document.getElementById('quiz-score-text');
+            if (scoreText) scoreText.textContent = `${correctCount} / ${QUIZ_DATA.length}`;
+        }
+
+        // ================= CALCULATORS ENGINE =================
+        let currentDetSize = 3;
+
+        function initCalculators() {
+            setDetSize(3);
+            renderCramerGrid(3);
+            renderGaussGrid(3, 4);
+        }
+
+        function setDetSize(size) {
+            currentDetSize = size;
+            const container = document.getElementById('det-inputs-container');
+            if (!container) return;
+            const btn2 = document.getElementById('btn-size-2');
+            const btn3 = document.getElementById('btn-size-3');
+            if (btn2 && btn3) {
+                if (size === 2) {
+                    btn2.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-indigo-600 text-white';
+                    btn3.className = 'px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white';
+                } else {
+                    btn3.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-indigo-600 text-white';
+                    btn2.className = 'px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white';
+                }
+            }
+
+            let html = `<div class="grid grid-cols-${size} gap-2 max-w-xs mx-auto">`;
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j < size; j++) {
+                    const defaultVal = (i === j) ? 2 : 1;
+                    html += `<input type="number" id="det-m-${i}-${j}" value="${defaultVal}" class="matrix-cell w-full text-center p-2.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-primary)] font-mono text-sm focus:border-indigo-500 focus:outline-none">`;
+                }
+            }
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function fillExampleDet(type) {
+            if (type === 'singular') {
+                setDetSize(2);
+                document.getElementById('det-m-0-0').value = 2;
+                document.getElementById('det-m-0-1').value = 4;
+                document.getElementById('det-m-1-0').value = 3;
+                document.getElementById('det-m-1-1').value = 6;
+            } else if (type === 'sarrus') {
+                setDetSize(3);
+                document.getElementById('det-m-0-0').value = 1;
+                document.getElementById('det-m-0-1').value = 2;
+                document.getElementById('det-m-0-2').value = 3;
+                document.getElementById('det-m-1-0').value = 0;
+                document.getElementById('det-m-1-1').value = 4;
+                document.getElementById('det-m-1-2').value = 5;
+                document.getElementById('det-m-2-0').value = 1;
+                document.getElementById('det-m-2-1').value = 0;
+                document.getElementById('det-m-2-2').value = 6;
+            }
+            calculateDeterminant();
+        }
+
+        function calculateDeterminant() {
+            const resBox = document.getElementById('det-result-box');
+            if (!resBox) return;
+
+            if (currentDetSize === 2) {
+                const a = parseFloat(document.getElementById('det-m-0-0').value) || 0;
+                const b = parseFloat(document.getElementById('det-m-0-1').value) || 0;
+                const c = parseFloat(document.getElementById('det-m-1-0').value) || 0;
+                const d = parseFloat(document.getElementById('det-m-1-1').value) || 0;
+                const det = (a * d) - (b * c);
+                resBox.innerHTML = `
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <p class="font-mono"><strong>Matris:</strong> $$\\begin{vmatrix} ${a} & ${b} \\\\ ${c} & ${d} \\end{vmatrix}$$</p>
+                        <p class="font-mono"><strong>İşlem:</strong> $$(${a} \\cdot ${d}) - (${b} \\cdot ${c}) = ${a*d} - (${b*c}) = \\mathbf{${det}}$$</p>
+                        <p class="${det === 0 ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold'}">
+                            ${det === 0 ? 'Determinant = 0 (Matris Singülerdir, Tersi YOKTUR!)' : 'Determinant != 0 (Matris Regülerdir, Tersi VARDIR!)'}
+                        </p>
+                    </div>
+                `;
+            } else {
+                const m = [];
+                for (let i = 0; i < 3; i++) {
+                    m[i] = [];
+                    for (let j = 0; j < 3; j++) {
+                        m[i][j] = parseFloat(document.getElementById(`det-m-${i}-${j}`).value) || 0;
+                    }
+                }
+                const plus1 = m[0][0] * m[1][1] * m[2][2];
+                const plus2 = m[1][0] * m[2][1] * m[0][2];
+                const plus3 = m[2][0] * m[0][1] * m[1][2];
+                const totalPlus = plus1 + plus2 + plus3;
+
+                const min1 = m[0][2] * m[1][1] * m[2][0];
+                const min2 = m[1][2] * m[2][1] * m[0][0];
+                const min3 = m[2][2] * m[0][1] * m[1][0];
+                const totalMin = min1 + min2 + min3;
+
+                const det = totalPlus - totalMin;
+
+                resBox.innerHTML = `
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <p class="font-mono"><strong>Sarrus Açılımı:</strong></p>
+                        <p class="font-mono text-emerald-400">Sağa Çaprazlar Toplamı: (${plus1}) + (${plus2}) + (${plus3}) = ${totalPlus}</p>
+                        <p class="font-mono text-rose-400">Sola Çaprazlar Toplamı: (${min1}) + (${min2}) + (${min3}) = ${totalMin}</p>
+                        <p class="font-mono font-bold text-base pt-2">$$\\det(A) = ${totalPlus} - (${totalMin}) = \\mathbf{${det}}$$</p>
+                        <p class="${det === 0 ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold'}">
+                            ${det === 0 ? 'Determinant = 0 (Matris Singülerdir, Tersi YOKTUR!)' : 'Determinant != 0 (Matris Regülerdir, Tersi VARDIR!)'}
+                        </p>
+                    </div>
+                `;
+            }
+            reRenderMath(resBox);
+        }
+
+        // ================= CRAMER CALCULATOR =================
+        function renderCramerGrid(size) {
+            const container = document.getElementById('cramer-inputs-container');
+            if (!container) return;
+            let html = `<div class="space-y-2 max-w-md mx-auto">`;
+            for (let i = 0; i < size; i++) {
+                html += `<div class="flex items-center gap-1.5 font-mono text-xs">`;
+                html += `<input type="number" id="cr-a-${i}-0" value="${i===0?2:(i===1?1:1)}" class="matrix-cell w-14 text-center p-2 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-primary)]"> $x_1$ + `;
+                html += `<input type="number" id="cr-a-${i}-1" value="${i===0?1:(i===1?-1:2)}" class="matrix-cell w-14 text-center p-2 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-primary)]"> $x_2$ + `;
+                html += `<input type="number" id="cr-a-${i}-2" value="${i===0?1:(i===1?1:-1)}" class="matrix-cell w-14 text-center p-2 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-primary)]"> $x_3$ = `;
+                html += `<input type="number" id="cr-b-${i}" value="${i===0?4:(i===1?2:2)}" class="matrix-cell w-14 text-center p-2 rounded-xl bg-[var(--bg-box-alt)] border border-indigo-500/40 text-indigo-400 font-bold">`;
+                html += `</div>`;
+            }
+            html += `</div>`;
+            container.innerHTML = html;
+            reRenderMath(container);
+        }
+
+        function fillExampleCramer(type) {
+            if (type === 'unique') {
+                renderCramerGrid(3);
+                document.getElementById('cr-a-0-0').value = 1; document.getElementById('cr-a-0-1').value = 2; document.getElementById('cr-a-0-2').value = 3; document.getElementById('cr-b-0').value = 6;
+                document.getElementById('cr-a-1-0').value = 2; document.getElementById('cr-a-1-1').value = -1; document.getElementById('cr-a-1-2').value = 1; document.getElementById('cr-b-1').value = 2;
+                document.getElementById('cr-a-2-0').value = 3; document.getElementById('cr-a-2-1').value = 1; document.getElementById('cr-a-2-2').value = -1; document.getElementById('cr-b-2').value = 3;
+            } else if (type === 'exam') {
+                renderCramerGrid(3);
+                document.getElementById('cr-a-0-0').value = 2; document.getElementById('cr-a-0-1').value = 1; document.getElementById('cr-a-0-2').value = 1; document.getElementById('cr-b-0').value = 4;
+                document.getElementById('cr-a-1-0').value = 1; document.getElementById('cr-a-1-1').value = -1; document.getElementById('cr-a-1-2').value = 1; document.getElementById('cr-b-1').value = 2;
+                document.getElementById('cr-a-2-0').value = 1; document.getElementById('cr-a-2-1').value = 2; document.getElementById('cr-a-2-2').value = -1; document.getElementById('cr-b-2').value = 2;
+            }
+            calculateCramer();
+        }
+
+        function calcDet3(m) {
+            return m[0][0]*(m[1][1]*m[2][2] - m[1][2]*m[2][1])
+                 - m[0][1]*(m[1][0]*m[2][2] - m[1][2]*m[2][0])
+                 + m[0][2]*(m[1][0]*m[2][1] - m[1][1]*m[2][0]);
+        }
+
+        function calculateCramer() {
+            const resBox = document.getElementById('cramer-result-box');
+            if (!resBox) return;
+
+            const A = [];
+            const B = [];
+            for (let i = 0; i < 3; i++) {
+                A[i] = [];
+                for (let j = 0; j < 3; j++) {
+                    A[i][j] = parseFloat(document.getElementById(`cr-a-${i}-${j}`).value) || 0;
+                }
+                B[i] = parseFloat(document.getElementById(`cr-b-${i}`).value) || 0;
+            }
+
+            const detA = calcDet3(A);
+
+            const Ax = [
+                [B[0], A[0][1], A[0][2]],
+                [B[1], A[1][1], A[1][2]],
+                [B[2], A[2][1], A[2][2]]
+            ];
+            const Ay = [
+                [A[0][0], B[0], A[0][2]],
+                [A[1][0], B[1], A[1][2]],
+                [A[2][0], B[2], A[2][2]]
+            ];
+            const Az = [
+                [A[0][0], A[0][1], B[0]],
+                [A[1][0], A[1][1], B[1]],
+                [A[2][0], A[2][1], B[2]]
+            ];
+
+            const detAx = calcDet3(Ax);
+            const detAy = calcDet3(Ay);
+            const detAz = calcDet3(Az);
+
+            if (detA !== 0) {
+                const x = (detAx / detA);
+                const y = (detAy / detA);
+                const z = (detAz / detA);
+                resBox.innerHTML = `
+                    <div class="space-y-2 text-xs sm:text-sm font-mono">
+                        <p>$$\\Delta = \\det(A) = \\mathbf{${detA}} \\neq 0 \\implies \\text{Sistemin TEK Çözümü Vardır.}$$</p>
+                        <p>$$\\Delta_{x_1} = ${detAx}, \\quad \\Delta_{x_2} = ${detAy}, \\quad \\Delta_{x_3} = ${detAz}$$</p>
+                        <div class="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-sm">
+                            Sonuç: $$x_1 = \\frac{${detAx}}{${detA}} = \\mathbf{${Number.isInteger(x)?x:x.toFixed(2)}}, \\quad x_2 = \\frac{${detAy}}{${detA}} = \\mathbf{${Number.isInteger(y)?y:y.toFixed(2)}}, \\quad x_3 = \\frac{${detAz}}{${detA}} = \\mathbf{${Number.isInteger(z)?z:z.toFixed(2)}}$$
+                        </div>
+                    </div>
+                `;
+            } else {
+                if (detAx === 0 && detAy === 0 && detAz === 0) {
+                    resBox.innerHTML = `<p class="text-amber-400 font-bold font-mono">$$\\Delta = 0 \\text{ ve tüm } \\Delta_j = 0 \\implies \\mathbf{SONSUZ \\; ÇÖZÜM \\; VARDIR.}$$</p>`;
+                } else {
+                    resBox.innerHTML = `<p class="text-rose-400 font-bold font-mono">$$\\Delta = 0 \\text{ fakat en az biri sıfırdan farklı } \\implies \\mathbf{ÇÖZÜM \\; YOKTUR \\; (\\emptyset).}$$</p>`;
+                }
+            }
+            reRenderMath(resBox);
+        }
+
+        // ================= GAUSS & RANK CALCULATOR =================
+        function renderGaussGrid(rows, cols) {
+            const container = document.getElementById('gauss-inputs-container');
+            if (!container) return;
+            let html = `<div class="space-y-2 max-w-lg mx-auto">`;
+            for (let i = 0; i < rows; i++) {
+                html += `<div class="flex items-center gap-1.5 font-mono text-xs">`;
+                for (let j = 0; j < cols - 1; j++) {
+                    const defaultVal = (i === j) ? 1 : (j === 0 ? 2 : 1);
+                    html += `<input type="number" id="gs-${i}-${j}" value="${defaultVal}" class="matrix-cell w-12 text-center p-2 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-primary)]">`;
+                }
+                html += `<span class="text-indigo-400 font-bold px-1">|</span>`;
+                html += `<input type="number" id="gs-${i}-${cols-1}" value="${(i+1)*3}" class="matrix-cell w-14 text-center p-2 rounded-xl bg-[var(--bg-box-alt)] border border-indigo-500/40 text-indigo-400 font-bold">`;
+                html += `</div>`;
+            }
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function fillExampleGauss(type) {
+            renderGaussGrid(3, 4);
+            if (type === 'step') {
+                document.getElementById('gs-0-0').value = 1; document.getElementById('gs-0-1').value = 1; document.getElementById('gs-0-2').value = 1; document.getElementById('gs-0-3').value = 6;
+                document.getElementById('gs-1-0').value = 2; document.getElementById('gs-1-1').value = -1; document.getElementById('gs-1-2').value = 1; document.getElementById('gs-1-3').value = 3;
+                document.getElementById('gs-2-0').value = 1; document.getElementById('gs-2-1').value = 2; document.getElementById('gs-2-2').value = -1; document.getElementById('gs-2-3').value = 2;
+            } else if (type === 'rank2') {
+                document.getElementById('gs-0-0').value = 1; document.getElementById('gs-0-1').value = 2; document.getElementById('gs-0-2').value = 1; document.getElementById('gs-0-3').value = 4;
+                document.getElementById('gs-1-0').value = 2; document.getElementById('gs-1-1').value = 4; document.getElementById('gs-1-2').value = 2; document.getElementById('gs-1-3').value = 8;
+                document.getElementById('gs-2-0').value = 3; document.getElementById('gs-2-1').value = 6; document.getElementById('gs-2-2').value = 5; document.getElementById('gs-2-3').value = 15;
+            }
+            calculateGauss();
+        }
+
+        function calculateGauss() {
+            const resBox = document.getElementById('gauss-result-box');
+            if (!resBox) return;
+
+            let M = [];
+            for (let i = 0; i < 3; i++) {
+                M[i] = [];
+                for (let j = 0; j < 4; j++) {
+                    M[i][j] = parseFloat(document.getElementById(`gs-${i}-${j}`).value) || 0;
+                }
+            }
+
+            const originalLatex = formatMatrixTex(M);
+            let steps = [];
+
+            // Forward elimination
+            for (let k = 0; k < 3; k++) {
+                let maxRow = k;
+                for (let i = k + 1; i < 3; i++) {
+                    if (Math.abs(M[i][k]) > Math.abs(M[maxRow][k])) maxRow = i;
+                }
+                if (maxRow !== k) {
+                    let temp = M[k];
+                    M[k] = M[maxRow];
+                    M[maxRow] = temp;
+                    steps.push(`Satır ${k+1} ile Satır ${maxRow+1} yer değiştirildi.`);
+                }
+
+                if (Math.abs(M[k][k]) > 1e-9) {
+                    for (let i = k + 1; i < 3; i++) {
+                        let factor = M[i][k] / M[k][k];
+                        if (Math.abs(factor) > 1e-9) {
+                            for (let j = k; j < 4; j++) {
+                                M[i][j] -= factor * M[k][j];
+                                if (Math.abs(M[i][j]) < 1e-9) M[i][j] = 0;
+                            }
+                            steps.push(`$S_${i+1} - (${factor.toFixed(2)}) \\cdot S_${k+1} \\to S_${i+1}$ uygulandı.`);
+                        }
+                    }
+                }
+            }
+
+            let rankA = 0;
+            let rankAug = 0;
+            for (let i = 0; i < 3; i++) {
+                let rowANonZero = false;
+                for (let j = 0; j < 3; j++) {
+                    if (Math.abs(M[i][j]) > 1e-9) rowANonZero = true;
+                }
+                if (rowANonZero) rankA++;
+
+                let rowAugNonZero = false;
+                for (let j = 0; j < 4; j++) {
+                    if (Math.abs(M[i][j]) > 1e-9) rowAugNonZero = true;
+                }
+                if (rowAugNonZero) rankAug++;
+            }
+
+            const echelonLatex = formatMatrixTex(M);
+
+            resBox.innerHTML = `
+                <div class="space-y-3 text-xs sm:text-sm font-mono">
+                    <p><strong>Başlangıç $[A \\mid B]$:</strong> $$${originalLatex}$$</p>
+                    <div class="p-3 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)]">
+                        <strong>Uygulanan Satır İşlemleri:</strong>
+                        <ul class="list-disc list-inside space-y-1 mt-1 text-[var(--text-muted)]">
+                            ${steps.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <p><strong>Eşelon (Üst Üçgen) Form:</strong> $$${echelonLatex}$$</p>
+                    <div class="p-3 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 font-bold">
+                        $$\\text{Rank}(A) = \\mathbf{${rankA}}, \\quad \\text{Rank}([A \\mid B]) = \\mathbf{${rankAug}}$$
+                    </div>
+                    <p class="${rankA === rankAug ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}">
+                        ${rankA === rankAug ? (rankA === 3 ? 'Rank(A) = Rank[A|B] = 3 = n $\\implies$ TEK ÇÖZÜM VARDIR!' : 'Rank(A) = Rank[A|B] < 3 $\\implies$ SONSUZ ÇÖZÜM VARDIR!') : 'Rank(A) != Rank[A|B] $\\implies$ ÇÖZÜM YOKTUR (Tutarsız Sistem)!'}
+                    </p>
+                </div>
+            `;
+            reRenderMath(resBox);
+        }
+
+        function formatMatrixTex(m) {
+            let s = "\\left[\\begin{array}{ccc|c}";
+            for (let i = 0; i < m.length; i++) {
+                let row = m[i].map(v => Math.abs(v) < 1e-9 ? 0 : (Number.isInteger(v) ? v : v.toFixed(1))).join(" & ");
+                s += row + (i < m.length - 1 ? " \\\\ " : "");
+            }
+            s += "\\end{array}\\right]";
+            return s;
+        }
+
+        // ================= APPLICATION BOOTSTRAP =================
+        document.addEventListener("DOMContentLoaded", function() {
+            initTheme();
+
+            if (window.innerWidth >= 1024) {
+                const savedCollapsed = localStorage.getItem('lineer_sidebar_collapsed');
+                if (savedCollapsed === 'true') {
+                    document.body.classList.add('sidebar-collapsed');
+                }
+            }
+
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+
+            initProgress();
+            renderQuiz();
+            initCalculators();
+            init3DTiltCards();
+
+            // Initial view selection from URL hash or default 'giris'
+            const initialHash = window.location.hash.replace('#', '');
+            if (ALL_VIEW_IDS.includes(initialHash)) {
+                switchView(initialHash);
+            } else {
+                switchView('giris');
+            }
+        });
+    </script>
+</body>
+</html>

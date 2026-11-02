@@ -1,0 +1,199 @@
+=== PAGE 1 ===
+LINEER CEBIR DERS NOTLARI TAKIMI
+LiSANS DERS
+KoNU: LINEER DEAKLEM SISTeULERINiN GOJul
+Drog Jyes YusuF KARADNe
+iletisiuBllaler
+yusadel.co
+Endistimuhendslg Beluun
+sfusdede9gull.com
+Yusuf.baradedeggibtu.edu.t
+
+
+=== PAGE 2 ===
+K ONLILAR:LINEER DENKLEu SISTELERININ GJUMJ
+1.Arhnluis Malis Yardmyla Guadu
+(Gauss Elulnerton (ypketue)Metode)
+2. Lineer Homojen Denlleu Sisteul
+3.Crauer Sisteunn Invers Matrts Yarduy lo
+4.GlzUluis Probleuler
+
+
+=== PAGE 3 ===
+LINEER DENKLEM SISTEMLERININ Gd2JuJ
+1. Arhalus Maths Yarduyla Gs2du (Gouss Eluroton
+Metodu):
+w Hone denklemden olusan n bilimevenl bir lineer
+denkleu sistenl genel olarak,
+au Xi + On X2 +...+anXn=b1
+duX+auzYz+·+Qunn=bu
+SelindedrBusistcu
+0124
+X2
+Cun
+nuatisler yarduyla uoutisyed olaval AX=B selik
+Sisteran denbeulern eld ededz
+
+
+=== PAGE 4 ===
+Yukonda A vatrisne, venlen skscuun katsaylar uoctisl denr.
+Ban elkenalanmn A'ja (n),sdtun olardk lave ediluesjye
+elleelilen
+Ou
+[AD]=
+O02
+volisne arhlus (gendeHlus) wals knic Arhnlus vod
+Hsin sarkr eleuonon, shas le yukanda venlen dealeu sls-
+uusnin katoyilaandan larelhc Bura oire, yukanider verlen
+dleu Sisksn sadece arhnlus uathsin eleranlanna
+bookarok tesbl ehuel ulubin dr
+*Ahnlurs ualhisin satrlerna(sltunlarna dgjl) ugula
+racok elenonter Jinesiuer verlen denleu sisferudn
+dellelen arasindo uigulon'a dahi bu sisteuln gdalusnn
+wodnd karonk hole geirl ve verlen Sisteu yerine Lal
+Arhalus wokrisi Loronlk hole gelirdaulz tatdirde
+(m-f) spgidola sathran tu clouanlarnn sfr olagnu blypn
+
+
+=== PAGE 5 ===
+! Ancal bayle br sisteauin ualulndhn parlg icn gre
+ve yeter Sart 'A ve LAB watnslenn ronllarnn elt
+sl kovonk hale eHaek yekelidie Glald, LAl wafhsinin
+Son syHununu kopaithguuz 2owan Lorsunda A wadnsin
+qinihJz. Eger bu sar+ saglaniyoro,n-)tane prdua
+rA <Iasr ise Sisteu GuzludJr Bun nekni agda-
+k luncl rmelke grlebll
+Omel 1: Asagidall dealeu sisteauini qpzualz.
+X±-X2+2X=1
+3X+2X2-X=5
+2X1+3X2-3X=4
+5X+3X-7
+
+
+=== PAGE 6 ===
+3515
+7-52-5:0
+25
+22
+Ean=2 ve Y=2 olup, r=2 12adli2 N3 olup rn dc
+0 halde o2hu Var olup, Gdau lcin n-r-3-2=1 tane
+pardua loliavegen seguel gerelur
+Arhrlus walrisihn kaonk seline boalaralk verlen denlleu
+denllem slsteaun olalinz X-k yardug blimuyn olsn
+Buna gole ssteln cpajue
+
+
+=== PAGE 7 ===
+X=
+X2=
+2iaden debulunoolit
+dREK 2: +yoqdols denlea sisteruad cJzUniz
+X++X3=1
+2X-X2+2X30
+2X+2X2+2X3=1
+LAB]-
+2-1
+2Jsi2ducGerGelen, ornlusatshaonlselie
+Loaral, verlen dalleu sis teu yedne
+X+0.Yz+Xy=0/denleu Sb leauid yazabila2.Bu ssteun
+a.X1+2+0.X=0Jalne denlleaeghe0=1oluay grel
+0.+0.X2+0.X=1buolauaz
+
+
+=== PAGE 8 ===
+2.Lineer Hauofen Denleu Siskeau :
+u tane dentleuden olusan n lbalaveyend
+Q2,X+022X2+..+O2AXn=0
+B-
+auuX+Qu2X2+.+unXo=0
+siskeun uuHala bir cuaJuu vardr Her zouan mevut olan
+bou cozJm X1=0, X=0,..-,Xn=0 aslkar cdzluude Su
+duruulor dlallr:
+f. r<n ise sisteauin asikar olandan farl qdzdaled de
+Menaut olup, Gzbu lan Ca-r) tane yardua bliuega Sal grdr
+2.r=n be bou bir Crauer ssteu olp, tah cpau aslarciasadse
+Arhnlus uatish son silun eleuan lan (o)olacagndan.
+qoauu igin A mafhisin Lononl hale gehael yeler olacakte
+
+
+=== PAGE 9 ===
+X1+2X2-3X3-0
+3X+X2-2Xg=0
+r=3 ve n=3 oldojun dan r=n dr. o hald th cbaju
+asilar82udsrX-0,X2=0X=0
+Katsoylaruatrishunkononl selline bokarak venlen dnleu
+X+0.X2to.X3=0/ya2oolla2.Busstde Ln
+0-X1+X2+0.X7-0/X1-0, X2=0, X3=0 Sonucunu veric
+
+
+=== PAGE 10 ===
+X+2X2-3X+5X-0
+2X-2+2X+X=0
+3X-5X2-X+6X4=0
+0-5
+8-9
+15
+01
+815
+r=2 ve n=4 olup r<n oldugun dan denklen sisteunn aslar
+olandan forll gohluler de varde Katsouyilar uatrsiun kauo-
+nak sellina bodorol verlen denllen sistead yerine
+n-r=u-22 tae yor du bilinueyen sesh gerelur
+Yordra bliaeyenoorol,=y Seelu Bunag're
+号-号X2号号bulonr
+
+
+=== PAGE 11 ===
+021 X1+ a2 X2+..-+ a2 Xn= b2
+anX+an2X2++amXn=bn
+wu oluast halinde lAl+o ve bu nedenk A trs watrsl var
+olacokhr 0 halde yukandalu dnllerun il farofiat solda A1
+uathsi lle arpalboilin?
+A AX=A-B ,AA-I ve IX-X oldug
+g2lhine alarak bouradon,
+X-A-Bbulunur
+ORNEx: Asagdalu danllen sisteald invers uatns yarduuy le
+2X-2X2-5
+A-[2 司, ×-[], =[] ; 141-12 2]- 0e
+
+
+=== PAGE 12 ===
+Venlen denlleu siste lr Crouer sisterudar
+Au=4, An2=-1 , A21=3, A2=2 olp bwa g're,
+AB
+veya
+ve X2=-
+X1=
+ornl hogdals dalea sblealal cpe Jnit?
+X1+X2+X=4
+2X+2X2-X3=2
+X+2-X=0
+3Xy-2X3-2
+
+
+=== PAGE 13 ===
+-2-4
+o halde verlen sihteu
+X1+0.X2+0.X3=2
+0.X1+ 0. X2 +X =2
+dkllou sh kadne denh ole, buna gie cyau:
+Xy=2, X2=0,X3=2 d
+ORNEK: Ayadolu dulley stsleund invers Merlns yardayh
+3X1+2%2-3=5
+X1+X2-3X3=1
+2X-X2+X3=2
+
+
+=== PAGE 14 ===
+32
+1371
+X=AB=1(44A).B
+A+ in edleuanlon kesicu olaogndan ne (j4)B g)
+hesaplaual uygun olur.
+-21
+2117
+-21
+6117
+=，=，
+
+
