@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 15 Dakika Vize Hapı & Formül Kartları
-Dr. Yusuf Karadede Lisans Notları Birebir Özet
+Lisans Dersi Notları Birebir Vize Özeti
 (Modern SVG İkonlar, Sıfır Emoji)
 """
 

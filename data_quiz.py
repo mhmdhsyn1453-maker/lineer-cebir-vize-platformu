@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Lineer Cebir Vize Deneme Sınavı Soruları
-Dr. Yusuf Karadede Sınav Formatında, Çözümlü ve Puanlamalı
+Vize Sınav Formatında, Çözümlü ve Puanlamalı
 (Sıfır Emoji, Tamamen SVG & Matematiksel İfadeler)
 """
 

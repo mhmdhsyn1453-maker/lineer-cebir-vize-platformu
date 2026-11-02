@@ -2,9 +2,9 @@
 """
 Lineer Cebir Vize Hazırlık Platformu - Master HTML Derleyici
 Akışkan SPA Sayfa Geçişleri, Sabit Sol Kenar Çubuğu (Fixed Sidebar),
-Aydınlık Mod & Koyu Gri (Dark Gray) Teması, 3D Tepkimeli Kartlar,
+Aydınlık Mod & Koyu Gri (Dark Gray) Teması, Zarif Spotlight Kartlar,
 Sıfır Emoji (Tamamen Modern SVG İkonlar).
-Dr. Yusuf Karadede Lisans Notları Birebir Müfredat
+Üniversite Lisans Dersi Notları Birebir Müfredat
 """
 import os, sys, json
 from data_theory import THEORY_CHAPTERS
@@ -310,7 +310,7 @@ def generate_index_html():
                 </div>
                 <div>
                     <h2 class="text-2xl font-extrabold text-[var(--text-primary)]">Vize Deneme Sınavı (10 Soru)</h2>
-                    <p class="text-xs text-[var(--text-muted)]">Dr. Yusuf Karadede Sınav Formatında Anında Puanlama</p>
+                    <p class="text-xs text-[var(--text-muted)]">Vize Sınav Formatında Anında Puanlama</p>
                 </div>
             </div>
         </div>

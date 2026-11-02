@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Bölüm Teori ve Konu Anlatımları - Her Alt Başlıkta Eksiksiz Sayısal Örnekler
-Dr. Yusuf Karadede Lisans Notları Birebir Müfredat
+Lisans Dersi Notları Birebir Müfredat
 Modern SVG İkonlar, Sıfır Emoji, Kristal Netliğinde Sıfırdan Zirveye Anlatım
 """
 
@@ -25,7 +25,7 @@ THEORY_CHAPTERS = [
             </h3>
             <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl">
                 Lineer Cebir soyut kurallardan ibaret değildir. Bu platformda <strong>her alt başlıkta en az bir tam çözümlü sayısal örnek</strong> göreceksin. 
-                Hocanız <strong>Dr. Yusuf Karadede</strong>'nin belirttiği gibi sınav doğrudan bu PDF'lerdeki soruların mantığından gelecektir. 
+                Sınav doğrudan bu ders notlarındaki ve PDF'lerdeki soruların mantığından gelecektir. 
                 Her konuyu, mantığını ve sınav tuzaklarını adım adım incele.
             </p>
         </div>

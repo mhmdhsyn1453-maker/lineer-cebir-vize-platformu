@@ -1,8 +1,8 @@
-# Lineer Cebir Vizeye Hazırlık Platformu (Dr. Yusuf Karadede)
+# Lineer Cebir Vizeye Hazırlık Platformu
 
 Canlı Web Sitesi: **[https://lineercebir-vize-26.web.app](https://lineercebir-vize-26.web.app)**
 
-Dr. Yusuf Karadede'nin ders notları ve sınav müfredatı ile %100 uyumlu, interaktif matris/determinant hesaplayıcıları, adım adım çözümlü vize soruları ve sınav tüyoları içeren modern web platformu.
+Lisans ders notları ve vize sınav müfredatı ile %100 uyumlu, interaktif matris/determinant hesaplayıcıları, adım adım çözümlü vize soruları ve sınav tüyoları içeren modern web platformu.
 
 ## Özellikler
 - **Bölüm 1 - 7 Eksiksiz Müfredat:** Determinantlar, Cramer Kuralı, Gauss-Jordan & Rank, Matris Tersi, Vektör Uzayları, Taban & Boyut, Matris Dönüşümleri.
