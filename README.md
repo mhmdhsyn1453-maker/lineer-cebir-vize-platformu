@@ -10,3 +10,4 @@ Dr. Yusuf Karadede'nin ders notları ve sınav müfredatı ile %100 uyumlu, inte
 - **İnteraktif Hesaplayıcılar:** $2\times 2$ ve $3\times 3$ Determinant, $3$ Bilinmeyenli Cramer Çözücü, Gauss Eliminasyon & Rank Bulucu.
 - **Koyu Titanyum Gri & Aydınlık Mod:** Göz yormayan modern tasarım, tam ekran desteği.
 - **Sınav Simülatörü (Quiz):** 5 soruluk interaktif deneme testi.
+

@@ -129,23 +129,23 @@
             box-shadow: var(--card-shadow);
         }
 
-        /* 3D Reactive Tilt Card Style */
-        .glass-3d-card {
+        /* Premium Linear-Style Glass Card (Stable & Static, No Jitter) */
+        .glass-3d-card, .premium-glass-card {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
-            border-radius: 1.5rem;
-            transform-style: preserve-3d;
-            transition: transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 1.25rem;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
             box-shadow: var(--card-shadow);
         }
 
-        .glass-3d-card:hover {
+        .glass-3d-card:hover, .premium-glass-card:hover {
             border-color: var(--hover-border);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 25px 0 rgba(99, 102, 241, 0.15);
+            box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.18), 0 0 20px 0 rgba(99, 102, 241, 0.12);
+            transform: translateY(-2.5px);
         }
 
         .card-glare {
@@ -153,12 +153,11 @@
             inset: 0;
             pointer-events: none;
             border-radius: inherit;
-            background: radial-gradient(circle at 50% 50%, var(--glare-color), transparent 70%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.35s ease;
         }
 
-        .glass-3d-card:hover .card-glare {
+        .glass-3d-card:hover .card-glare, .premium-glass-card:hover .card-glare {
             opacity: 1;
         }
 
@@ -3018,12 +3017,15 @@ eq 0$) çıkarsa hiç vakit kaybetme: 'Sistem uyumsuzdur, çözüm yoktur' de!</
             if (backdrop) backdrop.classList.add('hidden');
         }
 
-        // ================= 3D TILT ENGINE =================
-        function init3DTiltCards() {
-            const cards = document.querySelectorAll('.glass-3d-card');
+        // ================= SPOTLIGHT CARD ENGINE (STABLE & STATIC) =================
+        function initSpotlightCards() {
+            const cards = document.querySelectorAll('.glass-3d-card, .premium-glass-card');
             cards.forEach(card => {
-                if (card.dataset.tiltAttached) return;
-                card.dataset.tiltAttached = 'true';
+                if (card.dataset.spotlightAttached) return;
+                card.dataset.spotlightAttached = 'true';
+
+                // Ensure any leftover 3D transform is removed
+                card.style.transform = '';
 
                 let glare = card.querySelector('.card-glare');
                 if (!glare) {
@@ -3036,26 +3038,23 @@ eq 0$) çıkarsa hiç vakit kaybetme: 'Sistem uyumsuzdur, çözüm yoktur' de!</
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
 
-                    const rotateX = ((y - centerY) / centerY) * -6;
-                    const rotateY = ((x - centerX) / centerX) * 6;
-
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`;
-
-                    const glareX = (x / rect.width) * 100;
-                    const glareY = (y / rect.height) * 100;
                     const isDark = document.documentElement.classList.contains('dark');
-                    const glareColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(99,102,241,0.12)';
-                    glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, ${glareColor}, transparent 65%)`;
+                    const glareColor = isDark 
+                        ? 'rgba(129, 140, 248, 0.12)' 
+                        : 'rgba(99, 102, 241, 0.08)';
+                    
+                    // Smooth, static cursor-following radial spotlight (zero rotation, zero jitter)
+                    glare.style.background = `radial-gradient(450px circle at ${x}px ${y}px, ${glareColor}, transparent 75%)`;
                 });
 
                 card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                    glare.style.background = 'transparent';
                 });
             });
         }
+        // Backward-compatible alias
+        const init3DTiltCards = initSpotlightCards;
 
         // ================= MATH RENDERING =================
         function reRenderMath(element) {
