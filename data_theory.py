@@ -1355,93 +1355,429 @@ THEORY_CHAPTERS = [
     {
         "id": "bolum5",
         "title": "Bölüm 5: Lineer Denklem Sistemlerinin Çözümü",
-        "badge": "Hafta 4 & 12 (Gauss)",
+        "badge": "Hafta 4 & 12 (Gauss, İnvers, Cramer)",
         "icon": """<svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>""",
-        "content": r"""
-<div class="space-y-6">
-    <!-- 5.1 Artırılmış Matris ve Örnek -->
-    <div class="glass-3d-card p-6 rounded-2xl border border-white/5 space-y-4">
-        <div class="flex items-center gap-3">
+        "content": r"""<div class="space-y-6">
+    <!-- Giriş ve Kahraman Kartı -->
+    <div class="glass-3d-card p-6 sm:p-8 rounded-2xl border border-white/5 space-y-5">
+        <div class="flex items-center gap-3 border-b border-white/5 pb-4">
+            <span class="px-3 py-1 rounded-lg bg-indigo-500/20 text-indigo-400 font-mono text-xs font-bold">5.0</span>
+            <div>
+                <h4 class="text-lg sm:text-xl font-bold text-white">Lineer Denklem Sistemlerinin Çözüm Rehberi</h4>
+                <p class="text-xs text-slate-400">Gauss Eliminasyonu, Rouché-Capelli Rank Teoremi, Sonsuz Çözüm & Parametre Atama, Homojen Sistemler, İnvers Matris ve Cramer Kuralı</p>
+            </div>
+        </div>
+
+        <!-- Çocuğa Anlatır Gibi: Lineer Denklem Sistemi Nedir ve Neden Matrise Çevrilir? -->
+        <div class="p-5 rounded-2xl bg-indigo-950/25 border border-indigo-500/30 space-y-3">
+            <div class="flex items-center gap-2 text-indigo-400 font-bold text-sm">
+                <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Temel Mantık: Lineer Denklem Sistemi Nedir ve Neden Matrise Çeviririz?</span>
+            </div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                İlkokul ve lisede iki bilinmeyenli basit denklemleri taraf tarafa toplayarak çözerdik:
+                $$\begin{cases} 2x + y = 10 \\ x + 3y = 15 \end{cases}$$
+                Burada $x$ ve $y$ olmak üzere sadece iki bilinmeyen vardı. Fakat mühendislikte, yapay zekada veya elektrik devrelerinde <strong>10 bilinmeyenli 10 denklem</strong> ya da 1000 bilinmeyenli devasa sistemler karşımıza çıkar. İnsan beyni bu denklemleri alt alta yazıp yok etmeye çalışırsa kaybolur!
+            </p>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                İşte bu yüzden matematikçiler sistemi tek bir matris denklemine dönüştürür:
+                $$\mathbf{A \cdot X = B}$$
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono pt-1">
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5 space-y-1">
+                    <span class="text-cyan-400 font-bold block">1. Katsayılar Matrisi ($A$)</span>
+                    Bilinmeyenlerin önündeki sayıların oluşturduğu $m \times n$ boyutlu matris.
+                </div>
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5 space-y-1">
+                    <span class="text-purple-400 font-bold block">2. Bilinmeyenler Sütunu ($X$)</span>
+                    Aradığımız $[x_1, x_2, \dots, x_n]^T$ bilinmeyenlerinin oluşturduğu sütun vektörü.
+                </div>
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5 space-y-1">
+                    <span class="text-emerald-400 font-bold block">3. Sonuçlar Sütunu ($B$)</span>
+                    Eşitliğin sağ tarafındaki sabit sayıların oluşturduğu $[b_1, b_2, \dots, b_m]^T$ vektörü.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5.1: Artırılmış (Genişletilmiş) Matris [A | B] -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-white/5 space-y-4">
+        <div class="flex items-center gap-3 border-b border-white/5 pb-3">
             <span class="px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400 font-mono text-xs font-bold">5.1</span>
-            <h4 class="text-lg font-bold text-white">Artırılmış (Genişletilmiş) Matris $[A \mid B]$</h4>
+            <h4 class="text-lg font-bold text-white">Artırılmış (Genişletilmiş) Matris $[A \mid B]$ Nedir?</h4>
         </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Bir denklemin sol tarafına ne yaparsanız (örneğin 2 ile çarpmak veya başka denklemle toplamak), eşitliğin bozulmaması için sağ tarafına da aynısını yapmak zorundasınız.
+            İşte bu sebeple katsayılar matrisi $A$'nın yanına sonuç sütunu $B$'yi dikey bir çizgiyle ekleriz. Ortaya çıkan bu yeni matrise <strong>Artırılmış (Genişletilmiş) Matris</strong> denir:
+        </p>
+        <div class="p-4 bg-slate-950/80 rounded-xl border border-amber-500/20 text-center font-mono text-xs sm:text-sm text-slate-200">
+            $$[A \mid B] = \left[\begin{array}{cccc|c} a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\ a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} & b_m \end{array}\right]$$
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5 text-xs text-slate-300 space-y-1">
+            <strong class="text-amber-400 block font-semibold">Örnek Gösterim:</strong>
+            $$\begin{cases} 2x_1 - x_2 + 3x_3 = 5 \\ x_1 + 4x_2 - 2x_3 = 0 \\ 3x_1 + 0x_2 + x_3 = 7 \end{cases} \implies [A \mid B] = \left[\begin{array}{ccc|c} 2 & -1 & 3 & 5 \\ 1 & 4 & -2 & 0 \\ 3 & 0 & 1 & 7 \end{array}\right]$$
+            <p class="text-slate-400 pt-1">Çizginin solu katsayılar matrisi $A$, sağı ise sonuçlar vektörü $B$'dir. Artık bilinmeyen harflerle ($x_1, x_2, x_3$) uğraşmadan yalnızca bu sayılar üzerinde satır işlemleri yapacağız!</p>
+        </div>
+    </div>
 
-        <!-- 5.1 Sayısal Örnek -->
-        <div class="p-5 rounded-2xl bg-amber-950/30 border border-amber-500/30 space-y-3">
-            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                5.1 İçin Tam Çözümlü Sayısal Örnek:
-            </span>
-            <p class="text-slate-200 text-sm font-semibold">
-                Soru: $\begin{cases} 2x_1 - x_2 + 3x_3 = 5 \\ x_1 + 4x_2 - 2x_3 = 0 \\ 3x_1 + 0x_2 + x_3 = 7 \end{cases}$ sistemini artırılmış (genişletilmiş) matris $[A \mid B]$ biçiminde yazınız.
-            </p>
-            <div class="text-xs sm:text-sm text-slate-300 space-y-2 font-mono bg-slate-950/60 p-4 rounded-xl border border-white/5">
-                <p>Artırılmış Matris Formu $[A \mid B]$:</p>
-                $$[A \mid B] = \left[\begin{array}{ccc|c} 2 & -1 & 3 & 5 \\ 1 & 4 & -2 & 0 \\ 3 & 0 & 1 & 7 \end{array}\right]$$
-                <p class="text-slate-400">Çizginin solu katsayılar matrisi $A$, sağı ise sonuçlar vektörü $B$'dir.</p>
+    <!-- 5.2: Hayati Teorem: Rouché-Capelli Teoremi (Rank Kriteri) -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-cyan-500/30 bg-cyan-950/10 space-y-4">
+        <div class="flex items-center gap-3 border-b border-cyan-500/20 pb-3">
+            <span class="px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-400 font-mono text-xs font-bold">5.2</span>
+            <h4 class="text-lg font-bold text-white">Hayati Sınav Teoremi: Rouché-Capelli (Rank ile Çözüm Varlık & Teklik Analizi)</h4>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Sınavda bir sistemi çözmeye başlamadan önce veya parametreli sorularda hocaların sorduğu en kritik kural şudur: 
+            <strong>"Bu sistemin çözümü var mıdır, varsa kaç tanedir?"</strong>
+            Bunu anlamak için katsayılar matrisi $A$'nın rankı ($\text{rank}(A)$) ile genişletilmiş matris $[A \mid B]$'nin rankı ($\text{rank}([A \mid B])$) kıyaslanır:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <!-- Durum 1: Çözüm Yok -->
+            <div class="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30 space-y-2">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/20 text-rose-400 font-mono block w-fit">1. DURUM: ÇÖZÜM YOK</span>
+                <strong class="text-white text-xs sm:text-sm block">$\text{rank}(A) < \text{rank}([A \mid B])$</strong>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Sistem <strong>tutarsızdır (çelişkilidir)</strong>. Eşelon formun en altında $[0, 0, \dots, 0 \mid k]$ ($k \neq 0$) şeklinde bir satır oluşur! Bu durum $0 = k$ gibi imkansız bir çelişki demektir. Çözüm kümesi boştur ($\emptyset$).
+                </p>
+            </div>
+
+            <!-- Durum 2: Tek Çözüm -->
+            <div class="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 space-y-2">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-400 font-mono block w-fit">2. DURUM: TEK ÇÖZÜM</span>
+                <strong class="text-white text-xs sm:text-sm block">$\text{rank}(A) = \text{rank}([A \mid B]) = n$</strong>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Sistem <strong>tutarlıdır ve tek bir çözümü</strong> vardır ($n = \text{bilinmeyen sayısı}$). Her bilinmeyenin bir pivotu vardır. Geriye doğru yerine koyma ile tek bir $(x_1, x_2, \dots, x_n)$ çözümü elde edilir.
+                </p>
+            </div>
+
+            <!-- Durum 3: Sonsuz Çözüm -->
+            <div class="p-4 rounded-xl bg-purple-950/30 border border-purple-500/30 space-y-2">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/20 text-purple-400 font-mono block w-fit">3. DURUM: SONSUZ ÇÖZÜM</span>
+                <strong class="text-white text-xs sm:text-sm block">$\text{rank}(A) = \text{rank}([A \mid B]) = r < n$</strong>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Sistem tutarlıdır fakat <strong>sonsuz sayıda çözümü</strong> vardır. Bilinmeyen sayısı ranktan fazladır! Tam <strong>$n - r$</strong> adet bilinmeyene <u>serbest parametre</u> ($t, k \in \mathbb{R}$) atanır.
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- 5.2 Gauss Eleme Sayısal Örneği -->
-    <div class="glass-3d-card p-6 rounded-2xl border border-white/5 space-y-4">
-        <div class="flex items-center gap-3">
-            <span class="px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400 font-mono text-xs font-bold">5.2</span>
-            <h4 class="text-lg font-bold text-white">Gauss Eliminasyon Yöntemi ile Adım Adım Çözüm</h4>
+    <!-- 5.3: Gauss Eliminasyon Yöntemi ve Tek Çözümlü Sayısal Örnek -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-white/5 space-y-5">
+        <div class="flex items-center gap-3 border-b border-white/5 pb-3">
+            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">5.3</span>
+            <h4 class="text-lg font-bold text-white">Gauss Eliminasyon (Yok Etme) Yöntemi ve Tek Çözüm</h4>
         </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Gauss Eliminasyon yönteminin mantığı 3 adımdan ibarettir:
+            <strong>1.</strong> $[A \mid B]$ artırılmış matrisini kur. 
+            <strong>2.</strong> Satır işlemleriyle basamaklı (üst üçgensel / eşelon) hale getir. 
+            <strong>3.</strong> En alt satırdan başlayarak geriye doğru yerine koyma (Back Substitution) ile tüm bilinmeyenleri bul!
+        </p>
 
-        <!-- 5.2 Sayısal Örnek -->
-        <div class="p-5 rounded-2xl bg-amber-950/30 border border-amber-500/30 space-y-3">
-            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                5.2 İçin Tam Çözümlü Sayısal Örnek:
+        <!-- Sayısal Örnek: Tek Çözüm -->
+        <div class="p-5 rounded-2xl bg-emerald-950/25 border border-emerald-500/30 space-y-3">
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                5.3 İçin Adım Adım Tam Çözümlü Sayısal Örnek:
             </span>
             <p class="text-slate-200 text-sm font-semibold">
-                Soru: $\begin{cases} x + y + z = 6 \\ 2x - y + z = 3 \\ x + 2y - z = 2 \end{cases}$ sistemini Gauss eleme yöntemi ile çözünüz.
+                Soru: $\begin{cases} x + y + z = 6 \\ 2x - y + z = 3 \\ x + 2y - z = 2 \end{cases}$ sistemini Gauss eleme yöntemi ile adım adım çözünüz.
             </p>
-            <div class="text-xs sm:text-sm text-slate-300 space-y-2 font-mono bg-slate-950/60 p-4 rounded-xl border border-white/5">
-                <p><strong>Adım 1: $[A \mid B]$ yaz:</strong><br>
-                $$\left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 2 & -1 & 1 & 3 \\ 1 & 2 & -1 & 2 \end{array}\right]$$</p>
-                <p><strong>Adım 2: 1. sütunu sıfırla:</strong><br>
-                • $S_2 - 2S_1 \to S_2$: $[0, -3, -1 \mid -9]$<br>
-                • $S_3 - S_1 \to S_3$: $[0, 1, -2 \mid -4]$</p>
-                <p><strong>Adım 3: $S_2 \leftrightarrow S_3$ yap ve 2. sütunu sıfırla:</strong><br>
-                Matris basamaklı hale gelince geriye doğru yerine koyma ile:<br>
-                • En alttan: $z = 3$<br>
-                • Ortadan: $y - 2(3) = -4 \implies y = 2$<br>
-                • En üstten: $x + 2 + 3 = 6 \implies x = 1$</p>
-                <p class="text-emerald-400 font-bold pt-1">Sonuç: $x = 1, y = 2, z = 3$ olarak tek çözüm bulunur.</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+                <p class="text-amber-400 font-sans font-bold">Adım 1: Artırılmış Matrisi $[A \mid B]$ kuralım:</p>
+                <p>$$[A \mid B] = \left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 2 & -1 & 1 & 3 \\ 1 & 2 & -1 & 2 \end{array}\right]$$</p>
+
+                <p class="text-cyan-400 font-sans font-bold pt-2">Adım 2: 1. Sütunu Pivot $1$'in Altından Sıfırlayalım:</p>
+                <p>• $S_2 \leftarrow S_2 - 2S_1 = [2, -1, 1 \mid 3] - [2, 2, 2 \mid 12] = [\mathbf{0, -3, -1 \mid -9}]$</p>
+                <p>• $S_3 \leftarrow S_3 - S_1 = [1, 2, -1 \mid 2] - [1, 1, 1 \mid 6] = [\mathbf{0, 1, -2 \mid -4}]$</p>
+                <p>Matrisimiz şu hale gelir:</p>
+                <p>$$\left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 0 & -3 & -1 & -9 \\ 0 & 1 & -2 & -4 \end{array}\right]$$</p>
+
+                <p class="text-cyan-400 font-sans font-bold pt-2">Adım 3: Kolaylık İçin $S_2 \leftrightarrow S_3$ Yer Değiştirelim ve 2. Sütunu Sıfırlayalım:</p>
+                <p>2. satır ile 3. satırı yer değiştirirsek pivotumuz $+1$ olur (kesirlerle uğraşmayız!):</p>
+                <p>$$\left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 0 & 1 & -2 & -4 \\ 0 & -3 & -1 & -9 \end{array}\right]$$</p>
+                <p>Şimdi 3. satırdaki $-3$'ü yok etmek için: $S_3 \leftarrow S_3 + 3S_2$:</p>
+                <p>$$[0, -3, -1 \mid -9] + [0, 3, -6 \mid -12] = [\mathbf{0, 0, -7 \mid -21}]$$</p>
+
+                <p class="text-emerald-400 font-sans font-bold pt-2">Adım 4: Eşelon Formu İnceleyelim ve Geriye Doğru Yerine Koyalım:</p>
+                <p>$$\left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 0 & 1 & -2 & -4 \\ 0 & 0 & -7 & -21 \end{array}\right]$$</p>
+                <p>Rank Kontrolü: $\text{rank}(A) = 3$, $\text{rank}([A \mid B]) = 3$, Bilinmeyen sayısı $n = 3$. Teorem gereği <strong>TEK ÇÖZÜM</strong> vardır!</p>
+                <div class="bg-slate-900/90 p-3 rounded-lg border border-white/5 space-y-1 text-slate-200">
+                    <p>• <strong>3. Satırdan:</strong> $-7z = -21 \implies \mathbf{z = 3}$</p>
+                    <p>• <strong>2. Satırdan:</strong> $y - 2z = -4 \implies y - 2(3) = -4 \implies y - 6 = -4 \implies \mathbf{y = 2}$</p>
+                    <p>• <strong>1. Satırdan:</strong> $x + y + z = 6 \implies x + 2 + 3 = 6 \implies x + 5 = 6 \implies \mathbf{x = 1}$</p>
+                </div>
+                <p class="text-emerald-400 font-bold pt-1">Sonuç: Çözüm Kümesi tek bir noktadır: $(x, y, z) = (\mathbf{1, 2, 3})$.</p>
             </div>
         </div>
     </div>
 
-    <!-- 5.3 İnvers Matris ile Çözüm -->
-    <div class="glass-3d-card p-6 rounded-2xl border border-white/5 space-y-4">
-        <div class="flex items-center gap-3">
-            <span class="px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400 font-mono text-xs font-bold">5.3</span>
-            <h4 class="text-lg font-bold text-white">İnvers Matris Yardımıyla Çözüm ($X = A^{-1} B$)</h4>
+    <!-- 5.4: Sonsuz Çözüm Durumu ve Serbest Parametre (t) Atama Sanatı -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-purple-500/30 bg-purple-950/10 space-y-4">
+        <div class="flex items-center gap-3 border-b border-purple-500/20 pb-3">
+            <span class="px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-400 font-mono text-xs font-bold">5.4</span>
+            <h4 class="text-lg font-bold text-white">Sonsuz Çözüm Durumu ve Serbest Parametre ($t$) Atama Sanatı</h4>
         </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Öğrencilerin vizede en çok zorlandığı ama mantığı kavranınca en kolay puan toplanan yer burasıdır!
+            Basamaklı matriste en altta $[0, 0, \dots, 0 \mid 0]$ gibi tamamen sıfır bir satır oluşursa rank bilinmeyen sayısından küçük kalır: $\text{rank}(A) = r < n$.
+            Bu durumda <strong>$n - r$ adet bilinmeyene serbest parametre ($t, k \in \mathbb{R}$)</strong> atanır. Çünkü bu bilinmeyenlerin alacağı değeri kısıtlayan bir denklem kalmamıştır!
+        </p>
 
-        <!-- 5.3 Sayısal Örnek -->
-        <div class="p-5 rounded-2xl bg-amber-950/30 border border-amber-500/30 space-y-3">
-            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                5.3 İçin Tam Çözümlü Sayısal Örnek:
+        <!-- Sayısal Örnek: Sonsuz Çözüm -->
+        <div class="p-5 rounded-2xl bg-purple-950/25 border border-purple-500/30 space-y-3">
+            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                5.4 İçin Adım Adım Sonsuz Çözüm Örneği:
             </span>
             <p class="text-slate-200 text-sm font-semibold">
-                Soru: $\begin{bmatrix} 2 & 1 \\ 5 & 3 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} 4 \\ 11 \end{bmatrix}$ matris denklemini $X = A^{-1} B$ yöntemiyle çözünüz.
+                Soru: $\begin{cases} x + y + z = 4 \\ 2x + y + 3z = 7 \\ 3x + 2y + 4z = 11 \end{cases}$ sistemini çözünüz.
             </p>
-            <div class="text-xs sm:text-sm text-slate-300 space-y-2 font-mono bg-slate-950/60 p-4 rounded-xl border border-white/5">
-                <p>3.5'te bulduğumuz ters matris: $A^{-1} = \begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix}$</p>
-                <p>$$X = A^{-1} B = \begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix} \begin{bmatrix} 4 \\ 11 \end{bmatrix}$$</p>
-                <p>• $x_1 = (3 \cdot 4) + (-1 \cdot 11) = 12 - 11 = \mathbf{1}$<br>
-                • $x_2 = (-5 \cdot 4) + (2 \cdot 11) = -20 + 22 = \mathbf{2}$</p>
-                <p class="text-emerald-400 font-bold pt-1">Sonuç: $x_1 = 1, x_2 = 2$ bulunur.</p>
+            <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+                <p class="text-amber-400 font-sans font-bold">Adım 1: Genişletilmiş Matris $[A \mid B]$ ve Satır İşlemleri:</p>
+                <p>$$[A \mid B] = \left[\begin{array}{ccc|c} 1 & 1 & 1 & 4 \\ 2 & 1 & 3 & 7 \\ 3 & 2 & 4 & 11 \end{array}\right]$$</p>
+                <p>• $S_2 \leftarrow S_2 - 2S_1 = [0, -1, 1 \mid -1]$</p>
+                <p>• $S_3 \leftarrow S_3 - 3S_1 = [0, -1, 1 \mid -1]$ (Dikkat! 2. satır ile 3. satır tıpatıp aynı oldu!)</p>
+                <p>• $S_3 \leftarrow S_3 - S_2 = [\mathbf{0, 0, 0 \mid 0}]$ (3. satır tamamen sıfırlandı!)</p>
+                <p>Son basamaklı formumuz:</p>
+                <p>$$\left[\begin{array}{ccc|c} 1 & 1 & 1 & 4 \\ 0 & -1 & 1 & -1 \\ 0 & 0 & 0 & 0 \end{array}\right] \sim \left[\begin{array}{ccc|c} 1 & 1 & 1 & 4 \\ 0 & 1 & -1 & 1 \\ 0 & 0 & 0 & 0 \end{array}\right]$$</p>
+
+                <p class="text-purple-400 font-sans font-bold pt-2">Adım 2: Rank Analizi ve Parametre Sayısı:</p>
+                <p>$\text{rank}(A) = 2$, $\text{rank}([A \mid B]) = 2$, Bilinmeyen sayısı $n = 3$.</p>
+                <p>$\text{rank}(A) = \text{rank}([A \mid B]) = 2 < 3 \implies \mathbf{SONSUZ\ ÇÖZÜM\ VARDIR!}$</p>
+                <p>Serbest Parametre Sayısı: $n - r = 3 - 2 = \mathbf{1\ adet\ parametre}$.</p>
+
+                <p class="text-purple-400 font-sans font-bold pt-2">Adım 3: Serbest Parametre Atama ve Geriye Doğru Çözüm:</p>
+                <p>Pivotu olmayan $z$ bilinmeyenine serbest parametre diyelim: $\mathbf{z = t \quad (t \in \mathbb{R})}$.</p>
+                <div class="bg-slate-900/90 p-3 rounded-lg border border-white/5 space-y-1 text-slate-200">
+                    <p>• <strong>2. Satırdan:</strong> $y - z = 1 \implies y - t = 1 \implies \mathbf{y = 1 + t}$</p>
+                    <p>• <strong>1. Satırdan:</strong> $x + y + z = 4 \implies x + (1 + t) + t = 4 \implies x + 1 + 2t = 4 \implies \mathbf{x = 3 - 2t}$</p>
+                </div>
+
+                <p class="text-emerald-400 font-sans font-bold pt-2">Adım 4: Genel Çözüm Vektörü Biçiminde Yazılış:</p>
+                <p>$$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 3 - 2t \\ 1 + t \\ t \end{bmatrix} = \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix} + t \begin{bmatrix} -2 \\ 1 \\ 1 \end{bmatrix}, \quad t \in \mathbb{R}$$</p>
+                <p class="text-purple-300">Bu ifade geometrik olarak 3 boyutlu uzayda sonsuz noktadan oluşan bir <strong>DOĞRU</strong> belirtir!</p>
             </div>
         </div>
     </div>
-</div>
-"""
+
+    <!-- 5.5: Çözümsüzlük (Tutarsızlık) ve 0 = k Çelişkisi -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-rose-500/30 bg-rose-950/10 space-y-4">
+        <div class="flex items-center gap-3 border-b border-rose-500/20 pb-3">
+            <span class="px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-400 font-mono text-xs font-bold">5.5</span>
+            <h4 class="text-lg font-bold text-white">Çözümsüzlük (Tutarsızlık) Durumu ve $0 = k$ Çelişkisi</h4>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Ders notlarında hocanın özellikle sorduğu klasik tuzak soru tipidir.
+            Satır işlemleri yaparken sol taraftaki tüm katsayılar sıfırlanıp sağ tarafta sıfırdan farklı bir sayı kalırsa sistem patlar:
+        </p>
+
+        <!-- Sayısal Örnek: Çözümsüzlük -->
+        <div class="p-5 rounded-2xl bg-rose-950/25 border border-rose-500/30 space-y-3">
+            <span class="text-xs font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                5.5 İçin Ders Notu Orijinal Çözümsüzlük Örneği:
+            </span>
+            <p class="text-slate-200 text-sm font-semibold">
+                Soru: $\begin{cases} x_1 + x_3 = 1 \\ 2x_1 - x_2 + 2x_3 = 0 \\ 2x_1 + 2x_2 + 2x_3 = 1 \end{cases}$ sistemini çözünüz.
+            </p>
+            <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+                <p class="text-amber-400 font-sans font-bold">Adım 1: $[A \mid B]$ Matrisi:</p>
+                <p>$$[A \mid B] = \left[\begin{array}{ccc|c} 1 & 0 & 1 & 1 \\ 2 & -1 & 2 & 0 \\ 2 & 2 & 2 & 1 \end{array}\right]$$</p>
+                <p>• $S_2 \leftarrow S_2 - 2S_1 = [0, -1, 0 \mid -2]$</p>
+                <p>• $S_3 \leftarrow S_3 - 2S_1 = [0, 2, 0 \mid -1]$</p>
+                <p>Şimdi 3. satırdaki $+2$'yi yok etmek için $S_3 \leftarrow S_3 + 2S_2$ uygulayalım:</p>
+                <p>$$[0, 2, 0 \mid -1] + [0, -2, 0 \mid -4] = [\mathbf{0, 0, 0 \mid -5}]$$</p>
+                <p>Matrisin son hali:</p>
+                <p>$$\left[\begin{array}{ccc|c} 1 & 0 & 1 & 1 \\ 0 & -1 & 0 & -2 \\ \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{-5} \end{array}\right]$$</p>
+
+                <p class="text-rose-400 font-sans font-bold pt-2">Adım 2: Çelişkiyi Teşhis Edelim:</p>
+                <p>3. satırın matematiksel anlamı şudur:</p>
+                <p class="text-center text-rose-300 font-bold text-base py-1">$$0 \cdot x_1 + 0 \cdot x_2 + 0 \cdot x_3 = -5 \implies \mathbf{0 = -5 \quad (İMKANSIZ!)}$$</p>
+                <p>Rank Analizi: $\text{rank}(A) = 2$ iken genişletilmiş matrisin rankı $\text{rank}([A \mid B]) = 3$'tür.</p>
+                <p class="text-rose-400 font-bold">$$\text{rank}(A) < \text{rank}([A \mid B]) \implies 2 < 3$$</p>
+                <p class="text-slate-200">Rouché-Capelli teoremi gereği sistem <strong>TUTARSIZDIR</strong>. Çözüm kümesi <strong>BOŞ KÜMEDİR</strong> ($Ç.K. = \emptyset$). İşlemi burada noktalayınız.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5.6: Lineer Homojen Denklem Sistemleri (AX = 0) -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-blue-500/30 bg-blue-950/10 space-y-4">
+        <div class="flex items-center gap-3 border-b border-blue-500/20 pb-3">
+            <span class="px-2.5 py-1 rounded-md bg-blue-500/20 text-blue-400 font-mono text-xs font-bold">5.6</span>
+            <h4 class="text-lg font-bold text-white">Lineer Homojen Denklem Sistemleri ($A \cdot X = 0$)</h4>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Eşitliğin sağ tarafındaki tüm sabit sayılar sıfır ise ($B = [0, 0, \dots, 0]^T$) bu sisteme <strong>Homojen Sistem</strong> denir.
+        </p>
+        <div class="p-4 rounded-xl bg-blue-950/30 border border-blue-500/20 text-xs text-blue-200 space-y-2">
+            <strong class="text-blue-300 text-sm block">VİZE İÇİN ALTIN KURAL:</strong>
+            <p>Homojen sistemler <strong>ASLA ÇÖZÜMSÜZ OLAMAZ!</strong> Çünkü tüm bilinmeyenlere sıfır verirseniz ($x_1 = 0, x_2 = 0, \dots, x_n = 0$), denklem her zaman $0 = 0$ olarak sağlanır. Buna <strong>AŞİKAR ÇÖZÜM (Trivial Solution)</strong> denir.</p>
+            <p>Soru şudur: <em>"Aşikar çözümden başka, sıfırdan farklı çözümler de var mıdır?"</em></p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+                <span class="text-cyan-400 font-mono text-xs font-bold block">DURUM 1: $|A| \neq 0$ veya $\text{rank}(A) = n$</span>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Sistemin <strong>YALNIZCA AŞİKAR ÇÖZÜMÜ</strong> vardır:
+                    $$x_1 = 0, \quad x_2 = 0, \quad \dots, \quad x_n = 0$$
+                    Sıfırdan farklı hiçbir çözüm bulunamaz!
+                </p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+                <span class="text-purple-400 font-mono text-xs font-bold block">DURUM 2: $|A| = 0$ veya $\text{rank}(A) < n$</span>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Sistemin aşikar olanın dışında <strong>SIFIRDAN FARKLI SONSUZ ÇÖZÜMÜ</strong> de vardır! Tam $n - r$ adet serbest parametre seçilerek sonsuz çözüm uzayı ifade edilir.
+                </p>
+            </div>
+        </div>
+
+        <!-- Homojen Sayısal Örnek -->
+        <div class="p-5 rounded-2xl bg-blue-950/25 border border-blue-500/30 space-y-3">
+            <span class="text-xs font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                Ders Notu Orijinal Homojen Sistem Örneği:
+            </span>
+            <p class="text-slate-200 text-sm font-semibold">
+                Soru: $\begin{cases} x_1 + 2x_2 - 3x_3 = 0 \\ 3x_1 + x_2 - 2x_3 = 0 \\ 2x_1 - x_2 + x_3 = 0 \end{cases}$ sisteminin çözümlerini bulunuz.
+            </p>
+            <div class="space-y-2 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+                <p class="text-amber-400 font-sans font-bold">1. Adım: Katsayılar Matrisinin Determinantını İnceleyelim:</p>
+                <p>$$|A| = \begin{vmatrix} 1 & 2 & -3 \\ 3 & 1 & -2 \\ 2 & -1 & 1 \end{vmatrix}$$</p>
+                <p>1. satıra göre açarsak:<br>
+                $|A| = 1(1 - 2) - 2(3 - (-4)) - 3(-3 - 2) = 1(-1) - 2(7) - 3(-5) = -1 - 14 + 15 = \mathbf{0}$!</p>
+                <p class="text-purple-300 font-bold">Determinant $|A| = 0$ çıktı $\implies$ Demek ki bu sistemin SIFIRDAN FARKLI SONSUZ ÇÖZÜMÜ vardır!</p>
+
+                <p class="text-cyan-400 font-sans font-bold pt-2">2. Adım: Satır İşlemleriyle Eşelon Form:</p>
+                <p>$$\begin{bmatrix} 1 & 2 & -3 \\ 3 & 1 & -2 \\ 2 & -1 & 1 \end{bmatrix} \sim \begin{bmatrix} 1 & 2 & -3 \\ 0 & -5 & 7 \\ 0 & 0 & 0 \end{bmatrix}$$</p>
+                <p>$\text{rank}(A) = 2 < 3 \implies 3 - 2 = 1$ serbest parametre ($x_3 = t$).</p>
+                <p>• $-5x_2 + 7t = 0 \implies \mathbf{x_2 = \frac{7}{5}t}$</p>
+                <p>• $x_1 + 2(\frac{7}{5}t) - 3t = 0 \implies x_1 + \frac{14}{5}t - \frac{15}{5}t = 0 \implies \mathbf{x_1 = \frac{1}{5}t}$</p>
+                <p class="text-emerald-400 font-bold pt-1">Sonuç: $X = t \begin{bmatrix} 1/5 \\ 7/5 \\ 1 \end{bmatrix}$ veya kesirlerden kurtulmak için ($t = 5k$ seçerek): $\mathbf{X = k \begin{bmatrix} 1 \\ 7 \\ 5 \end{bmatrix}, \quad k \in \mathbb{R}}$.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5.7: Cramer Sistemi ve İnvers Matris ile Çözüm (X = A^-1 * B) -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-emerald-500/30 bg-emerald-950/10 space-y-4">
+        <div class="flex items-center gap-3 border-b border-emerald-500/20 pb-3">
+            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">5.7</span>
+            <h4 class="text-lg font-bold text-white">Cramer Sistemi ve İnvers Matris Yardımıyla Çözüm ($X = A^{-1} B$)</h4>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Eğer bir denklem sisteminde denklem sayısı bilinmeyen sayısına eşitse ($m = n$) ve katsayılar matrisinin determinantı sıfırdan farklıysa ($|A| \neq 0$), bu sisteme <strong>CRAMER SİSTEMİ</strong> denir.
+            Böyle sistemlerin katsayılar matrisinin tersi ($A^{-1}$) mevcuttur ve denklem matrisel olarak tek hamlede çözülür:
+            $$A \cdot X = B \implies A^{-1} \cdot A \cdot X = A^{-1} \cdot B \implies \mathbf{X = A^{-1} B}$$
+        </p>
+
+        <!-- Sınav Taktik Kutusu: Kesir Tuzağından Kaçış -->
+        <div class="p-4 rounded-xl bg-amber-950/30 border border-amber-500/30 text-xs sm:text-sm text-amber-200 space-y-2">
+            <strong class="text-amber-300 flex items-center gap-1.5 font-bold">
+                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                VİZENİN HAYAT KURTARAN TAKTİK SIRRI (KESİR TUZAĞI):
+            </strong>
+            <p>Ders notlarında hocanın özellikle vurguladığı profesyonel tüyo: $A^{-1}$ matrisini $\frac{1}{|A|} \text{adj}(A)$ olarak baştan kesirli sayılarla hesaplayıp $B$ ile çarpmaya kalkarsanız payda eşitlemekten sınav süreniz biter ve işlem hatası yaparsınız!</p>
+            <p class="font-bold text-white font-mono bg-slate-900/80 p-2.5 rounded-lg text-center">
+                $$\mathbf{X = \frac{1}{|A|} \Big( \text{adj}(A) \cdot B \Big)}$$
+            </p>
+            <p><strong>Doğru Yol:</strong> Önce tam sayılardan oluşan $\text{adj}(A)$ ile $B$ sütununu çarpın! Çıkan tamsayı sonuç sütununu <u>en son tek bir adımda</u> $|A|$'ya bölün. Bu taktik sizi %100 hızlandırır ve sıfır hata yaptırır.</p>
+        </div>
+
+        <!-- Ders Notu 3x3 Orijinal İnvers Çözüm Örneği -->
+        <div class="p-5 rounded-2xl bg-emerald-950/25 border border-emerald-500/30 space-y-3">
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                5.7 İçin Ders Notu Orijinal $3 \times 3$ Sayısal Örneği:
+            </span>
+            <p class="text-slate-200 text-sm font-semibold">
+                Soru: $\begin{cases} 3x_1 + 2x_2 - x_3 = 5 \\ x_1 + x_2 - 3x_3 = 1 \\ 2x_1 - x_2 + x_3 = 2 \end{cases}$ sistemini invers matris ($X = A^{-1} B$) yardımıyla çözünüz.
+            </p>
+            <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+                <p class="text-amber-400 font-sans font-bold">1. Adım: Katsayılar Matrisi $A$ ve Sonuç Vektörü $B$:</p>
+                <p>$$A = \begin{bmatrix} 3 & 2 & -1 \\ 1 & 1 & -3 \\ 2 & -1 & 1 \end{bmatrix}, \quad B = \begin{bmatrix} 5 \\ 1 \\ 2 \end{bmatrix}$$</p>
+
+                <p class="text-cyan-400 font-sans font-bold pt-2">2. Adım: Determinant $|A|$ Hesabı:</p>
+                <p>$$|A| = 3(1 - 3) - 2(1 - (-6)) - 1(-1 - 2) = 3(-2) - 2(7) - 1(-3) = -6 - 14 + 3 = \mathbf{-17} \neq 0$$</p>
+                <p>Determinant sıfır olmadığı için sistem bir Cramer sistemidir ve tersi vardır.</p>
+
+                <p class="text-cyan-400 font-sans font-bold pt-2">3. Adım: Adjoint Matrisi $\text{adj}(A)$ Hesabı (Transpoze Kuralı ile):</p>
+                <p>9 kofaktör hesaplanıp transpozesi alındığında Adjoint matrisimiz:</p>
+                <p>$$\text{adj}(A) = \begin{bmatrix} -2 & -1 & -5 \\ -7 & 5 & 8 \\ -3 & 7 & 1 \end{bmatrix}$$</p>
+
+                <p class="text-cyan-400 font-sans font-bold pt-2">4. Adım: Taktiksel Çarpım $\text{adj}(A) \cdot B$:</p>
+                <p>$$\text{adj}(A) \cdot B = \begin{bmatrix} -2 & -1 & -5 \\ -7 & 5 & 8 \\ -3 & 7 & 1 \end{bmatrix} \begin{bmatrix} 5 \\ 1 \\ 2 \end{bmatrix} = \begin{bmatrix} (-2)(5) + (-1)(1) + (-5)(2) \\ (-7)(5) + (5)(1) + (8)(2) \\ (-3)(5) + (7)(1) + (1)(2) \end{bmatrix} = \mathbf{\begin{bmatrix} -21 \\ -14 \\ -6 \end{bmatrix}}$$</p>
+
+                <p class="text-emerald-400 font-sans font-bold pt-2">5. Adım: Determinanta Bölerek Çözüm $X$'i Bulalım:</p>
+                <p>$$X = \frac{1}{|A|} (\text{adj}(A) \cdot B) = \frac{1}{-17} \begin{bmatrix} -21 \\ -14 \\ -6 \end{bmatrix} = \mathbf{\begin{bmatrix} 21/17 \\ 14/17 \\ 6/17 \end{bmatrix}}$$</p>
+                <p class="text-emerald-400 font-bold pt-1">Sonuç: $\mathbf{x_1 = \frac{21}{17}, \quad x_2 = \frac{14}{17}, \quad x_3 = \frac{6}{17}}$ olarak tek hamlede bulunur.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5.8: Cramer Kuralı (Determinant Yöntemi) -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-white/5 space-y-4">
+        <div class="flex items-center gap-3 border-b border-white/5 pb-3">
+            <span class="px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400 font-mono text-xs font-bold">5.8</span>
+            <h4 class="text-lg font-bold text-white">Cramer Kuralı (Determinant ile Doğrudan Çözüm)</h4>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Matris tersi almadan, sadece determinant hesaplayarak her bir bilinmeyeni doğrudan çekip bulma yöntemidir:
+            $$\mathbf{x_1 = \frac{|A_1|}{|A|}, \quad x_2 = \frac{|A_2|}{|A|}, \quad x_3 = \frac{|A_3|}{|A|}, \quad \dots}$$
+            Burada <strong>$A_i$</strong> matrisi, orijinal katsayılar matrisi $A$'nın <u>$i$. sütununun sökülüp yerine sonuç sütunu $B$'nin takılmasıyla</u> elde edilen matristir!
+        </p>
+
+        <!-- Sayısal Örnek: Cramer Kuralı -->
+        <div class="p-5 rounded-2xl bg-amber-950/20 border border-amber-500/30 space-y-3">
+            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                5.8 İçin Tam Çözümlü Cramer Kuralı Örneği:
+            </span>
+            <p class="text-slate-200 text-sm font-semibold">
+                Soru: $\begin{cases} x + y + z = 6 \\ 2x - y + z = 3 \\ x + 2y - z = 2 \end{cases}$ sistemini Cramer kuralı ile çözünüz.
+            </p>
+            <div class="space-y-2 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+                <p>• <strong>Ana Determinant:</strong> $|A| = \begin{vmatrix} 1 & 1 & 1 \\ 2 & -1 & 1 \\ 1 & 2 & -1 \end{vmatrix} = \mathbf{7} \neq 0$</p>
+                <p>• <strong>1. Sütuna $B=[6,3,2]^T$ takılırsa:</strong> $|A_1| = \begin{vmatrix} \mathbf{6} & 1 & 1 \\ \mathbf{3} & -1 & 1 \\ \mathbf{2} & 2 & -1 \end{vmatrix} = \mathbf{7} \implies \mathbf{x = \frac{7}{7} = 1}$</p>
+                <p>• <strong>2. Sütuna $B=[6,3,2]^T$ takılırsa:</strong> $|A_2| = \begin{vmatrix} 1 & \mathbf{6} & 1 \\ 2 & \mathbf{3} & 1 \\ 1 & \mathbf{2} & -1 \end{vmatrix} = \mathbf{14} \implies \mathbf{y = \frac{14}{7} = 2}$</p>
+                <p>• <strong>3. Sütuna $B=[6,3,2]^T$ takılırsa:</strong> $|A_3| = \begin{vmatrix} 1 & 1 & \mathbf{6} \\ 2 & -1 & \mathbf{3} \\ 1 & 2 & \mathbf{2} \end{vmatrix} = \mathbf{21} \implies \mathbf{z = \frac{21}{7} = 3}$</p>
+                <p class="text-emerald-400 font-bold pt-1">Sonuç: $(x, y, z) = (\mathbf{1, 2, 3})$. Gauss eliminasyonu ile bulduğumuz sonucun aynısı!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5.9: Vizede En Çok Puan Kırdıran 5 Klasik Denklem Tuzağı -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-rose-500/30 bg-rose-950/10 space-y-4">
+        <div class="flex items-center gap-2 text-rose-400 font-bold text-sm uppercase tracking-wider">
+            <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            Vize Sınavında En Çok Puan Kırdıran 5 Klasik Denklem Sistemi Tuzağı
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                <strong class="text-rose-400 block font-bold">1. Genişletilmiş Matriste Asla Sütun İşlemi Yapmayın:</strong>
+                $[A \mid B]$ üzerinde yalnızca <u>satır işlemleri</u> serbesttir. Sütunların yerini değiştirirseniz bilinmeyenlerin ($x_1, x_2$) yerlerini birbirine katarsınız ve soru tamamen çöpe gider!
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                <strong class="text-rose-400 block font-bold">2. Matris Çarpım Sırasını Ters Yazma Hatası ($B \cdot A^{-1}$ YASAKTIR):</strong>
+                Formül $X = A^{-1} B$'dir. Matris çarpımı değişmeli değildir! Soldan $A^{-1}$ ile çarpmanız şarttır. $B \cdot A^{-1}$ yazarsanız boyut uyumsuzluğundan çarpılamaz bile!
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                <strong class="text-rose-400 block font-bold">3. Homojen Sisteme "Çözümü Yoktur" Demek:</strong>
+                Homojen sistemlerin ($AX = 0$) sağ tarafı sıfır olduğu için daima en azından $x_1=0, \dots, x_n=0$ aşikar çözümü vardır. Homojen sisteme asla "çözümsüzdür" yazmayın!
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                <strong class="text-rose-400 block font-bold">4. Çelişki Satırını Görüp Çözüm Aramaya Devam Etmek:</strong>
+                $[0, 0, 0 \mid 5]$ satırını gördüğünüz an durun! Bazı öğrenciler panikle $z=5$ sanıp yerine koymaya çalışır. $0 = 5$ bir çelişkidir, anında "Çözüm Yoktur ($Ç.K. = \emptyset$)" yazın.
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1 md:col-span-2">
+                <strong class="text-rose-400 block font-bold">5. Serbest Parametre Sayısını Formülsüz Tahmin Etme Hatası:</strong>
+                Sonsuz çözümlü sorularda parametre sayısı rastgele değil, kesin matematiksel kurala bağlıdır: $\mathbf{k = n - r}$ (Bilinmeyen Sayısı - Rank). Örneğin 4 bilinmeyenli ve rankı 2 olan bir sistemde tam $4 - 2 = 2$ adet bağımsız parametre ($t_1, t_2 \in \mathbb{R}$) seçilmek zorundadır.
+            </div>
+        </div>
+    </div>
+</div>"""
     },
     {
         "id": "bolum6",
