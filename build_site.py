@@ -8,7 +8,7 @@ Sıfır Emoji (Tamamen Modern SVG İkonlar).
 """
 import os, sys, json
 from data_theory import THEORY_CHAPTERS
-from data_problems import SOLVED_PROBLEMS
+from data_problems import SOLVED_PROBLEMS, REAL_EXAM_QUESTIONS
 from data_cheatsheet import CHEATSHEET_CARDS
 from data_quiz import QUIZ_QUESTIONS
 from data_calculators import CALCULATOR_HTML
@@ -65,9 +65,9 @@ VIEWS_METADATA = [
     },
     {
         "id": "sorular",
-        "title": "Hocanın Vize Soru Arşivi (Hafta 11 & 12)",
-        "short_title": "Vize Soru Arşivi",
-        "badge": "Sınav Soruları",
+        "title": "Geçen Yılın Çıkmış Vize Soruları & Soru Bankası",
+        "short_title": "Çıkmış Vize Soruları",
+        "badge": "6 Çıkmış Soru",
         "category": "Uygulama & Sınav"
     },
     {
@@ -143,6 +143,66 @@ def make_bottom_nav(current_idx, views):
 
 def generate_index_html():
     print("Derleme Başlatılıyor: Sabit Kenar Çubuğu, Aydınlık/Koyu Gri Mod & Akışkan SPA Görünümleri...")
+
+    # 0. Real Exam Questions HTML Assembly (Geçen Yılın Çıkmış Soruları)
+    real_exam_html = ""
+    for q in REAL_EXAM_QUESTIONS:
+        steps_rendered = "".join([f"<li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'>{s}</li>" for s in q['steps']])
+        real_exam_html += f"""
+        <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-amber-500/30 shadow-xl space-y-5 relative overflow-hidden">
+            <div class="flex items-start justify-between gap-3 flex-wrap relative z-10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-black font-mono tracking-wider uppercase">Çıkmış Sınav Sorusu {q['q_num']}</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-[11px] font-semibold">{q['badge']}</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-bold">{q['score']}</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-black text-[var(--text-primary)] tracking-tight pt-1">{q['title']}</h3>
+                </div>
+                <button onclick="toggleProblemSolution('{q['id']}')" id="btn-prob-{q['id']}" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold shadow-lg shadow-amber-600/25 transition flex items-center gap-2 active:scale-95 cursor-pointer">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Çözümü İncele
+                </button>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-sm sm:text-base text-[var(--text-primary)] leading-relaxed">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-widest block mb-1.5 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Orijinal Sınav Kağıdındaki Soru:
+                </span>
+                {q['question']}
+            </div>
+
+            <div id="sol-{q['id']}" class="hidden space-y-4 pt-2 border-t border-[var(--border-color)]">
+                <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30 text-xs sm:text-sm text-indigo-200 leading-relaxed space-y-1">
+                    <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-xs uppercase tracking-wider mb-1">
+                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Çocuğa Anlatır Gibi (Sıfırdan Mantık)
+                    </div>
+                    {q['kid_logic']}
+                </div>
+
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        Adım Adım Profesyonel Çözüm:
+                    </span>
+                    <ol class="space-y-2 text-xs sm:text-sm list-decimal list-inside">
+                        {steps_rendered}
+                    </ol>
+                </div>
+
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 text-xs sm:text-sm text-rose-200 leading-relaxed flex items-start gap-2.5">
+                    <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div>{q['exam_trap']}</div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-center text-sm sm:text-base">
+                    Sınav Kağıdına Yazılacak Net Sonuç: $${q['result']}$$
+                </div>
+            </div>
+        </div>
+        """
 
     # 1. Solved Problems HTML Assembly
     problems_html = ""
@@ -253,24 +313,52 @@ def generate_index_html():
     all_views_html += f"""
     <!-- VIEW: sorular -->
     <div id="view-sorular" class="app-view">
-        <div class="flex items-center justify-between border-b border-[var(--border-color)] pb-4 mb-8">
+        <div class="flex items-center justify-between border-b border-[var(--border-color)] pb-4 mb-8 flex-wrap gap-3">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-extrabold text-[var(--text-primary)]">Hocanın Çözdüğü Vize Soruları Arşivi</h2>
-                    <p class="text-xs text-[var(--text-muted)]">Hafta 11 & 12 Uygulama Derslerinde Çözülen Soruların Tamamı</p>
+                    <h2 class="text-2xl font-black text-[var(--text-primary)]">Geçen Yılın Çıkmış Vize Soruları & Soru Bankası</h2>
+                    <p class="text-xs text-[var(--text-muted)]">Orijinal Sınav Kağıdındaki 6 Soru + Hafta 11 & 12 Uygulama Arşivi</p>
                 </div>
             </div>
+            <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold">6 Orijinal Çıkmış Soru</span>
+                <span class="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-mono font-bold">13 Alıştırma Sorusu</span>
+            </div>
         </div>
-        <p class="text-[var(--text-secondary)] text-sm mb-6 leading-relaxed">
-            Hocanızın bizzat ders notlarında çözdüğü ve geçen sene vizede sorduğu <strong>tüm soru tipleri</strong> aşağıda yer almaktadır. 
-            Önce soruyu oku, kağıt üzerinde kendin çözmeyi dene, ardından "Çözümü Göster" butonuna tıklayarak adımlarını kontrol et!
-        </p>
-        <div id="problems-container" class="space-y-4">
-            {problems_html}
+
+        <!-- BÖLÜM 1: GEÇEN YILIN GERÇEK ÇIKMIŞ VİZE SINAVI (BİREBİR 6 SORU) -->
+        <div class="space-y-6 mb-12">
+            <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-indigo-500/5 to-transparent border border-amber-500/30">
+                <div class="flex items-center gap-2 text-amber-400 font-bold text-sm uppercase tracking-wider mb-2">
+                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                    BÖLÜM 1: GEÇEN YILIN BİREBİR ÇIKMIŞ VİZE SINAVI (100 TAM PUANLIK 6 SORU)
+                </div>
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    Aşağıdaki 6 soru, doğrudan vize sınav kağıdındaki orijinal sorulardır. Her soruda <strong>çocuğa anlatır gibi sıfırdan mantık</strong>, adım adım matematiksel işlemler ve <strong>hocanın puan kırdığı sınav tuzakları</strong> eksiksiz açıklanmıştır.
+                </p>
+            </div>
+
+            <div id="real-exam-container" class="space-y-6">
+                {real_exam_html}
+            </div>
         </div>
+
+        <!-- BÖLÜM 2: DERS NOTLARINDAKİ DİĞER ALIŞTIRMALAR -->
+        <div class="space-y-6 pt-8 border-t border-[var(--border-color)]">
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+                <div>
+                    <h3 class="text-xl font-bold text-[var(--text-primary)]">Bölüm 2: Hafta 11 & 12 Uygulama Dersi Soru Arşivi</h3>
+                    <p class="text-xs text-[var(--text-muted)]">PDF'lerdeki Diğer Tüm Çözümlü Alıştırmalar ve Konu Pekiştirme Soruları</p>
+                </div>
+            </div>
+            <div id="problems-container" class="space-y-4">
+                {problems_html}
+            </div>
+        </div>
+
         {bottom_nav_sorular}
     </div>
     """

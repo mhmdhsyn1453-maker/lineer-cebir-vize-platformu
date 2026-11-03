@@ -508,9 +508,9 @@
                 <div class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest px-2 pt-4 pb-1 sidebar-text-hide">Uygulama & Sınav</div>
                 <div class="sidebar-divider-collapsed hidden"></div>
                 
-                <button onclick="switchView('sorular')" data-target="sorular" title="Hocanın Vize Soru Arşivi" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-emerald-400 font-semibold">
-                    <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <span>Hocanın Vize Soru Arşivi</span>
+                <button onclick="switchView('sorular')" data-target="sorular" title="Çıkmış Vize Soruları & Arşiv" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-amber-400 font-semibold">
+                    <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Çıkmış Vize Soruları & Arşiv</span>
                 </button>
                 <button onclick="switchView('laboratuvar')" data-target="laboratuvar" title="Canlı Matris Laboratuvarı" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-indigo-400 font-semibold">
                     <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -579,9 +579,9 @@
 
                 <div class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest px-3 pt-5 pb-1">Uygulama & Sınav</div>
                 
-                <button onclick="switchView('sorular')" data-target="sorular" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-emerald-400 font-semibold">
-                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <span>Hocanın Vize Soru Arşivi</span>
+                <button onclick="switchView('sorular')" data-target="sorular" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-amber-400 font-semibold">
+                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Çıkmış Vize Soruları & Arşiv</span>
                 </button>
                 <button onclick="switchView('laboratuvar')" data-target="laboratuvar" class="nav-link w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-indigo-400 font-semibold">
                     <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -1916,7 +1916,7 @@
         <button onclick="switchView('sorular')" class="px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white flex items-center gap-3 shadow-lg shadow-indigo-600/25 transition group active:scale-95 text-right">
             <div>
                 <span class="text-[10px] text-indigo-200 uppercase tracking-wider block font-bold">Sonraki Bölüm</span>
-                <span class="text-xs sm:text-sm font-bold text-white">Vize Soru Arşivi</span>
+                <span class="text-xs sm:text-sm font-bold text-white">Çıkmış Vize Soruları</span>
             </div>
             <svg class="w-5 h-5 text-white group-hover:translate-x-1 transition shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -1927,23 +1927,427 @@
         
     <!-- VIEW: sorular -->
     <div id="view-sorular" class="app-view">
-        <div class="flex items-center justify-between border-b border-[var(--border-color)] pb-4 mb-8">
+        <div class="flex items-center justify-between border-b border-[var(--border-color)] pb-4 mb-8 flex-wrap gap-3">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-extrabold text-[var(--text-primary)]">Hocanın Çözdüğü Vize Soruları Arşivi</h2>
-                    <p class="text-xs text-[var(--text-muted)]">Hafta 11 & 12 Uygulama Derslerinde Çözülen Soruların Tamamı</p>
+                    <h2 class="text-2xl font-black text-[var(--text-primary)]">Geçen Yılın Çıkmış Vize Soruları & Soru Bankası</h2>
+                    <p class="text-xs text-[var(--text-muted)]">Orijinal Sınav Kağıdındaki 6 Soru + Hafta 11 & 12 Uygulama Arşivi</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold">6 Orijinal Çıkmış Soru</span>
+                <span class="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-mono font-bold">13 Alıştırma Sorusu</span>
+            </div>
+        </div>
+
+        <!-- BÖLÜM 1: GEÇEN YILIN GERÇEK ÇIKMIŞ VİZE SINAVI (BİREBİR 6 SORU) -->
+        <div class="space-y-6 mb-12">
+            <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-indigo-500/5 to-transparent border border-amber-500/30">
+                <div class="flex items-center gap-2 text-amber-400 font-bold text-sm uppercase tracking-wider mb-2">
+                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                    BÖLÜM 1: GEÇEN YILIN BİREBİR ÇIKMIŞ VİZE SINAVI (100 TAM PUANLIK 6 SORU)
+                </div>
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    Aşağıdaki 6 soru, doğrudan vize sınav kağıdındaki orijinal sorulardır. Her soruda <strong>çocuğa anlatır gibi sıfırdan mantık</strong>, adım adım matematiksel işlemler ve <strong>hocanın puan kırdığı sınav tuzakları</strong> eksiksiz açıklanmıştır.
+                </p>
+            </div>
+
+            <div id="real-exam-container" class="space-y-6">
+                
+        <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-amber-500/30 shadow-xl space-y-5 relative overflow-hidden">
+            <div class="flex items-start justify-between gap-3 flex-wrap relative z-10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-black font-mono tracking-wider uppercase">Çıkmış Sınav Sorusu 1</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-[11px] font-semibold">Matris Eşitliği</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-bold">15 Puan</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-black text-[var(--text-primary)] tracking-tight pt-1">Soru 1: Matris Eşitliğinden 4 Bilinmeyenli Denklem Çözümü</h3>
+                </div>
+                <button onclick="toggleProblemSolution('cikmis_1')" id="btn-prob-cikmis_1" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold shadow-lg shadow-amber-600/25 transition flex items-center gap-2 active:scale-95 cursor-pointer">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Çözümü İncele
+                </button>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-sm sm:text-base text-[var(--text-primary)] leading-relaxed">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-widest block mb-1.5 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Orijinal Sınav Kağıdındaki Soru:
+                </span>
+                Aşağıda verilen matris eşitliklerinden elde edilen denklem sistemlerini çözünüz:
+$$\begin{bmatrix}
+2 & x-2 & -1 \\
+3 & y+1 & 0
+\end{bmatrix}_{2 \times 3}
+=
+\begin{bmatrix}
+2x-y & 2 & z-t \\
+z+t & 7 & 0
+\end{bmatrix}_{2 \times 3}$$
+            </div>
+
+            <div id="sol-cikmis_1" class="hidden space-y-4 pt-2 border-t border-[var(--border-color)]">
+                <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30 text-xs sm:text-sm text-indigo-200 leading-relaxed space-y-1">
+                    <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-xs uppercase tracking-wider mb-1">
+                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Çocuğa Anlatır Gibi (Sıfırdan Mantık)
+                    </div>
+                    <strong>Çocuğa Anlatır Gibi Temel Mantık:</strong><br>
+İki matris birbirine eşit ($\mathbf{A = B}$) diyorsa, bu tıpkı iki ikiz kutu gibidir! Sol kutunun 1. kat 2. odasındaki sayı neyse, sağ kutunun da 1. kat 2. odasındaki sayı <strong>tıpatıp aynı</strong> olmak zorundadır. Tek yapmamız gereken kutuları karşılıklı eşleştirip ilkokul denklem çözümü gibi bilinmeyenleri bulmak!
+                </div>
+
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        Adım Adım Profesyonel Çözüm:
+                    </span>
+                    <ol class="space-y-2 text-xs sm:text-sm list-decimal list-inside">
+                        <li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>1. Eşleşme ($x$'i Bulma):</strong> 1. satır, 2. sütundaki elemanları birbirine eşitleyelim:<br>$$x - 2 = 2 \implies x = 2 + 2 \implies \mathbf{x = 4}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>2. Eşleşme ($y$'yi Bulma):</strong> 2. satır, 2. sütundaki elemanları eşitleyelim:<br>$$y + 1 = 7 \implies y = 7 - 1 \implies \mathbf{y = 6}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>1. Satır 1. Sütun Kontrolü:</strong> $2 = 2x - y$ denkleminde bulduğumuz $x=4$ ve $y=6$'yı yerine koyalım:<br>$$2(4) - 6 = 8 - 6 = 2 \quad (\text{Harika! Eşitlik doğrulandı!})$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>3. Eşleşme ($z$ ve $t$ için İki Basit Denklem):</strong><br>• 1. satır 3. sütun: $z - t = -1$<br>• 2. satır 1. sütun: $z + t = 3$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>4. İki Denklemi Alt Alta Toplama (Eski Yöntem):</strong><br>$$\begin{array}{r@{\ }l} z - t &= -1 \\ +\quad z + t &= 3 \\ \hline 2z &= 2 \implies \mathbf{z = 1} \end{array}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>5. $t$'yi Bulma:</strong> $z=1$ değerini $z + t = 3$ denkleminde yerine koyalım:<br>$$1 + t = 3 \implies \mathbf{t = 2}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>6. 2. Satır 3. Sütun Kontrolü:</strong> $0 = 0$ (Zaten eşit, soru eksiksiz sağlandı).</li>
+                    </ol>
+                </div>
+
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 text-xs sm:text-sm text-rose-200 leading-relaxed flex items-start gap-2.5">
+                    <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div><strong>Hoca Nereden Puan Kırar?</strong> Öğrenciler genelde $x=4$ ve $y=6$'yı kolayca bulur ama $z-t=-1$ ile $z+t=3$ sistemini çözerken eksi işaretini karıştırıp $t$'yi yanlış bulur. Sınav kağıdında bulduğunuz tüm değerleri ($x, y, z, t$) matrise geri koyup eşitliğin sağlandığını 1 satırla hocaya gösterirseniz tam puan alırsınız!</div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-center text-sm sm:text-base">
+                    Sınav Kağıdına Yazılacak Net Sonuç: $$x = 4, \quad y = 6, \quad z = 1, \quad t = 2$$
                 </div>
             </div>
         </div>
-        <p class="text-[var(--text-secondary)] text-sm mb-6 leading-relaxed">
-            Hocanızın bizzat ders notlarında çözdüğü ve geçen sene vizede sorduğu <strong>tüm soru tipleri</strong> aşağıda yer almaktadır. 
-            Önce soruyu oku, kağıt üzerinde kendin çözmeyi dene, ardından "Çözümü Göster" butonuna tıklayarak adımlarını kontrol et!
-        </p>
-        <div id="problems-container" class="space-y-4">
-            
+        
+        <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-amber-500/30 shadow-xl space-y-5 relative overflow-hidden">
+            <div class="flex items-start justify-between gap-3 flex-wrap relative z-10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-black font-mono tracking-wider uppercase">Çıkmış Sınav Sorusu 2</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-[11px] font-semibold">Kanonik Form & Rank</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-bold">20 Puan</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-black text-[var(--text-primary)] tracking-tight pt-1">Soru 2: $5 	imes 6$ Matrisini Kanonik (Eşelon) Hale Getirerek Rankını Bulma</h3>
+                </div>
+                <button onclick="toggleProblemSolution('cikmis_2')" id="btn-prob-cikmis_2" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold shadow-lg shadow-amber-600/25 transition flex items-center gap-2 active:scale-95 cursor-pointer">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Çözümü İncele
+                </button>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-sm sm:text-base text-[var(--text-primary)] leading-relaxed">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-widest block mb-1.5 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Orijinal Sınav Kağıdındaki Soru:
+                </span>
+                Aşağıda verilen $A$ matrisini kanonik (satır eşelon) hale getirerek rankını bulunuz:
+$$A = \begin{bmatrix}
+2 & 2 & 1 & 0 & 1 & 0 \\
+3 & 4 & 0 & 0 & 0 & 0 \\
+6 & 6 & 6 & 1 & 0 & 5 \\
+2 & 3 & 1 & 0 & 1 & 0 \\
+1 & 1 & 1 & 0 & 1 & 0
+\end{bmatrix}_{5 \times 6}$$
+            </div>
+
+            <div id="sol-cikmis_2" class="hidden space-y-4 pt-2 border-t border-[var(--border-color)]">
+                <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30 text-xs sm:text-sm text-indigo-200 leading-relaxed space-y-1">
+                    <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-xs uppercase tracking-wider mb-1">
+                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Çocuğa Anlatır Gibi (Sıfırdan Mantık)
+                    </div>
+                    <strong>Çocuğa Anlatır Gibi Temel Mantık:</strong><br>
+<strong>Rank nedir?</strong> Bir matriste satırları birbiriyle toplayıp çıkararak merdiven basamağı (eşelon form) yaptığımızda <strong>yok olmayan (tamamen sıfıra dönüşmeyen) satır sayısıdır</strong>!<br>
+Eğer bir satır diğerlerinin gizli bir kopyasıysa sıfırlanıp uçar. Kalan diri satırlar matrisin gücünü (rankını) gösterir.
+                </div>
+
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        Adım Adım Profesyonel Çözüm:
+                    </span>
+                    <ol class="space-y-2 text-xs sm:text-sm list-decimal list-inside">
+                        <li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>1. Hamle (En Akıllıca Başlangıç - Pivotu 1 Yapma):</strong><br>5. satıra dikkatle bakın: $[1, 1, 1, 0, 1, 0]$! Zaten $1$ ile başlıyor. Kesirlerle uğraşmamak için hemen 1. satır ile 5. satırın yerini değiştirelim ($S_1 \leftrightarrow S_5$):<br>$$A \sim \begin{bmatrix} 1 & 1 & 1 & 0 & 1 & 0 \\ 3 & 4 & 0 & 0 & 0 & 0 \\ 6 & 6 & 6 & 1 & 0 & 5 \\ 2 & 3 & 1 & 0 & 1 & 0 \\ 2 & 2 & 1 & 0 & 1 & 0 \end{bmatrix}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>2. Hamle (1. Sütundaki Tüm Alt Elemanları Sıfırlama):</strong><br>1. satırdaki $1$'i pivot alıp altındakileri yok edelim:<br>• $S_2 \leftarrow S_2 - 3S_1 = [0, 1, -3, 0, -3, 0]$<br>• $S_3 \leftarrow S_3 - 6S_1 = [0, 0, 0, 1, -6, 5]$<br>• $S_4 \leftarrow S_4 - 2S_1 = [0, 1, -1, 0, -1, 0]$<br>• $S_5 \leftarrow S_5 - 2S_1 = [0, 0, -1, 0, -1, 0]$<br>Matris:<br>$$\begin{bmatrix} 1 & 1 & 1 & 0 & 1 & 0 \\ 0 & 1 & -3 & 0 & -3 & 0 \\ 0 & 0 & 0 & 1 & -6 & 5 \\ 0 & 1 & -1 & 0 & -1 & 0 \\ 0 & 0 & -1 & 0 & -1 & 0 \end{bmatrix}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>3. Hamle (2. Sütunu Sıfırlama):</strong><br>2. satır pivotu $1$'dir. 4. satırdaki $1$'i sıfırlamak için $S_4 \leftarrow S_4 - S_2$ yapalım:<br>$$[0, 1, -1, 0, -1, 0] - [0, 1, -3, 0, -3, 0] = [0, 0, 2, 0, 2, 0]$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>4. Hamle (Hayati Adım - Satırın Sıfırlanması!):</strong><br>Yeni 4. satır $[0, 0, 2, 0, 2, 0]$ (2'ye bölersek $[0, 0, 1, 0, 1, 0]$).<br>5. satır ise $[0, 0, -1, 0, -1, 0]$!<br>İkisini toplarsak ($S_5 \leftarrow S_5 + \frac{1}{2}S_4$):<br>$$[0, 0, -1, 0, -1, 0] + [0, 0, 1, 0, 1, 0] = [\mathbf{0, 0, 0, 0, 0, 0}]$$<br><strong>5. satır tamamen sıfırlandı!</strong></li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>5. Hamle (Basamakları Düzenleme):</strong><br>Pivot sütunlarına göre satırları sıraladığımızda:<br>$$\begin{bmatrix} 1 & 1 & 1 & 0 & 1 & 0 \\ 0 & 1 & -3 & 0 & -3 & 0 \\ 0 & 0 & 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 & -6 & 5 \\ 0 & 0 & 0 & 0 & 0 & 0 \end{bmatrix}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>Rank Hesabı:</strong> Sıfırdan farklı satır sayısı tam <strong>4</strong> adettir. En alt satır tamamen sıfırlanmıştır.</li>
+                    </ol>
+                </div>
+
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 text-xs sm:text-sm text-rose-200 leading-relaxed flex items-start gap-2.5">
+                    <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div><strong>Hoca Nereden Puan Kırar?</strong> 1. satırı doğrudan 2'ye bölüp rasyonel sayılarla ($\frac{1}{2}$) işlem yapmaya kalkan öğrenci 5 dakika içinde işlem hatası yapıp tıkanır. Sırrımız: 5. satırdaki hazır $1$'i yukarı taşımaktır! Ayrıca 5. satırın tamamen $[0, 0, 0, 0, 0, 0]$ olduğunu kağıtta göstermeden direkt rank = 4 yazarsanız işlem puanı kırılır.</div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-center text-sm sm:text-base">
+                    Sınav Kağıdına Yazılacak Net Sonuç: $$\text{rank}(A) = 4 \quad (\text{5 satırdan 4'ü bağımsızdır})$$
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-amber-500/30 shadow-xl space-y-5 relative overflow-hidden">
+            <div class="flex items-start justify-between gap-3 flex-wrap relative z-10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-black font-mono tracking-wider uppercase">Çıkmış Sınav Sorusu 3</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-[11px] font-semibold">5x5 Determinant & Laplace</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-bold">15 Puan</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-black text-[var(--text-primary)] tracking-tight pt-1">Soru 3: $5 	imes 5$ Büyük Matrisin Determinantını Satır İşlemi & Laplace ile Bulma</h3>
+                </div>
+                <button onclick="toggleProblemSolution('cikmis_3')" id="btn-prob-cikmis_3" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold shadow-lg shadow-amber-600/25 transition flex items-center gap-2 active:scale-95 cursor-pointer">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Çözümü İncele
+                </button>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-sm sm:text-base text-[var(--text-primary)] leading-relaxed">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-widest block mb-1.5 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Orijinal Sınav Kağıdındaki Soru:
+                </span>
+                Aşağıda verilen $B$ matrisinin determinantını hesaplayınız:
+$$B = \begin{bmatrix}
+1 & 1 & 3 & 0 & 2 \\
+3 & 1 & 0 & 1 & 2 \\
+0 & 1 & 3 & 0 & 2 \\
+4 & -2 & 3 & 1 & 0 \\
+5 & 1 & 0 & 0 & 6
+\end{bmatrix}_{5 \times 5}$$
+            </div>
+
+            <div id="sol-cikmis_3" class="hidden space-y-4 pt-2 border-t border-[var(--border-color)]">
+                <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30 text-xs sm:text-sm text-indigo-200 leading-relaxed space-y-1">
+                    <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-xs uppercase tracking-wider mb-1">
+                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Çocuğa Anlatır Gibi (Sıfırdan Mantık)
+                    </div>
+                    <strong>Çocuğa Anlatır Gibi Temel Mantık:</strong><br>
+Sakın panik yapma! Sarrus kuralı $5 \times 5$'te <strong>kesinlikle çalışmaz</strong>. Hoca bu soruyu sana 2 saat uğraş diye değil, <strong>akıllı bir dedektif gibi bakıp gizli benzerliği yakalaman için</strong> sordu!<br>
+1. satır ile 3. satıra bir baksana: İkisinin de kuyruğu $[1, 3, 0, 2]$ ile bitiyor! Birbirinden çıkarırsan bir anda 4 tane sıfır doğar ve soru çocuk oyuncağına döner!
+                </div>
+
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        Adım Adım Profesyonel Çözüm:
+                    </span>
+                    <ol class="space-y-2 text-xs sm:text-sm list-decimal list-inside">
+                        <li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>1. Adım (Sihirli Satır Hamlesi $S_1 - S_3$):</strong><br>Determinant kuralı: Bir satırdan diğerini çıkarırsan determinant DEĞİŞMEZ!<br>$$S_1 \leftarrow S_1 - S_3 = [1, 1, 3, 0, 2] - [0, 1, 3, 0, 2] = [\mathbf{1, 0, 0, 0, 0}]$$<br>Gördün mü? 1. satırda tam 4 tane sıfır oluştu!</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>2. Adım (1. Satıra Göre Laplace Açılımı):</strong><br>1. satırdaki sıfırlar yok olacağı için geriye sadece en baştaki $1$ kalır:<br>$$\det(B) = (+1) \cdot 1 \cdot \begin{vmatrix} 1 & 0 & 1 & 2 \\ 1 & 3 & 0 & 2 \\ -2 & 3 & 1 & 0 \\ 1 & 0 & 0 & 6 \end{vmatrix}_{4 \times 4}$$<br>Kocaman $5 \times 5$ matris tek hamlede $4 \times 4$'e indi!</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>3. Adım ($4 \times 4$ Matriste 2. Sütundaki 3'leri Yok Etme):</strong><br>2. satırda $3$, 3. satırda da $3$ var. $S_3 \leftarrow S_3 - S_2$ yapalım:<br>$$[-2, 3, 1, 0] - [1, 3, 0, 2] = [-3, 0, 1, -2]$$<br>Kalan $4 \times 4$ matris:<br>$$\begin{vmatrix} 1 & 0 & 1 & 2 \\ 1 & 3 & 0 & 2 \\ -3 & 0 & 1 & -2 \\ 1 & 0 & 0 & 6 \end{vmatrix}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>4. Adım (2. Sütuna Göre Laplace Açılımı):</strong><br>2. sütunda sadece 2. satırdaki $3$ sayısı sıfırdan farklıdır! 2. satır 2. sütunun dama tahtası işareti $(+)$'dır:<br>$$\det(M_4) = (+1) \cdot 3 \cdot \begin{vmatrix} 1 & 1 & 2 \\ -3 & 1 & -2 \\ 1 & 0 & 6 \end{vmatrix}_{3 \times 3}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>5. Adım ($3 \times 3$ Determinantı 3. Satıra Göre Açma):</strong><br>3. satırda bir tane $0$ var ($[1, 0, 6]$):<br>• $a_{31} = 1 \implies (+1) \cdot 1 \cdot \begin{vmatrix} 1 & 2 \\ 1 & -2 \end{vmatrix} = 1 \cdot (-2 - 2) = -4$<br>• $a_{32} = 0 \implies 0$<br>• $a_{33} = 6 \implies (+1) \cdot 6 \cdot \begin{vmatrix} 1 & 1 \\ -3 & 1 \end{vmatrix} = 6 \cdot (1 - (-3)) = 6 \cdot 4 = 24$<br>$$\det(M_3) = -4 + 24 = \mathbf{20}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>6. Adım (Tüm Çarpanları Birleştirme):</strong><br>$$\det(M_4) = 3 \cdot 20 = 60$$<br>$$\det(B) = 1 \cdot \det(M_4) = 1 \cdot 60 = \mathbf{60}$$</li>
+                    </ol>
+                </div>
+
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 text-xs sm:text-sm text-rose-200 leading-relaxed flex items-start gap-2.5">
+                    <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div><strong>Hoca Nereden Puan Kırar?</strong> En büyük hata: $5 \times 5$'lik matrisi doğrudan açmaya çalışmak veya Sarrus uygulamaktır. Sarrus sadece ve sadece $3 \times 3$ içindir! Bu soruda hoca öğrencinin $S_1 - S_3$ hamlesini görüp görmediğini test eder. O adımı yazan öğrenciye hoca tam puanı basar.</div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-center text-sm sm:text-base">
+                    Sınav Kağıdına Yazılacak Net Sonuç: $$\det(B) = 60$$
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-amber-500/30 shadow-xl space-y-5 relative overflow-hidden">
+            <div class="flex items-start justify-between gap-3 flex-wrap relative z-10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-black font-mono tracking-wider uppercase">Çıkmış Sınav Sorusu 4</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-[11px] font-semibold">Homojen Sistem & Parametre</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-bold">20 Puan</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-black text-[var(--text-primary)] tracking-tight pt-1">Soru 4: Homojen Sistemde Aşikar Olmayan Çözüm Şartı ve Genel Çözüm</h3>
+                </div>
+                <button onclick="toggleProblemSolution('cikmis_4')" id="btn-prob-cikmis_4" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold shadow-lg shadow-amber-600/25 transition flex items-center gap-2 active:scale-95 cursor-pointer">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Çözümü İncele
+                </button>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-sm sm:text-base text-[var(--text-primary)] leading-relaxed">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-widest block mb-1.5 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Orijinal Sınav Kağıdındaki Soru:
+                </span>
+                Aşağıda verilen denklem sisteminin aşikar olandan farklı çözümü olması için $k$ ne olmalıdır? Bulacağınız $k$ değerine göre sistemi çözünüz:
+$$\begin{cases}
+3x + ky - z = 0 \\
+2x - 2y + 3z = 0 \\
+x + 5y + 2z = 0
+\end{cases}$$
+            </div>
+
+            <div id="sol-cikmis_4" class="hidden space-y-4 pt-2 border-t border-[var(--border-color)]">
+                <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30 text-xs sm:text-sm text-indigo-200 leading-relaxed space-y-1">
+                    <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-xs uppercase tracking-wider mb-1">
+                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Çocuğa Anlatır Gibi (Sıfırdan Mantık)
+                    </div>
+                    <strong>Çocuğa Anlatır Gibi Temel Mantık:</strong><br>
+Denklemlerin sağ tarafı hep sıfır ($=0$). Bu tarz sistemlere 'homojen sistem' denir.<br>
+Eğer $x=0, y=0, z=0$ verirsen denklem zaten sağlanır; buna 'aşikar (bedava) çözüm' denir.<br>
+Peki <strong>'aşikar olandan farklı çözüm'</strong> ne demek? Sıfırdan başka, sonsuz tane çözüm olsun demek! Bunun tek bir kuralı vardır: <strong>Katsayılar matrisinin determinantı SIFIR olmalıdır ($\Delta = 0$)!</strong>
+                </div>
+
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        Adım Adım Profesyonel Çözüm:
+                    </span>
+                    <ol class="space-y-2 text-xs sm:text-sm list-decimal list-inside">
+                        <li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>1. Adım (Determinantı Sıfıra Eşitle):</strong><br>Katsayılar matrisini yazalım:<br>$$\Delta = \begin{vmatrix} 3 & k & -1 \\ 2 & -2 & 3 \\ 1 & 5 & 2 \end{vmatrix} = 0$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>2. Adım (Sarrus ile Determinantı Açma):</strong><br>• Pozitif Çaprazlar: $3(-2)(2) + 2(5)(-1) + 1(k)(3) = -12 - 10 + 3k = 3k - 22$<br>• Negatif Çaprazlar: $1(-2)(-1) + 3(5)(3) + 2(k)(2) = 2 + 45 + 4k = 4k + 47$<br>$$\Delta = (3k - 22) - (4k + 47) = 3k - 22 - 4k - 47 = -k - 69$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>3. Adım ($k$ Değerini Bulma):</strong><br>$$-k - 69 = 0 \implies \mathbf{k = -69}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>4. Adım ($k = -69$ Değerini Yerine Koyup Sistemi Çözme):</strong><br>Denklemler:<br>(1) $3x - 69y - z = 0$<br>(2) $2x - 2y + 3z = 0$<br>(3) $x + 5y + 2z = 0 \implies x = -5y - 2z$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>5. Adım ($x$'i 2. Denklemde Yerine Koyma):</strong><br>$$2(-5y - 2z) - 2y + 3z = 0 \implies -10y - 4z - 2y + 3z = 0 \implies -12y - z = 0 \implies \mathbf{z = -12y}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>6. Adım ($x$'i $y$ Cinsinden Bulma):</strong><br>$$x = -5y - 2(-12y) = -5y + 24y \implies \mathbf{x = 19y}$$<br>(1. denklemi kontrol edelim: $3(19y) - 69y - (-12y) = 57y - 69y + 12y = 0$, tam doğrulandı!)</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>7. Adım (Serbest Değişken Atama ve Genel Çözüm):</strong><br>$y = t$ ($t \in \mathbb{R}$) serbest parametre dersek:<br>$$x = 19t, \quad y = t, \quad z = -12t$$</li>
+                    </ol>
+                </div>
+
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 text-xs sm:text-sm text-rose-200 leading-relaxed flex items-start gap-2.5">
+                    <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div><strong>Hoca Nereden Puan Kırar?</strong> Öğrencilerin yarısı $k=-69$'u bulduktan sonra sınavı bitti zanneder ve sistemi çözmeyi unutarak 10 puan kaybeder! Soruda 'Bulacağınız k değerine göre sistemi çözünüz' dendiği için genel çözümü parametreye ($t$) bağlı olarak $(19t, t, -12t)$ şeklinde yazmak şarttır.</div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-center text-sm sm:text-base">
+                    Sınav Kağıdına Yazılacak Net Sonuç: $$k = -69, \quad (x, y, z) = (19t, t, -12t) = t \cdot (19, 1, -12), \quad t \in \mathbb{R}$$
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-amber-500/30 shadow-xl space-y-5 relative overflow-hidden">
+            <div class="flex items-start justify-between gap-3 flex-wrap relative z-10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-black font-mono tracking-wider uppercase">Çıkmış Sınav Sorusu 5</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-[11px] font-semibold">Gauss Eliminasyon</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-bold">15 Puan</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-black text-[var(--text-primary)] tracking-tight pt-1">Soru 5: 4 Bilinmeyenli Lineer Denklem Sistemini Gauss Yok Etme ile Çözme</h3>
+                </div>
+                <button onclick="toggleProblemSolution('cikmis_5')" id="btn-prob-cikmis_5" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold shadow-lg shadow-amber-600/25 transition flex items-center gap-2 active:scale-95 cursor-pointer">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Çözümü İncele
+                </button>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-sm sm:text-base text-[var(--text-primary)] leading-relaxed">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-widest block mb-1.5 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Orijinal Sınav Kağıdındaki Soru:
+                </span>
+                Aşağıda verilen 4 bilinmeyenli denklem sistemini çözünüz:
+$$\begin{cases}
+2x_2 - x_3 + 2x_4 = 12 \\
+x_1 + 4x_2 + 2x_3 + 5x_4 = -2 \\
+2x_1 + x_2 + 6x_3 + x_4 = -19 \\
+x_1 - x_2 + x_3 - x_4 = -3
+\end{cases}$$
+            </div>
+
+            <div id="sol-cikmis_5" class="hidden space-y-4 pt-2 border-t border-[var(--border-color)]">
+                <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30 text-xs sm:text-sm text-indigo-200 leading-relaxed space-y-1">
+                    <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-xs uppercase tracking-wider mb-1">
+                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Çocuğa Anlatır Gibi (Sıfırdan Mantık)
+                    </div>
+                    <strong>Çocuğa Anlatır Gibi Temel Mantık:</strong><br>
+4 bilinmeyenli denklem sistemi kocaman bir bulmaca gibidir. Gauss yöntemiyle adım adım en baştaki bilinmeyeni ($x_1$) yok ederek aşağı doğru bir merdiven kurarız.<br>
+En alt basamağa ulaştığımızda tek bir bilinmeyen kalır ($x_4$). Onu bulunca domino taşları gibi geriye doğru yerine koyarak sırasıyla $x_3, x_2, x_1$ değerlerini buluruz.
+                </div>
+
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        Adım Adım Profesyonel Çözüm:
+                    </span>
+                    <ol class="space-y-2 text-xs sm:text-sm list-decimal list-inside">
+                        <li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>1. Adım (Artırılmış Matrisi Düzenli Yazma):</strong><br>Pivotu kolaylaştırmak için $x_1 - x_2 + x_3 - x_4 = -3$ denklemini 1. satıra alalım:<br>$$\left[\begin{array}{cccc|c} 1 & -1 & 1 & -1 & -3 \\ 1 & 4 & 2 & 5 & -2 \\ 2 & 1 & 6 & 1 & -19 \\ 0 & 2 & -1 & 2 & 12 \end{array}\right]$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>2. Adım (1. Sütunu Sıfırlama):</strong><br>• $S_2 \leftarrow S_2 - S_1 = [0, 5, 1, 6 \mid 1]$<br>• $S_3 \leftarrow S_3 - 2S_1 = [0, 3, 4, 3 \mid -13]$<br>• $S_4$: zaten $0$ ile başlıyor: $[0, 2, -1, 2 \mid 12]$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>3. Adım (2. Sütunda Pivotu 1 Yapma):</strong><br>$S_2 \leftarrow S_2 - 2S_4$:<br>$$[0, 5, 1, 6 \mid 1] - 2[0, 2, -1, 2 \mid 12] = [0, 1, 3, 2 \mid -23]$$<br>Harika! $x_2$'nin katsayısı $1$ oldu.</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>4. Adım (2. Sütunun Altını Sıfırlama):</strong><br>• $S_3 \leftarrow S_3 - 3S_2' = [0, 0, -5, -3 \mid 56]$<br>• $S_4 \leftarrow S_4 - 2S_2' = [0, 0, -7, -2 \mid 58]$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>5. Adım (3. Sütunu Sıfırlayıp $x_4$'ü Çekme):</strong><br>$5S_4 - 7S_3$ işlemini yapalım:<br>$$[0, 0, 0, 5(-2) - 7(-3) \mid 5(58) - 7(56)] = [0, 0, 0, 11 \mid -102]$$<br>$$11 x_4 = -102 \implies \mathbf{x_4 = -\frac{102}{11}}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>6. Adım (Geriye Yerine Koyma - Back Substitution):</strong><br>• $-5x_3 - 3\left(-\frac{102}{11}\right) = 56 \implies \mathbf{x_3 = -\frac{62}{11}}$<br>• $x_2 + 3x_3 + 2x_4 = -23 \implies \mathbf{x_2 = \frac{137}{11}}$<br>• $x_1 - x_2 + x_3 - x_4 = -3 \implies \mathbf{x_1 = \frac{64}{11}}$</li>
+                    </ol>
+                </div>
+
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 text-xs sm:text-sm text-rose-200 leading-relaxed flex items-start gap-2.5">
+                    <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div><strong>Hoca Nereden Puan Kırar?</strong> Sonuçlar paydası 11 olan rasyonel kesirler çıkınca öğrenciler 'Ben kesin işlem hatası yaptım' korkusuna kapılır ve kağıdı karalar. Hiç korkmayın! Bu soru özellikle kesirli çıkması için tasarlanmış gerçek bir sınav sorusudur. Çözüm %100 doğrudur.</div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-center text-sm sm:text-base">
+                    Sınav Kağıdına Yazılacak Net Sonuç: $$x_1 = \frac{64}{11}, \quad x_2 = \frac{137}{11}, \quad x_3 = -\frac{62}{11}, \quad x_4 = -\frac{102}{11}$$
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-amber-500/30 shadow-xl space-y-5 relative overflow-hidden">
+            <div class="flex items-start justify-between gap-3 flex-wrap relative z-10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-black font-mono tracking-wider uppercase">Çıkmış Sınav Sorusu 6</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-[11px] font-semibold">Ek Matris ile Ters (Invers)</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-bold">15 Puan</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-black text-[var(--text-primary)] tracking-tight pt-1">Soru 6: Ek Matris (Adjoint) Yöntemi ile $3 \times 3$ Matrisin Tersini (Invers) Bulma</h3>
+                </div>
+                <button onclick="toggleProblemSolution('cikmis_6')" id="btn-prob-cikmis_6" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-bold shadow-lg shadow-amber-600/25 transition flex items-center gap-2 active:scale-95 cursor-pointer">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Çözümü İncele
+                </button>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-sm sm:text-base text-[var(--text-primary)] leading-relaxed">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-widest block mb-1.5 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Orijinal Sınav Kağıdındaki Soru:
+                </span>
+                Aşağıda verilen $A$ matrisinin varsa tersini (inversini) $A^{-1} = \frac{1}{|A|} \text{Adj}(A)$ formülünü kullanarak bulunuz:
+$$A = \begin{bmatrix}
+-1 & 3 & 0 \\
+2 & -4 & 2 \\
+4 & 5 & 7
+\end{bmatrix}_{3 \times 3}$$
+            </div>
+
+            <div id="sol-cikmis_6" class="hidden space-y-4 pt-2 border-t border-[var(--border-color)]">
+                <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30 text-xs sm:text-sm text-indigo-200 leading-relaxed space-y-1">
+                    <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-xs uppercase tracking-wider mb-1">
+                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Çocuğa Anlatır Gibi (Sıfırdan Mantık)
+                    </div>
+                    <strong>Çocuğa Anlatır Gibi Temel Mantık:</strong><br>
+Bir matrisin tersini bulmak demek, sayılarda $5$'in tersini $\frac{1}{5}$ bulmak gibidir.<br>
+3 basit aşamada biter:<br>
+1) <strong>Determinantı Bul ($|A|$):</strong> Sıfır çıkarsa 'Tersi yoktur' deyip soruyu bitirirsin! Sıfırdan farklı çıkarsa devam edersin.<br>
+2) <strong>9 Tane Kofaktör Hesapla ($A_{ij}$):</strong> Satır ve sütunları kapatıp küçük $2\times 2$ determinantları bul.<br>
+3) <strong>EN BÜYÜK SIR:</strong> Kofaktörleri yazdıktan sonra <strong>TRANSPOZESİNİ AL (satırları sütun yap)</strong>! İşte buna 'Ek Matris (Adj A)' denir. Sonra her sayıyı $|A|$'ya böl!
+                </div>
+
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        Adım Adım Profesyonel Çözüm:
+                    </span>
+                    <ol class="space-y-2 text-xs sm:text-sm list-decimal list-inside">
+                        <li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>1. Adım (Sarrus ile Determinant Hesabı):</strong><br>İlk iki satırı alta yazalım:<br>• Pozitif Çaprazlar: $(-1)(-4)(7) + 2(5)(0) + 4(3)(2) = 28 + 0 + 24 = 52$<br>• Negatif Çaprazlar: $0(-4)(4) + 2(5)(-1) + 7(3)(2) = 0 - 10 + 42 = 32$<br>$$|A| = 52 - 32 = \mathbf{20} \neq 0 \implies \text{Determinant 0 olmadığı için matrisin tersi VARDIR!}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>2. Adım (9 Elemanın Kofaktörlerini Dama Tahtası İşaretleriyle Bulma):</strong><br>• $A_{11} = + \begin{vmatrix} -4 & 2 \\ 5 & 7 \end{vmatrix} = -28 - 10 = \mathbf{-38}$<br>• $A_{12} = - \begin{vmatrix} 2 & 2 \\ 4 & 7 \end{vmatrix} = -(14 - 8) = \mathbf{-6}$<br>• $A_{13} = + \begin{vmatrix} 2 & -4 \\ 4 & 5 \end{vmatrix} = 10 - (-16) = \mathbf{26}$<br>• $A_{21} = - \begin{vmatrix} 3 & 0 \\ 5 & 7 \end{vmatrix} = -(21 - 0) = \mathbf{-21}$<br>• $A_{22} = + \begin{vmatrix} -1 & 0 \\ 4 & 7 \end{vmatrix} = -7 - 0 = \mathbf{-7}$<br>• $A_{23} = - \begin{vmatrix} -1 & 3 \\ 4 & 5 \end{vmatrix} = -(-5 - 12) = \mathbf{17}$<br>• $A_{31} = + \begin{vmatrix} 3 & 0 \\ -4 & 2 \end{vmatrix} = 6 - 0 = \mathbf{6}$<br>• $A_{32} = - \begin{vmatrix} -1 & 0 \\ 2 & 2 \end{vmatrix} = -(-2 - 0) = \mathbf{2}$<br>• $A_{33} = + \begin{vmatrix} -1 & 3 \\ 2 & -4 \end{vmatrix} = 4 - 6 = \mathbf{-2}$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>3. Adım (Ek Matrisi - $\text{Adj}(A)$ - Yazma):</strong><br><strong>DİKKAT:</strong> Kofaktörler matrisinin TRANSPOZESİ alınır! (1. satır kofaktörleri 1. sütun olur):<br>$$\text{Adj}(A) = \begin{bmatrix} A_{11} & A_{21} & A_{31} \\ A_{12} & A_{22} & A_{32} \\ A_{13} & A_{23} & A_{33} \end{bmatrix} = \begin{bmatrix} -38 & -21 & 6 \\ -6 & -7 & 2 \\ 26 & 17 & -2 \end{bmatrix}$$</li><li class='p-3.5 rounded-xl bg-[var(--bg-box)] border border-[var(--border-color)] text-[var(--text-secondary)] leading-relaxed'><strong>4. Adım ($A^{-1}$ Formülünü Uygulama):</strong><br>$$A^{-1} = \frac{1}{|A|} \text{Adj}(A) = \frac{1}{20} \begin{bmatrix} -38 & -21 & 6 \\ -6 & -7 & 2 \\ 26 & 17 & -2 \end{bmatrix}$$</li>
+                    </ol>
+                </div>
+
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 text-xs sm:text-sm text-rose-200 leading-relaxed flex items-start gap-2.5">
+                    <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div><strong>Hoca Nereden Puan Kırar?</strong> Öğrencilerin %70'i kofaktörleri doğru bulur ama $\text{Adj}(A)$ matrisini yazarken TRANSPOZESİNİ ALMAYI UNUTUR! Kofaktörleri bulduğun gibi düz yazarsan soru tamamen gider. Formüldeki 'Adj' kofaktörler matrisinin transpozesidir!</div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-center text-sm sm:text-base">
+                    Sınav Kağıdına Yazılacak Net Sonuç: $$|A| = 20, \quad A^{-1} = \frac{1}{20} \begin{bmatrix} -38 & -21 & 6 \\ -6 & -7 & 2 \\ 26 & 17 & -2 \end{bmatrix}$$
+                </div>
+            </div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- BÖLÜM 2: DERS NOTLARINDAKİ DİĞER ALIŞTIRMALAR -->
+        <div class="space-y-6 pt-8 border-t border-[var(--border-color)]">
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+                <div>
+                    <h3 class="text-xl font-bold text-[var(--text-primary)]">Bölüm 2: Hafta 11 & 12 Uygulama Dersi Soru Arşivi</h3>
+                    <p class="text-xs text-[var(--text-muted)]">PDF'lerdeki Diğer Tüm Çözümlü Alıştırmalar ve Konu Pekiştirme Soruları</p>
+                </div>
+            </div>
+            <div id="problems-container" class="space-y-4">
+                
         <div class="glass-3d-card p-6 rounded-2xl border border-[var(--border-color)] shadow-lg space-y-4">
             <div class="flex items-start justify-between gap-3 flex-wrap">
                 <div>
@@ -2425,7 +2829,9 @@
             </div>
         </div>
         
+            </div>
         </div>
+
         
     <div class="view-footer-nav flex items-center justify-between gap-4 mt-14 pt-8 border-t border-[var(--border-color)] flex-wrap">
         
@@ -2565,7 +2971,7 @@
             <svg class="w-5 h-5 text-indigo-400 group-hover:-translate-x-1 transition shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             <div>
                 <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-bold">Önceki Bölüm</span>
-                <span class="text-xs sm:text-sm font-bold text-[var(--text-primary)] group-hover:text-indigo-400 transition">Vize Soru Arşivi</span>
+                <span class="text-xs sm:text-sm font-bold text-[var(--text-primary)] group-hover:text-indigo-400 transition">Çıkmış Vize Soruları</span>
             </div>
         </button>
         
