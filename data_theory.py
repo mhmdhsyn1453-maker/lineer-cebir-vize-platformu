@@ -1069,40 +1069,257 @@ THEORY_CHAPTERS = [
         </div>
     </div>
 
-    <!-- 4.6: Ek Matris (Adjoint) ve Ters Matris İlişkisi -->
-    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-white/5 space-y-4">
-        <div class="flex items-center gap-3 border-b border-white/5 pb-3">
-            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">4.6</span>
-            <h4 class="text-lg font-bold text-white">Ek Matris (Adjoint - $\text{adj}(A)$) ve Ters Matris İlişkisi</h4>
-        </div>
-        <p class="text-slate-300 text-sm leading-relaxed">
-            Rankı tam olan ($|A| \neq 0$) kare matrislerin tersi vardır. Tersi bulmanın en popüler yolu <strong>Ek Matris (Adjoint)</strong> formülüdür:
-            $$A^{-1} = \frac{1}{|A|} \text{adj}(A)$$
-        </p>
-        <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/20 text-xs sm:text-sm text-indigo-200">
-            <strong>EN BÜYÜK SINAV SIRRI:</strong> $\text{adj}(A)$, kofaktörler matrisinin <strong>TRANSPOZESİDİR</strong>! Yani $A_{ij}$ kofaktörlerini bulduktan sonra <u>satırları sütun yapmayı unutursanız</u> tüm soru gider!
+    <!-- 4.6: Ek Matris (Adjoint - adj(A)) ve Ters Matris İlişkisi (Detaylı Anlatım) -->
+    <div class="glass-3d-card p-6 sm:p-8 rounded-2xl border border-white/5 space-y-6">
+        <!-- Başlık -->
+        <div class="flex items-center gap-3 border-b border-white/5 pb-4">
+            <span class="px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">4.6</span>
+            <div>
+                <h4 class="text-lg sm:text-xl font-bold text-white">Ek Matris (Adjoint - $\text{adj}(A)$) ve Ters Matris ($A^{-1}$) Rehberi</h4>
+                <p class="text-xs text-slate-400">Sıfırdan zirveye: Mantık, 4 adımlı algoritma, $2\times 2$ hilesi, adım adım $3\times 3$ çözümü ve sınav tuzakları</p>
+            </div>
         </div>
 
-        <!-- 4.6 Sayısal Örnek -->
-        <div class="p-5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 space-y-3">
-            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                4.6 İçin Tam Çözümlü Sayısal Örnek:
-            </span>
-            <p class="text-slate-200 text-sm font-semibold">
-                Soru: $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ matrisinin Adjoint'ini ($\text{adj}(A)$) ve tersini ($A^{-1}$) bulunuz.
+        <!-- 4.6.1: Çocuğa Anlatır Gibi: Matrislerde Bölme Neden Yok ve Adjoint Nereden Çıktı? -->
+        <div class="p-5 rounded-2xl bg-indigo-950/25 border border-indigo-500/30 space-y-3">
+            <div class="flex items-center gap-2 text-indigo-400 font-bold text-sm">
+                <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Temel Mantık: Matrislerde Neden Bölme Yok ve Ters Matris ($A^{-1}$) Nedir?</span>
+            </div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                İlkokul matematiğinde bir sayıyı etkisiz eleman olan $1$'e götürmek için böleriz: $5 \div 5 = 1$ ya da çarpımsal tersini kullanırız: $5 \cdot \frac{1}{5} = 5 \cdot 5^{-1} = 1$.
             </p>
-            <div class="text-xs sm:text-sm text-slate-300 space-y-2 font-mono bg-slate-950/60 p-4 rounded-xl border border-white/5">
-                <p>1. Adım: Determinant $|A| = (1 \cdot 4) - (2 \cdot 3) = 4 - 6 = \mathbf{-2} \neq 0$ (Tersi vardır!).</p>
-                <p>2. Adım: Kofaktörleri dama tahtası işaretleriyle bulalım:<br>
-                • $A_{11} = + (4) = 4$<br>
-                • $A_{12} = - (3) = -3$<br>
-                • $A_{21} = - (2) = -2$<br>
-                • $A_{22} = + (1) = 1$</p>
-                <p>Kofaktörler Matrisi: $\begin{bmatrix} 4 & -3 \\ -2 & 1 \end{bmatrix}$</p>
-                <p>3. Adım: TRANSPOZESİNİ AL $\implies \mathbf{\text{adj}(A) = \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix}}$</p>
-                <p>4. Adım: Formül $A^{-1} = -\frac{1}{2} \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix} = \begin{bmatrix} -2 & 1 \\ \frac{3}{2} & -\frac{1}{2} \end{bmatrix}$.</p>
-                <p class="text-emerald-400 font-bold pt-1">Sonuç: $\text{adj}(A) = \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix}$ ve $A^{-1} = \begin{bmatrix} -2 & 1 \\ \frac{3}{2} & -\frac{1}{2} \end{bmatrix}$'dir.</p>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Fakat matrisler dünyasında <strong class="text-rose-400 underline">BÖLME İŞLEMİ DİYE BİR ŞEY YOKTUR!</strong> Yani bir matrisi başka bir matrise bölemezsiniz: $\frac{B}{A}$ yazımı matematiksel olarak kesinlikle <u>tanımsız ve yasaktır</u>.
+            </p>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Bölme yapamadığımız için matematikçiler bir çözüm buldu: "Madem bölemiyoruz, o zaman bir $A$ matrisini öyle bir matrisle çarpalım ki sonuç etkisiz matris olan <strong>Birim Matris ($I$)</strong> çıksın!" dediler:
+                $$A \cdot A^{-1} = A^{-1} \cdot A = I$$
+                İşte bu $A^{-1}$ matrisini inşa eden en güçlü sihirli köprü <strong>Ek Matris (Adjoint Matris, $\text{adj}(A)$)</strong>'tir!
+            </p>
+            <div class="p-3.5 rounded-xl bg-slate-900/80 border border-indigo-500/30 text-center">
+                <span class="text-xs text-indigo-300 font-mono block mb-1">ALTIN FORMÜL (TÜM VİZENİN EN KRİTİK FORMÜLÜ)</span>
+                <p class="text-base sm:text-lg font-bold text-white">$$A^{-1} = \frac{1}{|A|} \text{adj}(A)$$</p>
+                <p class="text-xs text-slate-400 mt-1">Burada $|A|$ sıradan bir <strong>sayıdır (skaler)</strong>, $\text{adj}(A)$ ise bir <strong>matristir</strong>. Bir matrisin tüm elemanlarını tek bir sayıya bölmek çok kolaydır!</p>
+            </div>
+        </div>
+
+        <!-- 4.6.2: Adjoint ve Tersini Bulmanın 4 Adımlı Kusursuz Algoritması -->
+        <div class="space-y-3">
+            <h5 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                Adjoint ve Ters Matris Bulmanın 4 Aşamalı Yol Haritası
+            </h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <!-- Adım 1 -->
+                <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5 space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-400">1. AŞAMA</span>
+                        <strong class="text-white text-xs sm:text-sm">Güvenlik Kapısı: $|A| \neq 0$ mı?</strong>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Hemen kofaktör hesaplamaya başlama! Önce matrisin determinantını ($|A|$) bul. Eğer <strong>$|A| = 0$</strong> çıkarsa formüldeki payda sıfır olacağından <strong>TERSİ YOKTUR</strong> (Tekil / Singüler Matris)! "Tersi yoktur" yaz ve işlemi hemen bitir.
+                    </p>
+                </div>
+                <!-- Adım 2 -->
+                <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5 space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-500/20 text-blue-400">2. AŞAMA</span>
+                        <strong class="text-white text-xs sm:text-sm">Kofaktörler Matrisi ($C$) Hesabı</strong>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Her elemanın satırını ve sütununu elinle kapat. Kalan küçük determinantı (Minör $M_{ij}$) hesapla. Ardından dama tahtası işaretiyle ($(-1)^{i+j}$) çarpıp kofaktör $A_{ij}$'yi bul ve matris formatında diz.
+                    </p>
+                </div>
+                <!-- Adım 3 -->
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/20 text-rose-400">3. AŞAMA</span>
+                        <strong class="text-rose-300 text-xs sm:text-sm">EN BÜYÜK TUZAK: TRANSPOZE AL!</strong>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Hocaların öğrencileri elediği yer: Bulduğun Kofaktör Matrisi henüz Adjoint değildir! <strong>$\text{adj}(A) = C^T$</strong>'dir. Yani Kofaktör matrisinin <strong>satırlarını sütun yapacaksın</strong>! Bu adımı atlarsan soru gider.
+                    </p>
+                </div>
+                <!-- Adım 4 -->
+                <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-400">4. AŞAMA</span>
+                        <strong class="text-emerald-300 text-xs sm:text-sm">Determinanta Böl ($A^{-1}$)</strong>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Bulduğun $\text{adj}(A)$ matrisinin her bir elemanını ilk adımda hesapladığın $|A|$ sayısına böl: $A^{-1} = \frac{1}{|A|} \text{adj}(A)$. Ters matrisin artık hazır!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4.6.3: 5 Saniyelik Yıldırım Hilesi (2x2 Matrisler İçin) -->
+        <div class="p-5 rounded-2xl bg-amber-950/20 border border-amber-500/30 space-y-3">
+            <div class="flex items-center gap-2 text-amber-400 font-bold text-sm">
+                <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <span>5 Saniyelik Pratik Hile: $2 \times 2$ Matrislerin Adjoint'i ve Tersi</span>
+            </div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                $2 \times 2$ bir matris verildiğinde kofaktörlerle uğraşarak vakit kaybetmeyin! Tek kural vardır:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5 space-y-1">
+                    <span class="text-amber-400 font-bold block">1. KURAL: Esas Köşegen</span>
+                    $a$ ile $d$'yi <strong>YER DEĞİŞTİR</strong>!
+                </div>
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5 space-y-1">
+                    <span class="text-amber-400 font-bold block">2. KURAL: Yan Köşegen</span>
+                    $b$ ile $c$'nin <strong>İŞARETİNİ DEĞİŞTİR</strong> ($-1$ ile çarp)!
+                </div>
+            </div>
+            <div class="p-4 bg-slate-950/80 rounded-xl border border-amber-500/20 text-center font-mono text-xs sm:text-sm text-slate-200">
+                $$A = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \implies \mathbf{\text{adj}(A) = \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}} \implies \mathbf{A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}}$$
+            </div>
+            <div class="text-xs text-slate-300 space-y-1 bg-slate-900/50 p-3 rounded-lg border border-white/5">
+                <p><strong>Örnek:</strong> $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ olsun.</p>
+                <p>• $|A| = (1 \cdot 4) - (2 \cdot 3) = 4 - 6 = -2$</p>
+                <p>• 1 ve 4 yer değiştirir, 2 ve 3 eksi olur $\implies \text{adj}(A) = \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix}$</p>
+                <p>• $A^{-1} = -\frac{1}{2} \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix} = \begin{bmatrix} -2 & 1 \\ \frac{3}{2} & -\frac{1}{2} \end{bmatrix}$ (Tam 5 saniye!).</p>
+            </div>
+        </div>
+
+        <!-- 4.6.4: 3x3 Matris İçin Adım Adım Başyapıt Örnek (Hiçbir Adım Atlanmadan) -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-cyan-950/20 border border-cyan-500/30 space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b border-cyan-500/20 pb-3">
+                <span class="text-xs sm:text-sm font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    $3 \times 3$ Boyutunda Kusursuz Sayısal Başyapıt Örnek
+                </span>
+                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Tüm 9 Kofaktör Açıkça Hesaplanmıştır</span>
+            </div>
+
+            <p class="text-slate-200 text-sm font-semibold">
+                Soru: $A = \begin{bmatrix} 1 & 0 & 2 \\ 2 & -1 & 3 \\ 4 & 1 & 8 \end{bmatrix}$ matrisinin Adjoint matrisini ($\text{adj}(A)$) ve ters matrisini ($A^{-1}$) adım adım bulunuz.
+            </p>
+
+            <!-- 1. Adım: Determinant -->
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2 text-xs sm:text-sm text-slate-300">
+                <p class="font-bold text-amber-400 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                    1. ADIM: Determinant Güvenlik Kontrolü ($|A| \neq 0$ mı?)
+                </p>
+                <p>1. satıra göre Laplace açılımı yapalım (çünkü içinde kolaylık sağlayan $0$ var):</p>
+                <p>$$|A| = 1 \cdot \begin{vmatrix} -1 & 3 \\ 1 & 8 \end{vmatrix} - 0 \cdot \begin{vmatrix} 2 & 3 \\ 4 & 8 \end{vmatrix} + 2 \cdot \begin{vmatrix} 2 & -1 \\ 4 & 1 \end{vmatrix}$$</p>
+                <p>$$|A| = 1 \cdot [(-1)(8) - (3)(1)] - 0 + 2 \cdot [(2)(1) - (-1)(4)]$$</p>
+                <p>$$|A| = 1 \cdot (-8 - 3) + 2 \cdot (2 + 4) = -11 + 12 = \mathbf{1}$$</p>
+                <p class="text-emerald-400 font-semibold font-mono">Sonuç: $|A| = 1 \neq 0 \implies$ Determinant sıfır olmadığı için matrisin tersi KESİNLİKLE VARDIR!</p>
+            </div>
+
+            <!-- 2. Adım: 9 Kofaktörün Hesabı -->
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-3 text-xs text-slate-300">
+                <p class="font-bold text-blue-400 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                    2. ADIM: 9 Adet Kofaktörün Dama Tahtası İşaretleriyle Hesaplanması
+                </p>
+                <p class="text-slate-400">
+                    Formülümüz: $A_{ij} = (-1)^{i+j} M_{ij}$. Dama tahtası işaret şablonu: $\begin{bmatrix} + & - & + \\ - & + & - \\ + & - & + \end{bmatrix}$
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono">
+                    <!-- 1. Satır Kofaktörleri -->
+                    <div class="p-3 rounded-lg bg-slate-950/70 border border-white/5 space-y-1.5">
+                        <span class="text-cyan-300 font-bold block">1. Satır Kofaktörleri:</span>
+                        <p>• $A_{11} = + \begin{vmatrix} -1 & 3 \\ 1 & 8 \end{vmatrix} = -8 - 3 = \mathbf{-11}$</p>
+                        <p>• $A_{12} = - \begin{vmatrix} 2 & 3 \\ 4 & 8 \end{vmatrix} = -(16 - 12) = \mathbf{-4}$</p>
+                        <p>• $A_{13} = + \begin{vmatrix} 2 & -1 \\ 4 & 1 \end{vmatrix} = +(2 - (-4)) = \mathbf{6}$</p>
+                    </div>
+
+                    <!-- 2. Satır Kofaktörleri -->
+                    <div class="p-3 rounded-lg bg-slate-950/70 border border-white/5 space-y-1.5">
+                        <span class="text-cyan-300 font-bold block">2. Satır Kofaktörleri:</span>
+                        <p>• $A_{21} = - \begin{vmatrix} 0 & 2 \\ 1 & 8 \end{vmatrix} = -(0 - 2) = \mathbf{2}$</p>
+                        <p>• $A_{22} = + \begin{vmatrix} 1 & 2 \\ 4 & 8 \end{vmatrix} = +(8 - 8) = \mathbf{0}$</p>
+                        <p>• $A_{23} = - \begin{vmatrix} 1 & 0 \\ 4 & 1 \end{vmatrix} = -(1 - 0) = \mathbf{-1}$</p>
+                    </div>
+
+                    <!-- 3. Satır Kofaktörleri -->
+                    <div class="p-3 rounded-lg bg-slate-950/70 border border-white/5 space-y-1.5">
+                        <span class="text-cyan-300 font-bold block">3. Satır Kofaktörleri:</span>
+                        <p>• $A_{31} = + \begin{vmatrix} 0 & 2 \\ -1 & 3 \end{vmatrix} = +(0 - (-2)) = \mathbf{2}$</p>
+                        <p>• $A_{32} = - \begin{vmatrix} 1 & 2 \\ 2 & 3 \end{vmatrix} = -(3 - 4) = -(-1) = \mathbf{1}$</p>
+                        <p>• $A_{33} = + \begin{vmatrix} 1 & 0 \\ 2 & -1 \end{vmatrix} = +(-1 - 0) = \mathbf{-1}$</p>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <p class="font-bold text-slate-200">Kofaktörler Matrisi ($C$):</p>
+                    <p>$$C = \begin{bmatrix} A_{11} & A_{12} & A_{13} \\ A_{21} & A_{22} & A_{23} \\ A_{31} & A_{32} & A_{33} \end{bmatrix} = \begin{bmatrix} -11 & -4 & 6 \\ 2 & 0 & -1 \\ 2 & 1 & -1 \end{bmatrix}$$</p>
+                </div>
+            </div>
+
+            <!-- 3. Adım: Transpoze ve Adjoint -->
+            <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 space-y-2 text-xs sm:text-sm text-slate-300">
+                <p class="font-bold text-rose-400 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                    3. ADIM: Sınavın En Kritik Hamlesi — Transpoze Al ve $\text{adj}(A)$'yı Yaz!
+                </p>
+                <p class="text-slate-300">
+                    Kofaktör matrisinin <strong>satırlarını sütun</strong> yapıyoruz:
+                </p>
+                <div class="bg-slate-950/80 p-3 rounded-lg border border-white/5 font-mono text-xs space-y-1">
+                    <p>• $C$'nin 1. satırı: $[-11, -4, 6] \implies \text{adj}(A)$'nın <strong>1. sütunu</strong> oldu!</p>
+                    <p>• $C$'nin 2. satırı: $[2, 0, -1] \implies \text{adj}(A)$'nın <strong>2. sütunu</strong> oldu!</p>
+                    <p>• $C$'nin 3. satırı: $[2, 1, -1] \implies \text{adj}(A)$'nın <strong>3. sütunu</strong> oldu!</p>
+                </div>
+                <p class="text-center py-1">
+                    $$\mathbf{\text{adj}(A) = C^T = \begin{bmatrix} -11 & 2 & 2 \\ -4 & 0 & 1 \\ 6 & -1 & -1 \end{bmatrix}}$$
+                </p>
+            </div>
+
+            <!-- 4. Adım: Ters Matris -->
+            <div class="p-4 rounded-xl bg-emerald-950/25 border border-emerald-500/30 space-y-2 text-xs sm:text-sm text-slate-300">
+                <p class="font-bold text-emerald-400 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    4. ADIM: Formülü Uygulayarak Ters Matrisi ($A^{-1}$) Elde Etme
+                </p>
+                <p>$$A^{-1} = \frac{1}{|A|} \text{adj}(A) = \frac{1}{1} \begin{bmatrix} -11 & 2 & 2 \\ -4 & 0 & 1 \\ 6 & -1 & -1 \end{bmatrix} = \mathbf{\begin{bmatrix} -11 & 2 & 2 \\ -4 & 0 & 1 \\ 6 & -1 & -1 \end{bmatrix}}$$</p>
+            </div>
+
+            <!-- Sağlama Testi: A * adj(A) = |A| * I -->
+            <div class="p-4 rounded-xl bg-purple-950/25 border border-purple-500/30 space-y-2 text-xs text-slate-300">
+                <p class="font-bold text-purple-300 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Sınavda Doğruluğu %100 Kanıtlama: Sağlama / Kontrol Testi
+                </p>
+                <p>
+                    Vizede cevabınızın doğru olup olmadığını anlamak için matris ile Adjoint'ini çarpın: Kural gereği sonuç <strong>$|A| \cdot I$</strong> çıkmalıdır:
+                </p>
+                <p class="font-mono text-center">
+                    $$A \cdot \text{adj}(A) = \begin{bmatrix} 1 & 0 & 2 \\ 2 & -1 & 3 \\ 4 & 1 & 8 \end{bmatrix} \begin{bmatrix} -11 & 2 & 2 \\ -4 & 0 & 1 \\ 6 & -1 & -1 \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix} = 1 \cdot I_3$$
+                </p>
+                <p class="text-purple-300 font-semibold">Gördüğünüz gibi Birim Matris çıktı! Demek ki bulduğumuz Adjoint ve Ters Matris %100 HATASIZ ve EKSİKSİZDİR.</p>
+            </div>
+        </div>
+
+        <!-- 4.6.5: Vizede En Çok Can Yakan 4 Adjoint / Ters Matris Tuzağı -->
+        <div class="space-y-3">
+            <h5 class="text-sm font-bold text-rose-400 uppercase tracking-wider flex items-center gap-2">
+                <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                Vize Sınavında En Çok Puan Kırdıran 4 Adjoint Tuzağı
+            </h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                    <strong class="text-rose-400 block font-bold">1. Transpozeyi Unutup Kofaktör Matrisini Adjoint Sanmak:</strong>
+                    Öğrencilerin %70'i $C$ matrisini bulur ve heyecanla doğrudan cevap kutusuna yazar. Hoca transpoze alınmadığını gördüğü an tüm adımı çizer! Unutma: $\text{adj}(A) = C^T$'dir.
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                    <strong class="text-rose-400 block font-bold">2. Dama Tahtasındaki Eksi ile Determinantın Kendi Eksisi:</strong>
+                    Örneğin $A_{32}$ elemanında formülden gelen bir eksi vardır: $-(-1)^{3+2} = -1$. İçerideki determinant da $-1$ çıkarsa: $-(-1) = \mathbf{+1}$ olur! İki eksi yan yana gelince artı yapmayı unutmayın.
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                    <strong class="text-rose-400 block font-bold">3. $2 \times 2$ Kestirmesini $3 \times 3$'e Uygulamaya Çalışmak:</strong>
+                    Köşegenleri yer değiştirip diğerlerini eksi yapma kuralı <u>SADECE ve SADECE $2 \times 2$</u> matrisler içindir! Asla $3 \times 3$ matrislere uygulanamaz. $3 \times 3$ için 9 kofaktörü tek tek hesaplamak zorundasınız.
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                    <strong class="text-rose-400 block font-bold">4. Vizenin Yıldız Formülü: $|\text{adj}(A)| = |A|^{n-1}$</strong>
+                    Hoca vizede der ki: "$3 \times 3$ tipindeki $A$ matrisinin determinantı $|A| = 4$ ise, $\text{adj}(A)$ matrisinin determinantı kaçtır?". Matrisin elemanlarını bilmeden çözülebilir mi? EVET! Kural: $|\text{adj}(A)| = |A|^{n-1} = 4^{3-1} = 4^2 = \mathbf{16}$. Bu formülü bilen saniyeler içinde tam puanı alır!
+                </div>
             </div>
         </div>
     </div>
