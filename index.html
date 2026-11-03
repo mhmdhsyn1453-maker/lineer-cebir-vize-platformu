@@ -1603,88 +1603,301 @@
 
             
 <div class="space-y-6">
-    <!-- 4.1 Elementer İşlemler ve Örnek -->
-    <div class="glass-3d-card p-6 rounded-2xl border border-white/5 space-y-4">
-        <div class="flex items-center gap-3">
-            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">4.1</span>
-            <h4 class="text-lg font-bold text-white">3 Elementer Satır İşlemi (Rankı Değiştirmeyen Hamleler)</h4>
+    <!-- 4.0 Bölüm Başlığı & Masterclass Rozetleri -->
+    <div class="glass-3d-card p-6 sm:p-8 rounded-2xl border border-white/5 space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/5 pb-4">
+            <div class="flex items-center gap-3">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">4.0</span>
+                <h4 class="text-lg sm:text-xl font-bold text-white tracking-tight">Denk Matrisler, Eşelon Form & Rank Masterclass</h4>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[11px] font-mono">Çocuğa Anlatır Gibi Sıfırdan Mantık</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-mono">Dedektif Analojisi</span>
+            </div>
         </div>
 
-        <!-- 4.1 Sayısal Örnek -->
-        <div class="p-5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 space-y-3">
-            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                4.1 İçin Tam Çözümlü Sayısal Örnek:
-            </span>
-            <p class="text-slate-200 text-sm font-semibold">
-                Soru: $A = \begin{bmatrix} 1 & 3 \\ 2 & 8 \end{bmatrix}$ matrisine $S_2 - 2S_1 \to S_2$ satır işlemini uygulayınız.
+        <!-- 4.1: Rank Nedir? (Çocuğa Anlatır Gibi Dedektif Analojisi) -->
+        <div class="space-y-3">
+            <h5 class="text-sm font-bold text-emerald-400 flex items-center gap-2 uppercase tracking-wider">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                4.1 Rank Nedir? (Çocuğa Anlatır Gibi Dedektif Analojisi)
+            </h5>
+            <p class="text-slate-300 text-sm leading-relaxed">
+                Kitaplar rankı <em>"alt determinantların en büyük mertebesi"</em> veya <em>"boyut"</em> gibi karışık tanımlarla anlatır. Gelin bunu <strong>ilkokul seviyesinde bir benzetmeyle</strong> kafamıza kazıyalım:
             </p>
-            <div class="text-xs sm:text-sm text-slate-300 space-y-2 font-mono bg-slate-950/60 p-4 rounded-xl border border-white/5">
-                <p>• 1. Satır ($S_1$) aynen kalır: $[1, 3]$</p>
-                <p>• 2. Satır hesabı: $S_2 - 2S_1 = [2, 8] - 2 \cdot [1, 3] = [2 - 2, 8 - 6] = [\mathbf{0, 2}]$</p>
-                <p class="text-emerald-400 font-bold pt-1">Elde Edilen Denk Matris: $\begin{bmatrix} 1 & 3 \\ 0 & 2 \end{bmatrix}$. Bu işlem matrisin rankını ASLA değiştirmez!</p>
+            
+            <!-- Analoji Kutusu -->
+            <div class="p-5 rounded-2xl bg-indigo-950/30 border border-indigo-500/30 space-y-3">
+                <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    Dedektif Masası Analojisi:
+                </span>
+                <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                    Bir masada 3 adet bilgi notu olduğunu düşünün:<br>
+                    • <strong>1. Not:</strong> <em>"Ahmet 1 ekmek aldı = 10 TL"</em><br>
+                    • <strong>2. Not:</strong> <em>"Ahmet 1 süt aldı = 20 TL"</em><br>
+                    • <strong>3. Not:</strong> <em>"Ahmet 2 ekmek ve 2 süt aldı = 60 TL"</em><br>
+                    3. nota dikkatle bakın: 1. ve 2. notu 2 ile çarpıp toplarsanız zaten 3. not çıkar! Yani 3. not masaya <strong>HİÇBİR YENİ BİLGİ KATMAZ</strong>, gereksiz bir kopyadır (çöptür)!
+                </p>
+                <div class="p-3 rounded-xl bg-slate-950/60 border border-white/5 text-xs text-indigo-200 font-mono">
+                    İşte matrislerde her bir satır bir ifadedir. Birbirinin kopyası olan satırları elediğimizde masada geriye kalan <strong>GERÇEK, YENİ VE SIFIRLANMAYAN SATIR SAYISINA "RANK" DENİR!</strong>
+                </div>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs text-slate-300">
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 text-center space-y-1">
+                    <span class="text-emerald-400 font-bold block">Rank = 3</span>
+                    <p class="text-[11px] text-slate-400">3 satır da birbirinden bağımsızdır. Hiçbir satır sıfırlanamaz (Tam Rank).</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 text-center space-y-1">
+                    <span class="text-amber-400 font-bold block">Rank = 2</span>
+                    <p class="text-[11px] text-slate-400">1 satır diğerlerinin kopyasıdır ve işlem yapılınca tamamen $[0, 0, 0]$ olup elenir.</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 text-center space-y-1">
+                    <span class="text-rose-400 font-bold block">Rank = 1</span>
+                    <p class="text-[11px] text-slate-400">2 satır birden gereksiz kopyadır ve elenir. Geriye sadece tek bir satır kalır.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4.2: Denk Matrisler ve 3 Elementer Satır İşlemi -->
+        <div class="space-y-3 pt-4 border-t border-white/5">
+            <h5 class="text-sm font-bold text-emerald-400 flex items-center gap-2 uppercase tracking-wider">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                4.2 Denk Matrisler ($A \sim B$) ve 3 Yasal Matematik Hamlesi
+            </h5>
+            <p class="text-slate-300 text-sm leading-relaxed">
+                Neden iki matris arasına eşittir ($=$) değil de denktir ($\sim$) işareti koyarız? Çünkü satır işlemleri yaparken sayılar değişir ama matrisin özü, çözümü ve <strong>RANKI ASLA DEĞİŞMEZ!</strong>
+            </p>
+            <p class="text-slate-300 text-sm leading-relaxed">
+                Bir matrise uygulayabileceğiniz <strong>sadece 3 yasal işlem</strong> vardır:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-300">
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1.5">
+                    <strong class="text-indigo-400 block font-mono">1. Satır Takası ($S_i \leftrightarrow S_j$)</strong>
+                    <p class="text-[11px] text-slate-400">İki satırın yerini değiştirebilirsiniz. Örneğin üst satırda $1$ elde etmek için 1. satırla 3. satırı takas edebilirsiniz.</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1.5">
+                    <strong class="text-teal-400 block font-mono">2. Sabitle Çarpma ($c \cdot S_i \to S_i$)</strong>
+                    <p class="text-[11px] text-slate-400">Bir satırdaki tüm sayıları sıfırdan farklı bir sayıyla ($c \neq 0$) çarpabilir veya bölebilirsiniz (örneğin 2'ye bölmek).</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1.5">
+                    <strong class="text-emerald-400 block font-mono">3. Katını Ekleme/Çıkarma ($S_i + c S_j$)</strong>
+                    <p class="text-[11px] text-slate-400">En güçlü silahımız! Bir satırın $c$ katını alıp diğer satıra ekleyerek altındaki sayıları sıfırlarız.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4.3: Eşelon (Basamak) Form ve Pivot Nedir? -->
+        <div class="space-y-3 pt-4 border-t border-white/5">
+            <h5 class="text-sm font-bold text-emerald-400 flex items-center gap-2 uppercase tracking-wider">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                4.3 Eşelon (Basamak) Form ve Pivot Nedir?
+            </h5>
+            <p class="text-slate-300 text-sm leading-relaxed">
+                Rank bulabilmek için matrisi <strong>merdiven basamağı</strong> haline getirmemiz gerekir. Buna <strong>Eşelon Form</strong> denir.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5 space-y-2">
+                    <span class="text-xs font-mono font-bold text-indigo-400 block">1. Pivot (Baş Eleman) Nedir?</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Bir satırda soldan sağa bakarken karşılaştığınız <strong>İLK SIFIR OLMAYAN SAYI</strong> o satırın pivotudur.<br>
+                        Örnek: $[0, 0, \mathbf{4}, -1, 3]$ satırının pivotu $\mathbf{4}$'tür.
+                    </p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5 space-y-2">
+                    <span class="text-xs font-mono font-bold text-teal-400 block">2. Eşelon Formun 3 Kuralı</span>
+                    <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                        <li>Her satırın pivotu, üsttekinin <strong>sağında</strong> olmalıdır (merdiven iner gibi).</li>
+                        <li>Her pivotun <strong>altındaki tüm sayılar $0$</strong> olmalıdır.</li>
+                        <li>Tamamen sıfır $[0, 0, \dots, 0]$ olan satırlar <strong>en altta</strong> toplanmalıdır.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Görsel Şablon -->
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-white/5 text-center space-y-2">
+                <span class="text-xs font-mono text-slate-400">Kusursuz Bir Eşelon Form Görseli:</span>
+                <div class="text-sm sm:text-base font-mono text-emerald-300 font-bold py-2">
+                    $$\begin{bmatrix}
+                    \mathbf{1} & 3 & -1 & 5 \\
+                    0 & \mathbf{2} & 4 & 1 \\
+                    0 & 0 & \mathbf{5} & -2 \\
+                    0 & 0 & 0 & 0
+                    \end{bmatrix} \implies \text{Pivotlar: } 1, 2, 5 \implies \mathbf{\text{Rank} = 3}$$
+                </div>
+                <p class="text-[11px] text-slate-400">4. satır tamamen sıfırlandı; sıfır olmayan 3 satır kaldı. O halde rank = 3'tür!</p>
+            </div>
+        </div>
+
+        <!-- 4.4: 5 Adımda Rank Bulma Algoritması -->
+        <div class="space-y-3 pt-4 border-t border-white/5">
+            <h5 class="text-sm font-bold text-emerald-400 flex items-center gap-2 uppercase tracking-wider">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                4.4 Yemek Tarifi Gibi: 5 Adımda Rank Bulma Rehberi
+            </h5>
+            <ol class="space-y-2 text-xs sm:text-sm text-slate-300 list-decimal list-inside pl-2 font-mono">
+                <li><strong>Sol Üst Köşeyi Kontrol Et ($a_{11}$):</strong> Sayı $0$ ise, alt satırlardan sıfır olmayan (mümkünse başında $1$ olan) bir satırla yer değiştir ($S_1 \leftrightarrow S_i$).</li>
+                <li><strong>1. Sütunu Temizle:</strong> $a_{11}$'in altındaki tüm sayıları $S_k \leftarrow S_k - c \cdot S_1$ formülüyle sıfırla!</li>
+                <li><strong>2. Satıra Geç:</strong> 2. satırın pivotunu ($a_{22}$) belirle ve onun da altındaki tüm sayıları sıfırla.</li>
+                <li><strong>Sıfır Satırlarını En Dibe Gönder:</strong> İşlemler sırasında tamamen sıfıra $[0, 0, \dots, 0]$ dönüşen satırlar olursa en alta taşı.</li>
+                <li><strong>Hayatta Kalan Satırları Say:</strong> Tamamen sıfır olmayan satırların toplam adedi senin <strong>RANK</strong>'ındır!</li>
+            </ol>
         </div>
     </div>
 
-    <!-- 4.2 Kanonik Eşelon Form ve Rank Bulma -->
-    <div class="glass-3d-card p-6 rounded-2xl border border-white/5 space-y-4">
-        <div class="flex items-center gap-3">
-            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">4.2</span>
-            <h4 class="text-lg font-bold text-white">Kanonik (Eşelon) Form ve Rank Bulma</h4>
-        </div>
-        <p class="text-slate-300 text-sm leading-relaxed">
-            Matris satır işlemleriyle basamaklı hale getirildiğinde, <strong>tüm elemanları sıfır olmayan satır sayısı = RANK</strong>'tır!
-        </p>
-
-        <!-- 4.2 Sayısal Örnek -->
-        <div class="p-5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 space-y-3">
+    <!-- ÖRNEK 1 -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-white/5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-2">
             <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                 <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                4.2 İçin Tam Çözümlü Sayısal Örnek (Rank Bulma):
+                Örnek 1: $3 \times 3$ Matriste Bir Satırın Sıfırlanması & Rank Hesabı
             </span>
-            <p class="text-slate-200 text-sm font-semibold">
-                Soru: $A = \begin{bmatrix} 1 & 2 & 1 \\ 2 & 4 & 2 \\ 3 & 6 & 5 \end{bmatrix}$ matrisinin rankını bulunuz.
-            </p>
-            <div class="text-xs sm:text-sm text-slate-300 space-y-2 font-mono bg-slate-950/60 p-4 rounded-xl border border-white/5">
-                <p><strong>1. Hamle:</strong> 1. sütunun altını sıfırla:<br>
-                • $S_2 - 2S_1 \to S_2$: $[2, 4, 2] - [2, 4, 2] = [0, 0, 0]$ (2. satır komple sıfırlandı!)<br>
-                • $S_3 - 3S_1 \to S_3$: $[3, 6, 5] - [3, 6, 3] = [0, 0, 2]$</p>
-                <p><strong>2. Hamle:</strong> Sıfırlı satırı en alta kaydır ($S_2 \leftrightarrow S_3$):<br>
-                $$\begin{bmatrix} 1 & 2 & 1 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{bmatrix}$$</p>
-                <p class="text-emerald-400 font-bold pt-1">Sonuç: Sıfır olmayan satır sayısı 2'dir $\implies \mathbf{\text{rank}(A) = 2}$!</p>
-            </div>
+            <span class="text-[11px] font-mono text-slate-400">Temel Seviye</span>
+        </div>
+        <p class="text-slate-200 text-sm font-semibold">
+            Soru: $A = \begin{bmatrix} 1 & 2 & -1 \\ 2 & 4 & -2 \\ 3 & 1 & 4 \end{bmatrix}$ matrisinin rankını bulunuz.
+        </p>
+        <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+            <p class="text-emerald-300 font-bold">Adım 1: 1. Satır pivotumuz $a_{11} = 1$. Altındaki $2$ ve $3$ sayılarını sıfırlayalım:</p>
+            <p>• $S_2 \leftarrow S_2 - 2S_1 = [2, 4, -2] - 2 \cdot [1, 2, -1] = [2-2, 4-4, -2 - (-2)] = [\mathbf{0, 0, 0}]$<br>
+            <span class="text-amber-400 font-sans">Aman Allahım! 2. satır tamamen sıfırlandı! Çünkü 2. satır, 1. satırın tam 2 katıydı (bağımlıydı)!</span></p>
+            <p>• $S_3 \leftarrow S_3 - 3S_1 = [3, 1, 4] - 3 \cdot [1, 2, -1] = [3-3, 1-6, 4 - (-3)] = [\mathbf{0, -5, 7}]$</p>
+
+            <p class="text-emerald-300 font-bold pt-2">Adım 2: Sıfırlanan satırı en alta kaydıralım ($S_2 \leftrightarrow S_3$):</p>
+            <p>$$A \sim \begin{bmatrix} 1 & 2 & -1 \\ 0 & -5 & 7 \\ 0 & 0 & 0 \end{bmatrix}$$</p>
+
+            <p class="text-emerald-300 font-bold pt-2">Adım 3: Eşelon Formu Değerlendirelim:</p>
+            <p>• 1. Satır: $[1, 2, -1]$ (Sıfırdan farklı)</p>
+            <p>• 2. Satır: $[0, -5, 7]$ (Sıfırdan farklı)</p>
+            <p>• 3. Satır: $[0, 0, 0]$ (Tamamen sıfır, ranka dahil edilmez!)</p>
+            <p class="text-emerald-400 font-bold text-sm pt-1">Sonuç: Sıfır olmayan 2 satır kaldığı için $\mathbf{\text{rank}(A) = 2}$'dir!</p>
         </div>
     </div>
 
-    <!-- 4.3 Adjoint (Ek Matris) ve Ters Matris -->
-    <div class="glass-3d-card p-6 rounded-2xl border border-white/5 space-y-4">
-        <div class="flex items-center gap-3">
-            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">4.3</span>
-            <h4 class="text-lg font-bold text-white">Adjoint (Ek Matris - $\text{adj}(A)$) Bulma</h4>
+    <!-- ÖRNEK 2 -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-white/5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-2">
+            <span class="text-xs font-bold text-teal-400 uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                Örnek 2: $3 \times 4$ Dikdörtgen Matriste Eşelon Form ve Rank
+            </span>
+            <span class="text-[11px] font-mono text-teal-300">Orta Seviye</span>
+        </div>
+        <p class="text-slate-200 text-sm font-semibold">
+            Soru: $B = \begin{bmatrix} 1 & -2 & 0 & 3 \\ 2 & -4 & 1 & 5 \\ 3 & -6 & 2 & 7 \end{bmatrix}$ matrisinin rankını bulunuz.
+        </p>
+        <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+            <p class="text-teal-300 font-bold">Adım 1: 1. Sütunu Sıfırlayalım:</p>
+            <p>• $S_2 \leftarrow S_2 - 2S_1 = [2, -4, 1, 5] - [2, -4, 0, 6] = [\mathbf{0, 0, 1, -1}]$</p>
+            <p>• $S_3 \leftarrow S_3 - 3S_1 = [3, -6, 2, 7] - [3, -6, 0, 9] = [\mathbf{0, 0, 2, -2}]$</p>
+            <p>Matris:<br>
+            $$\begin{bmatrix} 1 & -2 & 0 & 3 \\ 0 & 0 & 1 & -1 \\ 0 & 0 & 2 & -2 \end{bmatrix}$$</p>
+
+            <p class="text-teal-300 font-bold pt-2">Adım 2: 3. Sütun Pivotuyla 3. Satırı Sıfırlayalım:</p>
+            <p>2. satır $[0, 0, 1, -1]$ ve 3. satır $[0, 0, 2, -2]$ dikkat ederseniz birbirinin tam 2 katıdır!<br>
+            $S_3 \leftarrow S_3 - 2S_2 = [0, 0, 2, -2] - 2 \cdot [0, 0, 1, -1] = [\mathbf{0, 0, 0, 0}]$ (3. satır tamamen sıfırlandı!)</p>
+
+            <p class="text-teal-300 font-bold pt-2">Adım 3: Eşelon Form:</p>
+            <p>$$\begin{bmatrix} 1 & -2 & 0 & 3 \\ 0 & 0 & 1 & -1 \\ 0 & 0 & 0 & 0 \end{bmatrix}$$</p>
+            <p class="text-emerald-400 font-bold text-sm pt-1">Sonuç: Sıfır olmayan satır sayısı 2'dir $\implies \mathbf{\text{rank}(B) = 2}$!</p>
+        </div>
+    </div>
+
+    <!-- ÖRNEK 3 -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-white/5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-2">
+            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                Örnek 3: $4 \times 4$ Matriste Pivot Takası ve Vize Seviyesi Rank Hesabı
+            </span>
+            <span class="text-[11px] font-mono text-purple-300">Vize Seviyesi Ağır Soru</span>
+        </div>
+        <p class="text-slate-200 text-sm font-semibold">
+            Soru: $C = \begin{bmatrix} 2 & 4 & 2 & 6 \\ 1 & 2 & 2 & 5 \\ 3 & 6 & 5 & 14 \\ 1 & 2 & 0 & 1 \end{bmatrix}$ matrisinin rankını bulunuz.
+        </p>
+        <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-mono bg-slate-950/70 p-4 rounded-xl border border-white/5">
+            <p class="text-amber-400 font-sans font-bold">Taktik: 1. satırı 2'ye bölüp kesirlerle uğraşmak yerine 2. satırdaki hazır $1$'i yukarı taşıyalım ($S_1 \leftrightarrow S_2$):</p>
+            <p>$$C \sim \begin{bmatrix} 1 & 2 & 2 & 5 \\ 2 & 4 & 2 & 6 \\ 3 & 6 & 5 & 14 \\ 1 & 2 & 0 & 1 \end{bmatrix}$$</p>
+
+            <p class="text-purple-300 font-bold pt-2">Adım 1: 1. Sütunu Sıfırlayalım:</p>
+            <p>• $S_2 \leftarrow S_2 - 2S_1 = [0, 0, -2, -4]$ ($-2$'ye bölersek: $[0, 0, 1, 2]$)</p>
+            <p>• $S_3 \leftarrow S_3 - 3S_1 = [0, 0, -1, -1]$</p>
+            <p>• $S_4 \leftarrow S_4 - S_1 = [0, 0, -2, -4]$ (Dikkat! 2. satır ile 4. satır tıpatıp aynı oldu!)</p>
+
+            <p class="text-purple-300 font-bold pt-2">Adım 2: 4. Satırı Sıfırlayalım ($S_4 \leftarrow S_4 - S_2$):</p>
+            <p>$$[0, 0, -2, -4] - [0, 0, -2, -4] = [\mathbf{0, 0, 0, 0}]$$</p>
+
+            <p class="text-purple-300 font-bold pt-2">Adım 3: 3. Satırdaki Pivotu Bulalım ($S_3 + S_2'$):</p>
+            <p>$S_2$ satırını $[-2, -4]$ halinden $[1, 2]$ yaptık. $S_3$ satırı $[-1, -1]$ idi. İkisini toplarsak:<br>
+            $[0, 0, -1, -1] + [0, 0, 1, 2] = [\mathbf{0, 0, 0, 1}]$</p>
+
+            <p class="text-purple-300 font-bold pt-2">Adım 4: Son Eşelon Form:</p>
+            <p>$$\begin{bmatrix} 1 & 2 & 2 & 5 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{bmatrix}$$</p>
+            <p class="text-emerald-400 font-bold text-sm pt-1">Sonuç: 3 adet sıfırdan farklı basamak satırı kaldı $\implies \mathbf{\text{rank}(C) = 3}$!</p>
+        </div>
+    </div>
+
+    <!-- 4.6: Ek Matris (Adjoint) ve Ters Matris İlişkisi -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-white/5 space-y-4">
+        <div class="flex items-center gap-3 border-b border-white/5 pb-3">
+            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">4.6</span>
+            <h4 class="text-lg font-bold text-white">Ek Matris (Adjoint - $\text{adj}(A)$) ve Ters Matris İlişkisi</h4>
         </div>
         <p class="text-slate-300 text-sm leading-relaxed">
-            $\text{adj}(A)$, matrisin tüm kofaktörlerinin oluşturduğu matrisin <strong>TRANSPOZESİDİR</strong>: $\text{adj}(A) = [A_{ij}]^T$.
+            Rankı tam olan ($|A| \neq 0$) kare matrislerin tersi vardır. Tersi bulmanın en popüler yolu <strong>Ek Matris (Adjoint)</strong> formülüdür:
+            $$A^{-1} = \frac{1}{|A|} \text{adj}(A)$$
         </p>
+        <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/20 text-xs sm:text-sm text-indigo-200">
+            <strong>EN BÜYÜK SINAV SIRRI:</strong> $\text{adj}(A)$, kofaktörler matrisinin <strong>TRANSPOZESİDİR</strong>! Yani $A_{ij}$ kofaktörlerini bulduktan sonra <u>satırları sütun yapmayı unutursanız</u> tüm soru gider!
+        </div>
 
-        <!-- 4.3 Sayısal Örnek -->
+        <!-- 4.6 Sayısal Örnek -->
         <div class="p-5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 space-y-3">
             <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                 <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                4.3 İçin Tam Çözümlü Sayısal Örnek:
+                4.6 İçin Tam Çözümlü Sayısal Örnek:
             </span>
             <p class="text-slate-200 text-sm font-semibold">
-                Soru: $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ matrisinin Adjoint'ini ($\text{adj}(A)$) bulunuz.
+                Soru: $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ matrisinin Adjoint'ini ($\text{adj}(A)$) ve tersini ($A^{-1}$) bulunuz.
             </p>
             <div class="text-xs sm:text-sm text-slate-300 space-y-2 font-mono bg-slate-950/60 p-4 rounded-xl border border-white/5">
-                <p>• $A_{11} = (-1)^{1+1} \cdot 4 = +4$<br>
-                • $A_{12} = (-1)^{1+2} \cdot 3 = -3$<br>
-                • $A_{21} = (-1)^{2+1} \cdot 2 = -2$<br>
-                • $A_{22} = (-1)^{2+2} \cdot 1 = +1$</p>
+                <p>1. Adım: Determinant $|A| = (1 \cdot 4) - (2 \cdot 3) = 4 - 6 = \mathbf{-2} \neq 0$ (Tersi vardır!).</p>
+                <p>2. Adım: Kofaktörleri dama tahtası işaretleriyle bulalım:<br>
+                • $A_{11} = + (4) = 4$<br>
+                • $A_{12} = - (3) = -3$<br>
+                • $A_{21} = - (2) = -2$<br>
+                • $A_{22} = + (1) = 1$</p>
                 <p>Kofaktörler Matrisi: $\begin{bmatrix} 4 & -3 \\ -2 & 1 \end{bmatrix}$</p>
-                <p>Transpozesini al $\implies$ <strong>Adjoint Matris:</strong><br>
-                $$\text{adj}(A) = \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix}$$</p>
-                <p class="text-emerald-400 font-bold pt-1">Sonuç: $\text{adj}(A) = \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix}$'dir.</p>
+                <p>3. Adım: TRANSPOZESİNİ AL $\implies \mathbf{\text{adj}(A) = \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix}}$</p>
+                <p>4. Adım: Formül $A^{-1} = -\frac{1}{2} \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix} = \begin{bmatrix} -2 & 1 \\ \frac{3}{2} & -\frac{1}{2} \end{bmatrix}$.</p>
+                <p class="text-emerald-400 font-bold pt-1">Sonuç: $\text{adj}(A) = \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix}$ ve $A^{-1} = \begin{bmatrix} -2 & 1 \\ \frac{3}{2} & -\frac{1}{2} \end{bmatrix}$'dir.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4.7: Vizede En Çok Puan Kırdıran 4 Klasik Rank Tuzağı -->
+    <div class="glass-3d-card p-6 sm:p-7 rounded-2xl border border-rose-500/30 bg-rose-950/10 space-y-4">
+        <div class="flex items-center gap-2 text-rose-400 font-bold text-sm uppercase tracking-wider">
+            <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            Vize Sınavında En Çok Puan Kırdıran 4 Klasik Rank Tuzağı
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                <strong class="text-rose-400 block font-bold">1. Determinant Sıfır Değilse Rank Doğrudan $n$'dir!</strong>
+                $3 \times 3$ kare matriste $|A| \neq 0$ ise hiç satır işlemi yapmana gerek yoktur; kural gereği doğrudan $\text{rank}(A) = 3$'tür! Satır işlemiyle zaman kaybetme.
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                <strong class="text-rose-400 block font-bold">2. Boyut Sınırını Asla Aşamazsınız:</strong>
+                $m \times n$ bir matrisin rankı asla satır veya sütun sayısından büyük olamaz: $\text{rank}(A) \le \min(m, n)$. Örneğin $3 \times 5$'lik bir matrisin rankı en fazla 3 olabilir, asla 4 veya 5 çıkamaz!
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                <strong class="text-rose-400 block font-bold">3. Sıfır Satırını Ranka Sayma Hatası:</strong>
+                En altta oluşan $[0, 0, \dots, 0]$ satırları ranka dahil edilmez. Rank yalnızca sıfırdan farklı (en az bir sayısı sıfır olmayan) diri satırların sayısıdır.
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
+                <strong class="text-rose-400 block font-bold">4. Kesirlerle Kendini Yakma:</strong>
+                1. satırın ilk sayısı $3$ ise hemen satırı 3'e bölüp kesirli sayılarla boğuşma! Alt satırlarda başında $1$ olan bir satır varsa hemen yer değiştir ($S_1 \leftrightarrow S_i$). İşlemlerin 10 kat hızlanır.
             </div>
         </div>
     </div>
